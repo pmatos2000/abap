@@ -1,0 +1,10 @@
+%_CABAP
+%_COLE2
+CL_ABAP_DATADESCR=============CT
+CL_ABAP_TYPEDESCR=============CT
+CL_GUI_DYNPRO_COMPANION=======CT
+CL_GUI_FRONTEND_SERVICES======CU
+CL_GUI_OBJECT=================CU
+CNTL==========================TT
+DBD$SSEL
+IF_CACHED_PROP================IU

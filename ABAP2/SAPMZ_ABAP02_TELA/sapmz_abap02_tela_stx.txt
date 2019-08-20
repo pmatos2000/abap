@@ -1,0 +1,11 @@
+SAPMZ_ABAP02_TELA                       PA000001                  TAcoes para tela 9000                                        
+SAPMZ_ABAP02_TELA                       PB000001              0001TAcoes para tela 9000                                        
+SAPMZ_ABAP02_TELA                       PCSTAT_9000               TAcoes para tela 9000                                        
+SAPMZ_ABAP02_TELA                       PFGRAVAR              001 MGravar                                                      
+SAPMZ_ABAP02_TELA                       PFPESQUISAR           001 MBusca                                                       
+SAPMZ_ABAP02_TELA                       PFPROX_TELA           001 IProxima Tela                                                
+SAPMZ_ABAP02_TELA                       PFPROX_TELA           001 MProxima Tela                                                
+SAPMZ_ABAP02_TELA                       PFVOLTAR              001 MVoltar                                                      
+SAPMZ_ABAP02_TELA                       PP000001                  TAcoes para tela 9000                                        
+SAPMZ_ABAP02_TELA                       PTT1_ALT_ABAP02           TAlteracao de e-mail                                         
+SAPMZ_ABAP02_TELA                       PTT2_ALT_ABAP02           TSegunda tela                                                

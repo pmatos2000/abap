@@ -1,0 +1,7 @@
+REPORT y_abap02_message.
+
+START-OF-SELECTION.
+
+  MESSAGE s000(y_abap02_msg).
+  MESSAGE i001(y_abap02_msg) DISPLAY LIKE 'W'.
+  MESSAGE i002(y_abap02_msg).

@@ -1,0 +1,6 @@
+ZCL_ABAP02_TABELAS            ADD_PESSOA                    P
+ZCL_ABAP02_TABELAS            GET_PESSOA                    PRetorna a pessoa pelo nome
+ZCL_ABAP02_TABELAS            OUTRAS_PESSOAS                P
+ZCL_ABAP02_TABELAS            PESSOAS                       P
+ZCL_ABAP02_TABELAS            REGISTRO_PESSOA               P
+ZCL_ABAP02_TABELAS            TY_PESSOAS                    P

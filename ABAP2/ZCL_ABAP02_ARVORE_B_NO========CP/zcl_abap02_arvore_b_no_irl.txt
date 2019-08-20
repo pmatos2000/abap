@@ -1,0 +1,2 @@
+ZCL_ABAP02_ARVORE_B_NO        DIR                           1ZCL_ABAP02_ARVORE_B_NO        0
+ZCL_ABAP02_ARVORE_B_NO        ESQ                           1ZCL_ABAP02_ARVORE_B_NO        0

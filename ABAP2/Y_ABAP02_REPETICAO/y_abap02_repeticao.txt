@@ -1,0 +1,21 @@
+REPORT y_abap02_repeticao.
+
+PARAMETERS:
+  nome  TYPE c LENGTH 32,
+  idade TYPE i,
+  curso TYPE c LENGTH 32,
+  cpf   TYPE c LENGTH 11,
+  email TYPE c LENGTH 32,
+  tel   TYPE c LENGTH 32,
+  n     TYPE i.
+
+START-OF-SELECTION.
+  DO n TIMES.
+    WRITE:
+      'Nome:', nome, /,
+      'Idade:', idade, /,
+      'Curso:', curso, /,
+      'CPF:', cpf, /,
+      'E-mail:', email, /,
+      'Tel.:', tel, /.
+  ENDDO.

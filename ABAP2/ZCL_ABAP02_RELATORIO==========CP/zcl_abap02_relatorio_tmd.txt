@@ -1,0 +1,4 @@
+ZCL_ABAP02_RELATORIO          00000                                                             0
+ZCL_ABAP02_RELATORIO          00001DEU_CERTO                                                    0
+ZCL_ABAP02_RELATORIO          00002EXIBE_RELATORIO                                              0
+ZCL_ABAP02_RELATORIO          00003EXPORTA_RELATORIO                                            0

@@ -1,0 +1,6 @@
+interface ZIF_ABAP02_HUMANO
+  public .
+
+
+  methods FALAR .
+endinterface.

@@ -1,0 +1,21 @@
+  METHOD get_pessoa.
+    DATA:
+      registro TYPE registro_pessoa.
+
+    READ TABLE pessoas
+      INTO registro
+      WITH KEY nome = p_nome.
+
+    IF ( sy-subrc <> 0 ).
+      RAISE nome_nao_encontrado.
+    ENDIF.
+
+    READ TABLE outras_pessoas
+      INTO registro
+      WITH KEY nome = p_nome.
+
+    r_pessoa = registro-pessoa.
+
+
+
+  ENDMETHOD.

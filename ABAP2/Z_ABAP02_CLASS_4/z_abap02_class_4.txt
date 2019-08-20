@@ -1,0 +1,20 @@
+REPORT Z_ABAP02_CLASS_4.
+
+START-OF-SELECTION.
+
+  DATA:
+    pessoa TYPE REF TO zcl_abap02_pessoa,
+    motorista TYPE REF TO zcl_abap02_motorista,
+    humano TYPE REF TO zif_abap02_humano.
+
+  pessoa = NEW zcl_abap02_pessoa(
+                p_nome = 'Paulo'
+                p_data_nascimento = '19930101' ).
+
+  motorista = NEW zcl_abap02_motorista( ).
+
+
+  humano =  pessoa.
+  humano->falar( ).
+  humano =  motorista.
+  humano->falar( ).

@@ -1,0 +1,15 @@
+REPORT z_abap02_class_local.
+
+CLASS zlcl_class DEFINITION.
+  PUBLIC SECTION.
+    METHODS:
+      metodo_1.
+ENDCLASS.
+
+
+CLASS zlcl_class IMPLEMENTATION.
+  METHOD metodo_1.
+  ENDMETHOD.
+ENDCLASS.
+
+START-OF-SELECTION.

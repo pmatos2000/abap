@@ -1,0 +1,14 @@
+  METHOD add_pessoa.
+
+    DATA: lw_pessoa TYPE registro_pessoa.
+
+    lw_pessoa-nome = o_pessoa->get_nome( ).
+    lw_pessoa-pessoa = o_pessoa.
+
+*    APPEND lw_pessoa TO pessoas. "Será que funciona?
+    INSERT lw_pessoa INTO TABLE pessoas.
+
+*    APPEND lw_pessoa TO me->outras_pessoas.
+    INSERT lw_pessoa INTO TABLE outras_pessoas.
+
+  ENDMETHOD.

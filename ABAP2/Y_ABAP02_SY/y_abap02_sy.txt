@@ -1,0 +1,17 @@
+REPORT y_abap02_sy.
+
+START-OF-SELECTION.
+* Escreve algumas informações do sistema
+  WRITE:
+    sy-datum,/, "Mostra a data atual do sistema
+    sy-uzeit,/, "Mostra a hora atual do sistema
+    sy-uname,/. "Mostra o nome do usuario
+
+  ULINE. "Coloca uma linha continua na tela
+
+* Verifica o indice do DO
+  DO 4 TIMES.
+    WRITE: sy-index && ' '. "Mostra o indice do DO
+  ENDDO.
+
+  ULINE.

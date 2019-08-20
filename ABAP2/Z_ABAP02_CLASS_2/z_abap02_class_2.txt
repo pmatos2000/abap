@@ -1,0 +1,14 @@
+REPORT Z_ABAP02_CLASS_2.
+
+START-OF-SELECTION.
+
+  DATA:
+    cliente TYPE REF TO ZCL_ABAP02_CLIENTE.
+
+  cliente  = new ZCL_ABAP02_CLIENTE(
+                    p_nome = 'Paulo'
+                    p_data_nascimento = '19930101' ).
+
+  cliente->escrever_nome( ).
+  cliente->mensagem( ).
+  cliente->set_cpf_publico( '0000' ).

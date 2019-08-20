@@ -1,0 +1,19 @@
+FUNCTION Y_ABAP02_FUNC_VAL_DIA.
+*"----------------------------------------------------------------------
+*"*"Interface local:
+*"  IMPORTING
+*"     REFERENCE(NUMERO) TYPE  I
+*"  EXPORTING
+*"     REFERENCE(RES) TYPE  STRING
+*"----------------------------------------------------------------------
+
+  IF numero < 1 or numero > 31.
+    res = 'dia é invalido'.
+  ELSE.
+    res = 'dia é valido'.
+  ENDIF.
+
+
+
+
+ENDFUNCTION.

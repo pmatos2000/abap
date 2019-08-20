@@ -1,0 +1,8 @@
+  METHOD EXIBE_RELATORIO.
+
+    DATA: dados_do_aluno TYPE mara_tab.
+
+    dados_do_aluno = dados_relatorio->get_dados_aluno( ).
+
+    deu_certo_o_relatorio = abap_true.
+  ENDMETHOD.

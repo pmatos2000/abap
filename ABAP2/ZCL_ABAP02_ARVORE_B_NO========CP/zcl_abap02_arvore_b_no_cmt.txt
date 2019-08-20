@@ -1,0 +1,7 @@
+ZCL_ABAP02_ARVORE_B_NO        ADICIONA                      PAdiciona um elemento na arvore
+ZCL_ABAP02_ARVORE_B_NO        CHAVE                         PChave do NO da arvore binaria
+ZCL_ABAP02_ARVORE_B_NO        DIR                           PClasse NO de uma arvore binaria
+ZCL_ABAP02_ARVORE_B_NO        EM_ORDEM                      PExibe a arvore em ordem na tela
+ZCL_ABAP02_ARVORE_B_NO        ESQ                           PClasse NO de uma arvore binaria
+ZCL_ABAP02_ARVORE_B_NO        POS_ORDEM                     PExibe a arvore em pos ordem na tela
+ZCL_ABAP02_ARVORE_B_NO        PRE_ORDEM                     PExibe a arvore em pre ordem na tela

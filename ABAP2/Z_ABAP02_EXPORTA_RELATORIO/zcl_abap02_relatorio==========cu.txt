@@ -1,0 +1,20 @@
+class ZCL_ABAP02_RELATORIO definition
+  public
+  final
+  create public .
+
+public section.
+
+  types:
+    relatorio TYPE STANDARD TABLE OF string WITH DEFAULT KEY .
+
+  methods EXIBE_RELATORIO
+    importing
+      !DADOS_RELATORIO type ref to ZIF_DADOS_RELATORIO .
+*        RETURNING VALUE(dados_organizados) TYPE relatorio.
+  methods DEU_CERTO
+    returning
+      value(RESULT) type ABAP_BOOL .
+  methods EXPORTA_RELATORIO
+    importing
+      !ARG0 type ref to ZIF_TIPO_ARQUIVO .

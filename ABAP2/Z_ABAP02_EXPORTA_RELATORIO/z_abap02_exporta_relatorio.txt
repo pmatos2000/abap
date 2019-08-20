@@ -1,0 +1,12 @@
+REPORT z_abap02_exporta_relatorio.
+
+
+START-OF-SELECTION.
+  DATA:
+    o_zcl_abap02_relatorio TYPE REF TO zcl_abap02_relatorio,
+    tipo_arquivo           TYPE REF TO zif_tipo_arquivo.
+
+  o_zcl_abap02_relatorio = NEW zcl_abap02_relatorio( ).
+  tipo_arquivo = NEW zcl_abap16_pdf( ).
+
+  o_zcl_abap02_relatorio->exporta_relatorio( tipo_arquivo ).

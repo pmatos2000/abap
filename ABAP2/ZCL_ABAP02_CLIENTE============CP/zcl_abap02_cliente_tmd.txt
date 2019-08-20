@@ -1,0 +1,3 @@
+ZCL_ABAP02_CLIENTE            00000                                                             0
+ZCL_ABAP02_CLIENTE            00001MENSAGEM                                                     0
+ZCL_ABAP02_CLIENTE            00002SET_CPF_PUBLICO                                              0

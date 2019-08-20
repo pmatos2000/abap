@@ -1,0 +1,25 @@
+class-pool .
+*"* class pool for class ZCL_ABAP02_ARVORE_B
+
+*"* local type definitions
+include ZCL_ABAP02_ARVORE_B===========ccdef.
+
+*"* class ZCL_ABAP02_ARVORE_B definition
+*"* public declarations
+  include ZCL_ABAP02_ARVORE_B===========cu.
+*"* protected declarations
+  include ZCL_ABAP02_ARVORE_B===========co.
+*"* private declarations
+  include ZCL_ABAP02_ARVORE_B===========ci.
+endclass. "ZCL_ABAP02_ARVORE_B definition
+
+*"* macro definitions
+include ZCL_ABAP02_ARVORE_B===========ccmac.
+*"* local class implementation
+include ZCL_ABAP02_ARVORE_B===========ccimp.
+
+class ZCL_ABAP02_ARVORE_B implementation.
+*"* method's implementations
+  include methods.
+endclass. "ZCL_ABAP02_ARVORE_B implementation
+

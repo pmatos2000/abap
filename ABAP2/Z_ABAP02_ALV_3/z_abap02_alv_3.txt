@@ -1,0 +1,382 @@
+REPORT z_abap02_alv_3.
+
+TABLES: scarr, spfli, sflight.
+
+SELECTION-SCREEN BEGIN OF BLOCK b1 WITH FRAME TITLE text-001.
+SELECT-OPTIONS:
+  p_id FOR scarr-carrid,
+  p_data FOR sflight-fldate,
+  p_num FOR spfli-connid.
+SELECTION-SCREEN END OF BLOCK b1.
+
+CLASS lcl_app DEFINITION.
+
+  PUBLIC SECTION.
+
+    METHODS:
+      selecionar_dados,
+      configura_alv,
+      exibir_resultados.
+
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+
+    TYPES:
+      BEGIN OF estrutura_scarr,
+        carrid   TYPE scarr-carrid,
+        carrname TYPE scarr-carrname,
+      END OF estrutura_scarr,
+
+      BEGIN OF estrutura_spfli,
+        carrid    TYPE spfli-carrid,
+        connid    TYPE spfli-connid,
+        deptime   TYPE spfli-deptime,
+        countryfr TYPE spfli-countryfr,
+        airpfrom  TYPE spfli-airpfrom,
+        cityfrom  TYPE spfli-cityfrom,
+        countryto TYPE spfli-countryto,
+        airpto    TYPE spfli-airpto,
+        cityto    TYPE spfli-cityto,
+      END OF estrutura_spfli,
+
+      BEGIN OF estrutura_sflight,
+        carrid   TYPE sflight-carrid,
+        connid   TYPE sflight-connid,
+        fldate   TYPE sflight-fldate,
+        price    TYPE sflight-price,
+        seatsmax TYPE sflight-seatsmax,
+        seatsocc TYPE sflight-seatsocc,
+      END OF estrutura_sflight,
+
+      BEGIN OF estrutura_resultado,
+        carrid    TYPE scarr-carrid,
+        carrname  TYPE scarr-carrname,
+        connid    TYPE spfli-connid,
+        deptime   TYPE spfli-deptime,
+        countryfr TYPE spfli-countryfr,
+        airpfrom  TYPE spfli-airpfrom,
+        cityfrom  TYPE spfli-cityfrom,
+        countryto TYPE spfli-countryto,
+        airpto    TYPE spfli-airpto,
+        cityto    TYPE spfli-cityto,
+        fldate    TYPE sflight-fldate,
+        price     TYPE sflight-price,
+        seatsmax  TYPE sflight-seatsmax,
+        seatsocc  TYPE sflight-seatsocc,
+      END OF estrutura_resultado.
+
+
+    CONSTANTS:
+      pos_carrid    TYPE i VALUE 1,
+      pos_carrname  TYPE i VALUE 2,
+      pos_connid    TYPE i VALUE 3,
+      pos_deptime   TYPE i VALUE 4,
+      pos_countryfr TYPE i VALUE 5,
+      pos_airpfrom  TYPE i VALUE 6,
+      pos_cityfrom  TYPE i VALUE 7,
+      pos_countryto TYPE i VALUE 8,
+      pos_airpto    TYPE i VALUE 9,
+      pos_cityto    TYPE i VALUE 10,
+      pos_fldate    TYPE i VALUE 11,
+      pos_price     TYPE i VALUE 12,
+      pos_seatsmax  TYPE i VALUE 13,
+      pos_seatsocc  TYPE i VALUE 14.
+
+
+
+    DATA: o_alv          TYPE REF TO cl_gui_alv_grid,
+          o_container    TYPE REF TO cl_gui_docking_container,
+          tab_resultados TYPE STANDARD TABLE OF estrutura_resultado.
+
+
+    METHODS generate_field_catalog
+      RETURNING
+        VALUE(r_result) TYPE lvc_t_fcat.
+
+ENDCLASS.
+
+CLASS lcl_app IMPLEMENTATION.
+
+  METHOD selecionar_dados.
+
+    DATA:
+      tab_selecao_scarr   TYPE STANDARD TABLE OF estrutura_scarr,
+      tab_selecao_spfli   TYPE STANDARD TABLE OF estrutura_spfli,
+      tab_selecao_sflight TYPE STANDARD TABLE OF estrutura_sflight,
+      selecao             TYPE estrutura_resultado,
+      tab_selecao         TYPE STANDARD TABLE OF estrutura_resultado.
+
+    SELECT carrid carrname
+       FROM scarr
+       INTO TABLE tab_selecao_scarr
+       WHERE carrid IN p_id.
+
+    IF sy-subrc <> 0.
+      MESSAGE w000(z_abap02_alv_msg).
+      EXIT.
+    ENDIF.
+
+    SELECT carrid connid deptime countryfr airpfrom cityfrom countryto airpto cityto
+       FROM spfli
+       INTO TABLE tab_selecao_spfli
+       WHERE ( carrid IN p_id ) AND ( connid IN p_num ).
+
+    IF sy-subrc <> 0.
+      MESSAGE w000(z_abap02_alv_msg).
+      EXIT.
+    ENDIF.
+
+    SELECT carrid connid fldate price seatsmax seatsocc
+      FROM sflight
+      INTO TABLE  tab_selecao_sflight
+      WHERE ( carrid IN p_id ) AND ( connid IN p_num ) AND ( fldate IN p_data ).
+
+    IF sy-subrc <> 0.
+      MESSAGE w000(z_abap02_alv_msg).
+      EXIT.
+    ENDIF.
+
+    SORT tab_selecao_scarr BY carrid.
+    SORT tab_selecao_spfli BY connid.
+    SORT tab_selecao_sflight BY fldate.
+
+    FIELD-SYMBOLS:
+      <tab_selecao_scarr>   TYPE estrutura_scarr,
+      <tab_selecao_spfli>   TYPE estrutura_spfli,
+      <tab_selecao_sflight> TYPE estrutura_sflight.
+
+    LOOP AT tab_selecao_sflight ASSIGNING <tab_selecao_sflight>.
+      CLEAR: selecao.
+      selecao-carrid = <tab_selecao_sflight>-carrid.
+      selecao-connid = <tab_selecao_sflight>-connid.
+      selecao-fldate = <tab_selecao_sflight>-fldate.
+      selecao-price  = <tab_selecao_sflight>-price.
+      selecao-seatsmax = <tab_selecao_sflight>-seatsmax.
+      selecao-seatsocc = <tab_selecao_sflight>-seatsocc.
+
+      READ TABLE tab_selecao_scarr
+         ASSIGNING <tab_selecao_scarr>
+         WITH KEY carrid = <tab_selecao_sflight>-carrid
+         BINARY SEARCH.
+
+      IF sy-subrc = 0.
+        selecao-carrname = <tab_selecao_scarr>-carrname.
+      ENDIF.
+
+      READ TABLE tab_selecao_spfli
+          ASSIGNING <tab_selecao_spfli>
+          WITH KEY connid = <tab_selecao_sflight>-connid
+          BINARY SEARCH.
+
+      IF sy-subrc = 0.
+        selecao-deptime = <tab_selecao_spfli>-deptime.
+        selecao-countryfr = <tab_selecao_spfli>-countryfr.
+        selecao-airpfrom = <tab_selecao_spfli>-airpfrom.
+        selecao-cityfrom = <tab_selecao_spfli>-cityfrom.
+        selecao-countryto = <tab_selecao_spfli>-countryto.
+        selecao-airpto = <tab_selecao_spfli>-airpto.
+        selecao-cityto = <tab_selecao_spfli>-cityto.
+      ENDIF.
+
+      APPEND selecao TO tab_selecao.
+
+    ENDLOOP.
+
+    tab_resultados[] = tab_selecao[].
+
+
+
+  ENDMETHOD.
+
+  METHOD exibir_resultados.
+    o_alv->refresh_table_display( ).
+  ENDMETHOD.
+
+  METHOD configura_alv.
+
+    IF me->o_container IS BOUND.
+      EXIT.
+    ENDIF.
+
+    o_container = NEW cl_gui_docking_container(
+        repid                       = sy-repid
+        dynnr                       = sy-dynnr
+        extension                   = 2000
+    ).
+
+    o_alv = NEW cl_gui_alv_grid(
+        i_parent          = o_container
+    ).
+
+    DATA: lt_fcat TYPE lvc_t_fcat.
+
+    lt_fcat = generate_field_catalog( ).
+
+    o_alv->set_table_for_first_display(
+      CHANGING
+        it_outtab                     = tab_resultados
+        it_fieldcatalog               = lt_fcat
+      EXCEPTIONS
+        invalid_parameter_combination = 1
+        program_error                 = 2
+        too_many_lines                = 3
+        OTHERS                        = 4
+    ).
+    IF sy-subrc <> 0.
+      MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+                 WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+    ENDIF.
+
+  ENDMETHOD.
+
+
+  METHOD generate_field_catalog.
+    DATA:
+            catalogo TYPE lvc_t_fcat.
+
+    FIELD-SYMBOLS:
+        <catalogo> TYPE lvc_s_fcat.
+
+    CALL FUNCTION 'LVC_FIELDCATALOG_MERGE'
+      EXPORTING
+        i_structure_name       = 'SCARR'
+      CHANGING
+        ct_fieldcat            = catalogo
+      EXCEPTIONS
+        inconsistent_interface = 1
+        program_error          = 2
+        OTHERS                 = 3.
+
+    IF sy-subrc <> 0.
+      MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+          WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+    ENDIF.
+
+    LOOP AT catalogo ASSIGNING <catalogo>.
+      CASE <catalogo>-fieldname.
+        WHEN 'CARRID'.
+          <catalogo>-col_pos = pos_carrid.
+          APPEND <catalogo> TO r_result.
+        WHEN 'CARRNAME'.
+          <catalogo>-col_pos = pos_carrname.
+          APPEND <catalogo> TO r_result.
+      ENDCASE.
+    ENDLOOP.
+
+    REFRESH:
+        catalogo.
+
+
+    CALL FUNCTION 'LVC_FIELDCATALOG_MERGE'
+      EXPORTING
+        i_structure_name       = 'SPFLI'
+      CHANGING
+        ct_fieldcat            = catalogo
+      EXCEPTIONS
+        inconsistent_interface = 1
+        program_error          = 2
+        OTHERS                 = 3.
+
+    IF sy-subrc <> 0.
+      MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+          WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+    ENDIF.
+
+    LOOP AT catalogo ASSIGNING <catalogo>.
+      CASE <catalogo>-fieldname.
+        WHEN 'CONNID'.
+          <catalogo>-col_pos = pos_connid.
+          APPEND <catalogo> TO r_result.
+        WHEN 'DEPTIME'.
+          <catalogo>-col_pos = pos_deptime.
+          APPEND <catalogo> TO r_result.
+        WHEN 'COUNTRYFR'.
+          <catalogo>-col_pos = pos_countryfr.
+          APPEND <catalogo> TO r_result.
+        WHEN 'AIRPFROM'.
+          <catalogo>-col_pos = pos_airpfrom.
+          APPEND <catalogo> TO r_result.
+        WHEN 'CITYFROM'.
+          <catalogo>-col_pos = pos_cityfrom.
+          APPEND <catalogo> TO r_result.
+        WHEN 'COUNTRYTO'.
+          <catalogo>-col_pos = pos_countryto.
+          APPEND <catalogo> TO r_result.
+        WHEN 'AIRPTO'.
+          <catalogo>-col_pos = pos_airpto.
+          APPEND <catalogo> TO r_result.
+        WHEN 'CITYTO'.
+          <catalogo>-col_pos = pos_cityto.
+          APPEND <catalogo> TO r_result.
+      ENDCASE.
+    ENDLOOP.
+
+    REFRESH:
+        catalogo.
+
+    CALL FUNCTION 'LVC_FIELDCATALOG_MERGE'
+      EXPORTING
+        i_structure_name       = 'SFLIGHT'
+      CHANGING
+        ct_fieldcat            = catalogo
+      EXCEPTIONS
+        inconsistent_interface = 1
+        program_error          = 2
+        OTHERS                 = 3.
+
+    IF sy-subrc <> 0.
+      MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+          WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+    ENDIF.
+
+    LOOP AT catalogo ASSIGNING <catalogo>.
+      CASE <catalogo>-fieldname.
+        WHEN 'FLDATE'.
+          <catalogo>-col_pos = pos_fldate.
+          APPEND <catalogo> TO r_result.
+        WHEN 'PRICE'.
+          <catalogo>-col_pos = pos_price.
+          APPEND <catalogo> TO r_result.
+        WHEN 'SEATSMAX'.
+          <catalogo>-col_pos = pos_seatsmax.
+          APPEND <catalogo> TO r_result.
+        WHEN 'SEATSOCC'.
+          <catalogo>-col_pos = pos_seatsocc.
+          APPEND <catalogo> TO r_result.
+      ENDCASE.
+    ENDLOOP.
+
+
+  ENDMETHOD.
+
+ENDCLASS.
+
+START-OF-SELECTION.
+
+  DATA: lo_app TYPE REF TO lcl_app.
+
+  lo_app = NEW #( ).
+
+  lo_app->selecionar_dados( ).
+  CALL SCREEN 9000.
+
+*&---------------------------------------------------------------------*
+*&      Module  EXIBIR_ALV  OUTPUT
+*&---------------------------------------------------------------------*
+MODULE exibir_alv OUTPUT.
+  lo_app->configura_alv( ).
+ENDMODULE.
+
+*&---------------------------------------------------------------------*
+*&      Module  USER_COMMAND_9000  INPUT
+*&---------------------------------------------------------------------*
+MODULE user_command_9000 INPUT.
+  CASE sy-ucomm.
+    WHEN 'BACK' OR 'EXIT' OR 'CANCEL'.
+      LEAVE TO SCREEN 0.
+    WHEN 'UPDATE'.
+      lo_app->exibir_resultados( ).
+  ENDCASE.
+ENDMODULE.
+
+INCLUDE z_abap02_alv_3_status_9000o01.

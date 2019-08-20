@@ -1,0 +1,2 @@
+ZCL_ABAP02_CLIENTE            MENSAGEM                      10
+ZCL_ABAP02_CLIENTE            SET_CPF_PUBLICO               10

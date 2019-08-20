@@ -1,0 +1,28 @@
+class CL_SYSTEM_UUID definition
+  public
+  final
+  create public .
+
+public section.
+*"* public components of class CL_SYSTEM_UUID
+*"* do not include other source files here!!!
+
+  interfaces IF_SYSTEM_UUID .
+  interfaces IF_SYSTEM_UUID_STATIC .
+
+  aliases CONVERT_UUID_C22_STATIC
+    for IF_SYSTEM_UUID_STATIC~CONVERT_UUID_C22 .
+  aliases CONVERT_UUID_C26_STATIC
+    for IF_SYSTEM_UUID_STATIC~CONVERT_UUID_C26 .
+  aliases CONVERT_UUID_C32_STATIC
+    for IF_SYSTEM_UUID_STATIC~CONVERT_UUID_C32 .
+  aliases CONVERT_UUID_X16_STATIC
+    for IF_SYSTEM_UUID_STATIC~CONVERT_UUID_X16 .
+  aliases CREATE_UUID_C22_STATIC
+    for IF_SYSTEM_UUID_STATIC~CREATE_UUID_C22 .
+  aliases CREATE_UUID_C26_STATIC
+    for IF_SYSTEM_UUID_STATIC~CREATE_UUID_C26 .
+  aliases CREATE_UUID_C32_STATIC
+    for IF_SYSTEM_UUID_STATIC~CREATE_UUID_C32 .
+  aliases CREATE_UUID_X16_STATIC
+    for IF_SYSTEM_UUID_STATIC~CREATE_UUID_X16 .

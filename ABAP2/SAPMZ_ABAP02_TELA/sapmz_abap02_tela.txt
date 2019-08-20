@@ -1,0 +1,31 @@
+*&---------------------------------------------------------------------*
+*& PoolMóds.         SAPMZ_ABAP02_TELA
+*&
+*&---------------------------------------------------------------------*
+*&
+*&
+*&---------------------------------------------------------------------*
+
+
+INCLUDE SAPMZ_ABAP02_TELA_TOP                   .    " global Data
+
+* INCLUDE SAPMZ_ABAP02_TELA_O01                   .  " PBO-Modules
+* INCLUDE SAPMZ_ABAP02_TELA_I01                   .  " PAI-Modules
+* INCLUDE SAPMZ_ABAP02_TELA_F01                   .  " FORM-Routines
+
+
+INCLUDE mz_abap02_tela_status_9000o01.
+
+INCLUDE mz_abap02_tela_user_commandi01.
+
+INCLUDE mz_abap02_tela_busca_clientf01.
+
+INCLUDE mz_abap02_tela_atualiza_emaf01.
+
+INCLUDE mz_abap02_tela_verifica_emai01.
+
+INCLUDE mz_abap02_tela_verifica_idi01.
+
+INCLUDE mz_abap02_tela_status_9001o01.
+
+INCLUDE mz_abap02_tela_user_commandi02.

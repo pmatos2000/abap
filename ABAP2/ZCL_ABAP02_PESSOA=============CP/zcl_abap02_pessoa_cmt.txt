@@ -1,0 +1,7 @@
+ZCL_ABAP02_PESSOA             CONSTRUCTOR                   PConstrutor  da classe
+ZCL_ABAP02_PESSOA             CPF                           PUtilizado para salvar o CPF de uma pessoa fisica
+ZCL_ABAP02_PESSOA             DATA_NASCIMENTO               PData de nascimento
+ZCL_ABAP02_PESSOA             ESCREVER_NOME                 PEscreve na tela o nome da pessoa
+ZCL_ABAP02_PESSOA             GET_DATA_NASCIMENTO           PRetorna a data de nascimento
+ZCL_ABAP02_PESSOA             NOME                          PNome da pessoa
+ZCL_ABAP02_PESSOA             SET_CPF                       PAltera o CPF

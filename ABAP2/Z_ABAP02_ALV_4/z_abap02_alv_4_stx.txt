@@ -1,0 +1,11 @@
+Z_ABAP02_ALV_4                          PA000001                  TStatus da tela                                              
+Z_ABAP02_ALV_4                          PB000001              0001TStatus da tela                                              
+Z_ABAP02_ALV_4                          PCST9000                  TStatus da tela                                              
+Z_ABAP02_ALV_4                          PFBACK                001 MVoltar                                                      
+Z_ABAP02_ALV_4                          PFCANCEL              001 MCancelar                                                    
+Z_ABAP02_ALV_4                          PFCANCELAR            001 MCancelar                                                    
+Z_ABAP02_ALV_4                          PFEXIT                001 MEncerrar                                                    
+Z_ABAP02_ALV_4                          PFSAIR                001 MVoltar                                                      
+Z_ABAP02_ALV_4                          PFUPDATE              001 MUPDATE                                                      
+Z_ABAP02_ALV_4                          PFVOLTAR              001 MEncerrar                                                    
+Z_ABAP02_ALV_4                          PP000001                  TStatus da tela                                              

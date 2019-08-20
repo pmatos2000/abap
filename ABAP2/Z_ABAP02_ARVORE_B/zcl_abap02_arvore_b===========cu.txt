@@ -1,0 +1,13 @@
+class ZCL_ABAP02_ARVORE_B definition
+  public
+  final
+  create public .
+
+public section.
+
+  methods ADICIONA
+    importing
+      !P_CHAVE type I .
+  methods PRE_ORDEM .
+  methods EM_ORDEM .
+  methods POS_ORDEM .

@@ -1,0 +1,8 @@
+class ZCL_ABAP02_TIPO_ARQUIVO definition
+  public
+  final
+  create public .
+
+public section.
+
+  interfaces ZIF_TIPO_ARQUIVO .

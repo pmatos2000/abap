@@ -1,0 +1,43 @@
+class CL_ABAP_CHAR_UTILITIES definition
+  public
+  final
+  create private .
+
+*"* public components of class CL_ABAP_CHAR_UTILITIES
+*"* do not include other source files here!!!
+public section.
+
+  type-pools ABAP .
+  constants BYTE_ORDER_MARK_LITTLE type ABAP_BYTE_ORDER_MARK
+ value 'FFFE'. "#EC NOTEXT
+  constants BYTE_ORDER_MARK_BIG type ABAP_BYTE_ORDER_MARK
+ value 'FEFF'. "#EC NOTEXT
+  constants BYTE_ORDER_MARK_UTF8 type ABAP_BYTE_ORDER_UTF8
+ value 'EFBBBF'. "#EC NOTEXT
+  constants CHARSIZE type I value %_CHARSIZE. "#EC NOTEXT
+  constants ENDIAN type ABAP_ENDIAN value %_ENDIAN. "#EC NOTEXT
+  constants MINCHAR type ABAP_CHAR1 value %_MINCHAR. "#EC NOTEXT
+  constants MAXCHAR type ABAP_CHAR1 value %_MAXCHAR. "#EC NOTEXT
+  constants HORIZONTAL_TAB type ABAP_CHAR1
+ value %_HORIZONTAL_TAB. "#EC NOTEXT
+  constants VERTICAL_TAB type ABAP_CHAR1
+ value %_VERTICAL_TAB. "#EC NOTEXT
+  constants NEWLINE type ABAP_CHAR1 value %_NEWLINE. "#EC NOTEXT
+  constants CR_LF type ABAP_CR_LF value %_CR_LF. "#EC NOTEXT
+  constants FORM_FEED type ABAP_CHAR1 value %_FORMFEED. "#EC NOTEXT
+  constants BACKSPACE type ABAP_CHAR1 value %_BACKSPACE. "#EC NOTEXT
+
+  class-methods ENDIAN_TO_NUMBER_FORMAT
+    importing
+      !ENDIAN type ABAP_ENDIAN
+    returning
+      value(NUMBER_FORMAT) type CPCODEPAGE .
+  class-methods NUMBER_FORMAT_TO_ENDIAN
+    importing
+      !NUMBER_FORMAT type CPCODEPAGE
+    returning
+      value(ENDIAN) type ABAP_ENDIAN .
+  class-methods CLASS_CONSTRUCTOR .
+  class-methods GET_SIMPLE_SPACES_FOR_CUR_CP
+    returning
+      value(S_STR) type STRING .

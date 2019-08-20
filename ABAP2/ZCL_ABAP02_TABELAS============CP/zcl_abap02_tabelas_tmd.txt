@@ -1,0 +1,3 @@
+ZCL_ABAP02_TABELAS            00000                                                             0
+ZCL_ABAP02_TABELAS            00001ADD_PESSOA                                                   0
+ZCL_ABAP02_TABELAS            00002GET_PESSOA                                                   0

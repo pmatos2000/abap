@@ -1,0 +1,608 @@
+TYPE-POOL seex.
+
+TYPE-POOLS: swbm, sxrt, seop.
+
+TYPES: seex_role_type(12),
+       seex_access_mode(10),
+       seex_action(1),
+       seex_status(5),
+       seex_fcode TYPE fcode,
+       seex_rcode TYPE fcode,
+       seex_symbol_type TYPE sxrt_symbol_type,
+       seex_sp_group(3),
+       seex_prefix(10),
+       seex_imp_mode TYPE seex_fcode,
+       seex_switch(1) TYPE c,
+       seex_control(10),
+       seex_boolean TYPE sxrt_boolean,
+       seex_search_modus(15),
+       seex_eq_class LIKE tadir-object,
+       seex_eutype LIKE euobj-id,
+       seex_cls_type(10),
+       seex_intf_correct_type LIKE sy-subrc.
+TYPES: seex_implementation TYPE seop_source_string,
+       BEGIN OF seex_method_implementation,
+         methodname TYPE seocmpname,
+         source TYPE seop_source_string,
+       END OF seex_method_implementation,
+       seex_class_implementation
+             TYPE seex_method_implementation OCCURS 0.
+TYPES: BEGIN OF seex_shlp_type,
+        name LIKE dd32p-shlpname,
+        field LIKE dd32p-fieldname,
+       END OF seex_shlp_type.
+TYPES: BEGIN OF seex_fix_val_type,
+         existent TYPE seex_boolean,
+         values LIKE dd07v OCCURS 0,
+       END OF seex_fix_val_type.
+TYPES: BEGIN OF seex_dbtable_type,
+         name TYPE entitytab,
+         field LIKE dd03p-fieldname,
+         offset TYPE doffset,
+         del_cl TYPE contflag,
+         client_dep TYPE seex_boolean,
+       END OF seex_dbtable_type.
+TYPES: BEGIN OF seex_texts_type,
+         table TYPE tabname,
+         del_cl TYPE contflag,
+         client_dep TYPE seex_boolean,
+         field TYPE fieldname,
+         offset TYPE doffset,
+         leng TYPE ddleng,
+         lang_field TYPE fieldname,
+         lang_offset TYPE doffset,
+         lang_leng TYPE ddleng,
+         text_field TYPE fieldname,
+         text_offset TYPE doffset,
+         text_leng TYPE ddleng,
+         text_lower TYPE lowercase,
+         offset_alv TYPE doffset,
+       END OF seex_texts_type.
+TYPES: BEGIN OF seex_filter_state_type,
+         field_desc TYPE scrtext_l,
+         leng TYPE ddleng,
+         shlp TYPE seex_shlp_type,
+         dbtab TYPE seex_dbtable_type,
+         fixed_values TYPE seex_fix_val_type,
+         texts TYPE seex_texts_type,
+       END OF seex_filter_state_type.
+TYPES: BEGIN OF seex_filter_struc_type,
+         rollname TYPE rollname,
+         offset TYPE doffset,
+         fieldname TYPE fieldname,
+         fieldname_alv TYPE fieldname,
+         datatype TYPE dynptype,
+         atts TYPE seex_filter_state_type,
+       END OF seex_filter_struc_type.
+TYPES seex_filter_struc_tab_type TYPE STANDARD TABLE OF
+            seex_filter_struc_type.
+*TYPES: BEGIN OF  seex_coco_runtime_struct,
+*         coco_outer LIKE sxc_coco-coco_outer,
+*         node_id    LIKE sxc_coco-node_id,
+*         filter     TYPE filtname,
+*       END OF  seex_coco_runtime_struct,
+*       seex_coco_runtime_table_type TYPE
+*             HASHED TABLE OF seex_coco_runtime_struct
+*             WITH UNIQUE KEY coco_outer node_id.
+TYPES seex_text_table TYPE STANDARD TABLE OF flt_text.
+TYPES: BEGIN OF seex_itab_type ,
+         inhalt(60),
+       END OF seex_itab_type.
+TYPES: BEGIN OF seex_method_parameter_type,
+         sconame    LIKE vseoparam-sconame,
+         cmptype    LIKE vseoparam-cmptype,
+         pardecltyp LIKE vseoparam-pardecltyp,
+       END OF seex_method_parameter_type.
+TYPES: BEGIN OF seex_method_exception_type,
+         sconame    LIKE vseoexcep-sconame,
+       END OF seex_method_exception_type.
+TYPES: BEGIN OF seex_method_head_type,
+         cmpname LIKE vseomethod-cmpname,
+         mtddecltyp LIKE vseomethod-mtddecltyp,
+       END OF seex_method_head_type.
+TYPES: BEGIN OF seex_interface_method_type,
+         header TYPE seex_method_head_type,
+         parameters TYPE seex_method_parameter_type OCCURS 0,
+         exceptions TYPE seex_method_exception_type OCCURS 0,
+       END OF seex_interface_method_type.
+TYPES: BEGIN OF seex_interface_head_type,
+         clsname LIKE vseointerf-clsname,
+       END OF seex_interface_head_type.
+TYPES: BEGIN OF seex_interface_type,
+         header TYPE seex_interface_head_type,
+         methods TYPE seex_interface_method_type OCCURS 0,
+         def_clname TYPE seoclsname,
+       END OF seex_interface_type.
+TYPES: BEGIN OF seex_exit_list_type,
+          imp_name LIKE sxc_exit-imp_name,
+          flt_val  LIKE sxc_exit-flt_val,
+          text     LIKE sxc_attrt-text,
+          active   LIKE sxc_attr-active,
+          layer    like sxc_attr-layer,
+       END OF seex_exit_list_type,
+       BEGIN OF seex_attr_list_type,
+         exit_name LIKE sxs_attr-exit_name,
+         flt_type  LIKE sxs_attr-flt_type,
+         mltp_use  LIKE sxs_attr-mltp_use,
+         text      LIKE sxs_attrt-text,
+       END OF seex_attr_list_type,
+       BEGIN OF seex_prog_list_type,
+         name LIKE d010sinf-prog,
+         text LIKE trdirt-text,
+       END OF seex_prog_list_type,
+       BEGIN OF seex_dynr_list_type,
+         dnum LIKE d020s-dnum,
+         dtxt LIKE d020t-dtxt,
+       END OF seex_dynr_list_type,
+       BEGIN OF seex_sscr_list_type,
+         name TYPE rpy_dycatt-name,
+       END OF seex_sscr_list_type,
+       BEGIN OF seex_intf_list_type,
+         clsname LIKE seoclass-clsname,
+         descript LIKE seoclasstx-descript,
+       END OF seex_intf_list_type.
+TYPES: BEGIN OF seex_coco_badi_sav,
+         node_id   LIKE sxs_coco-node_id,
+         exit_name LIKE sxs_coco-exit_name,
+       END OF seex_coco_badi_sav,
+       seex_coco_badi_save TYPE STANDARD TABLE OF seex_coco_badi_sav
+           WITH KEY exit_name node_id.
+TYPES: seex_exit_list_tab_type TYPE seex_exit_list_type OCCURS 0,
+       seex_attr_list_tab_type TYPE seex_attr_list_type OCCURS 0,
+       seex_prog_list_tab_type TYPE seex_prog_list_type OCCURS 0,
+       seex_dynr_list_tab_type TYPE seex_dynr_list_type OCCURS 0,
+       seex_sscr_list_tab_type TYPE seex_sscr_list_type OCCURS 0,
+       seex_intf_list_tab_type TYPE seex_intf_list_type OCCURS 0.
+TYPES: seex_tcode TYPE sy-tcode.
+
+TYPES: seex_clif_prefix TYPE seex_prefix,
+       seex_method_prefix TYPE seex_prefix.
+
+TYPES: BEGIN OF seex_col_struct,
+         imp_name LIKE sxc_exit-imp_name,
+         flt_val LIKE sxc_exit-flt_val,
+       END OF seex_col_struct,
+       seex_col_table TYPE seex_col_struct OCCURS 0.
+TYPES: seex_attr_struct LIKE sxs_attr,
+       seex_cls_struct LIKE v_ext_imp.
+
+TYPES: BEGIN OF seex_obj_struct,
+         obj TYPE REF TO object,
+       END OF seex_obj_struct.
+TYPES: seex_obj_tab TYPE seex_obj_struct OCCURS 0.
+TYPES: BEGIN OF seex_mtd_struct,
+         metho_name LIKE rsexscrn-metho_name,
+         imp_switch  TYPE imp_switch,
+         metho_text TYPE seodescr,
+       END OF seex_mtd_struct.
+TYPES seex_class_struct  LIKE sxc_class.
+TYPES seex_inter_struct  LIKE sxs_inter.
+TYPES seex_exit_struct   LIKE sxc_exit.
+TYPES: BEGIN OF seex_fcode_struct,
+         exit_name LIKE v_c_fcode-exit_name,
+         gui_prog LIKE v_c_fcode-gui_prog,
+         gui_code LIKE v_c_fcode-gui_code,
+         sprsl LIKE v_c_fcode-sprsl,
+         gui_text LIKE v_c_fcode-gui_text,
+         menu_text LIKE v_c_fcode-menu_text,
+         icon_text LIKE v_c_fcode-icon_text,
+         quickinfo LIKE v_c_fcode-quickinfo,
+         imp_name LIKE v_c_fcode-imp_name,
+         icon_id LIKE v_c_fcode-icon_id,
+         icon_name LIKE v_c_fcode-icon_name,
+         text_type LIKE rsmpe_dfun-text_type,
+       END OF seex_fcode_struct.
+
+TYPES seex_coco_struct TYPE str_coco.
+TYPES seex_screen_struct LIKE v_c_scrn.
+TYPES seex_table_struct TYPE str_table.
+*TYPES: seex_ext_imp_struct LIKE v_ext_imp,
+*       seex_ext_imp_tab TYPE seex_ext_imp_struct OCCURS 0.
+TYPES: seex_ext_imp_struct TYPE sxrt_ext_imp_struct,
+       seex_ext_imp_tab TYPE sxrt_ext_imp_tab.
+TYPES seex_exit_tab_struct TYPE sxrt_exit_tab_struct.
+*TYPES: BEGIN OF seex_exit_tab_struct,
+*         inter_name  LIKE v_ext_imp-inter_name,
+*         flt_val     LIKE v_ext_imp-flt_val,
+*         imp_class   LIKE v_ext_imp-imp_class,
+*         active      LIKE v_ext_imp-active,
+*         obj         TYPE REF TO object,
+*       END OF seex_exit_tab_struct.
+TYPES seex_exit_tab TYPE sxrt_exit_tab.
+*TYPES: seex_exit_tab TYPE seex_exit_tab_struct OCCURS 0.
+TYPES: BEGIN OF seex_interface,
+         clsname TYPE seoclsname,
+         refclsname TYPE seoclsname,
+       END OF seex_interface,
+       seex_interface_table TYPE STANDARD TABLE OF seex_interface.
+
+TYPES seex_filter_struct TYPE sxrt_filter_struct.
+*TYPES: BEGIN OF seex_filter_struct,
+*         flt_val LIKE rsexscrn-flt_val,
+*         fltval_txt TYPE flt_text,
+*       END OF seex_filter_struct.
+
+TYPES: seex_class_table   TYPE seex_class_struct  OCCURS 0,
+       seex_inter_table   TYPE seex_inter_struct  OCCURS 0,
+       seex_exit_table    TYPE seex_exit_struct   OCCURS 0,
+       seex_mtd_table     TYPE seex_mtd_struct    OCCURS 0,
+       seex_fcode_table   TYPE seex_fcode_struct  OCCURS 0,
+       seex_coco_table    TYPE seex_coco_struct   OCCURS 0,
+       seex_filter_table  TYPE sxrt_filter_table,
+       seex_screen_table  TYPE seex_screen_struct OCCURS 0,
+       seex_table_table   TYPE seex_table_struct  OCCURS 0.
+
+TYPES: seex_comp_exit LIKE sxc_exit,
+       seex_comp_exits TYPE seex_comp_exit OCCURS 0.
+
+TYPES: BEGIN OF seex_ccp_mtd_struc,
+         selline_1 LIKE sy-tabix,
+         selline_2 LIKE sy-tabix,
+         item_count LIKE sy-tabix,
+         marked_lines TYPE seex_mtd_table,
+       END OF seex_ccp_mtd_struc.
+
+TYPES: BEGIN OF seex_ccp_filter_struc,
+         selline_1 LIKE sy-tabix,
+         selline_2 LIKE sy-tabix,
+         item_count LIKE sy-tabix,
+         marked_lines TYPE seex_filter_table,
+       END OF seex_ccp_filter_struc.
+
+TYPES: BEGIN OF seex_ccp_fcode_struc,
+         selline_1 LIKE sy-tabix,
+         selline_2 LIKE sy-tabix,
+         item_count LIKE sy-tabix,
+         marked_lines TYPE seex_fcode_table,
+       END OF seex_ccp_fcode_struc.
+
+TYPES: BEGIN OF seex_ccp_coco_struc,
+         selline_1 LIKE sy-tabix,
+         selline_2 LIKE sy-tabix,
+         item_count LIKE sy-tabix,
+         marked_lines TYPE seex_coco_table,
+       END OF seex_ccp_coco_struc.
+
+TYPES: BEGIN OF seex_ccp_table_struc,
+         selline_1 LIKE sy-tabix,
+         selline_2 LIKE sy-tabix,
+         item_count LIKE sy-tabix,
+         marked_lines TYPE seex_table_table,
+       END OF seex_ccp_table_struc.
+
+TYPES: BEGIN OF seex_generic_entry,
+          data(350),
+       END OF seex_generic_entry,
+       seex_component_table TYPE STANDARD TABLE OF seex_generic_entry.
+TYPES: BEGIN OF seex_ccp_struc,
+         selline_1 LIKE sy-tabix,
+         selline_2 LIKE sy-tabix,
+         item_count LIKE sy-tabix,
+       END OF seex_ccp_struc.
+
+* Strukturen für den aktuellen Transaktions-Status:
+* Ist eine Exit-/Handler-Klasse selektiert/geladen/gesichert
+TYPES: BEGIN OF seex_class_status,
+         selected TYPE seex_boolean,
+         load     TYPE seex_boolean,
+         saved    TYPE seex_boolean,
+       END OF seex_class_status.
+TYPES: BEGIN OF seex_inactive_tabstrip,
+         dynr(30) TYPE c,
+       END OF seex_inactive_tabstrip,
+       seex_inactive_tabstrips TYPE seex_inactive_tabstrip OCCURS 0.
+TYPES: BEGIN OF seex_imp_class_status,
+         imp              TYPE seex_class_status,
+         exit             TYPE seex_class_status,
+         activated        TYPE activity,
+         inactive_tabstrips TYPE seex_inactive_tabstrips,
+       END OF seex_imp_class_status.
+
+TYPES: seex_tab_type TYPE tabname.
+CONSTANTS: seex_intf_correct_no_correct TYPE seex_intf_correct_type
+           VALUE 0,
+           seex_intf_correct_exp_params TYPE seex_intf_correct_type
+           VALUE 1,
+           seex_intf_correct_write_attrs TYPE seex_intf_correct_type
+           VALUE 2,
+           seex_intf_correct_nest_interf TYPE seex_intf_correct_type
+           VALUE 3.
+CONSTANTS: seex_look_for_imp
+                              TYPE seex_search_modus VALUE 'SEARCH_IMP',
+           seex_look_for_exit
+                              TYPE seex_search_modus VALUE 'SEARCH_EXT',
+           seex_look_for_scr_calling_prog
+                              TYPE seex_search_modus VALUE 'SEARCH_CPR',
+           seex_look_for_scr_called_prog
+                              TYPE seex_search_modus VALUE 'SEARCH_DPR',
+           seex_look_for_calling_dynr
+                              TYPE seex_search_modus VALUE 'SEARCH_CDY',
+           seex_look_for_called_dynr
+                              TYPE seex_search_modus VALUE 'SEARCH_DDY',
+           seex_look_for_subscreen
+                              TYPE seex_search_modus VALUE 'SEARCH_SSC',
+          seex_look_for_include_table
+                              TYPE seex_search_modus VALUE 'SEARCH_TAB',
+           seex_look_for_gui_program
+                              TYPE seex_search_modus VALUE 'SEARCH_GPR',
+           seex_look_for_gui_fcode
+                              TYPE seex_search_modus VALUE 'SEARCH_FCD',
+           seex_look_for_inter
+                              TYPE seex_search_modus VALUE 'SEARCH_INT'.
+
+CONSTANTS: seex_symbol_wildcard  TYPE seex_symbol_type VALUE '*',
+           seex_symbol_separator TYPE seex_symbol_type VALUE '|'.
+
+CONSTANTS: seex_control_methods TYPE seex_control VALUE 'method',
+           seex_control_screens TYPE seex_control VALUE 'screen',
+           seex_control_fcodes TYPE seex_control VALUE 'fcode',
+           seex_control_tables TYPE seex_control VALUE 'table',
+           seex_control_filters TYPE seex_control VALUE 'filter'.
+
+CONSTANTS: seex_true  TYPE seex_boolean VALUE 'X',
+           seex_false TYPE seex_boolean VALUE space,
+           seex_off   TYPE seex_switch  VALUE '0',
+           seex_on    TYPE seex_switch  VALUE '1',
+           seex_conflict          TYPE seex_switch VALUE 'C',
+           seex_no_conflict       TYPE seex_switch VALUE 'N',
+           seex_ddic_table        TYPE char4 VALUE 'TABL',
+           seex_ddic_searchhelp   TYPE char4 VALUE 'SHLP',
+           seex_ddic_domain       TYPE char4 VALUE 'DOMA',
+           seex_ddic_data_element TYPE char4 VALUE 'DTEL'.
+
+CONSTANTS: seex_sorter_badi TYPE exit_def      VALUE 'BADI_LAYER',
+           seex_cust_sort_imp type exit_imp
+                                          value 'CUSTOMIZE_LAYER_IMP',
+           seex_simple_sort_imp type exit_imp
+                                          value 'SIMPLE_LAYER_IMP',
+           seex_par_name_flt_val(10)      VALUE 'FLT_VAL',
+           seex_par_name_flt_type(10)     VALUE 'FLT_TYPE',
+           seex_att_name_flt_pattern(12)  VALUE 'FLT_PATTERN',
+           seex_att_name_version(12)      VALUE 'VERSION',
+           seex_att_name_badi_table(10)   VALUE 'BADI_TABLE',
+           seex_att_name_flt_cache(10)    VALUE 'FLT_CACHE',
+           seex_att_type_badi_table TYPE rs38l_typ
+                                          VALUE 'SXRT_EXIT_TAB',
+           seex_att_type_flt_cache  TYPE rs38l_typ
+                                          VALUE 'SXRT_FLT_CACHE_TAB',
+           seex_att_type_flt_pattern TYPE rs38l_typ
+                                          VALUE 'FILTNAME',
+           seex_att_name_def_obj(10)      VALUE 'DEF_OBJ',
+           seex_att_name_prefix_inst(10)  VALUE 'INSTANCE_',
+           seex_att_name_prefix_stat(10)  VALUE 'STATIC_',
+           seex_att_name_dynpro_instance(20) VALUE 'DYNPRO_INSTANCE',
+           seex_att_name_singleton(20) VALUE 'SINGLETON',
+           seex_scr_num(10)               VALUE 'SCRADNUM',
+           seex_dynpro_structure(10)      VALUE 'RSEXSCRN',
+           seex_search_help_filters
+                            TYPE shlpname VALUE 'SSHLP_FLT',
+           seex_meth_name_dynpro_put(30)  VALUE 'PUT_DATA_TO_SCREEN',
+           seex_meth_name_dynpro_get(30)  VALUE 'GET_DATA_FROM_SCREEN',
+           seex_meth_name_set_change(30)  VALUE 'SET_LAYER_CHANGEABLE',
+           seex_meth_name_is_change(30)   VALUE 'IS_LAYER_CHANGEABLE',
+           seex_meth_name_set_instance(30) VALUE
+                         'SET_INSTANCE_FOR_SUBSCREEN',
+           seex_meth_name_get_instance(30) VALUE
+                         'GET_INSTANCE_FOR_SUBSCREEN'.
+
+CONSTANTS: seex_nor_meth_prefix   TYPE sxrt_method_prefix VALUE
+           sxrt_nor_meth_prefix,
+           seex_exm_meth_prefix   TYPE sxrt_method_prefix VALUE
+           sxrt_exm_meth_prefix,
+           seex_def_meth_prefix   TYPE sxrt_method_prefix VALUE
+           sxrt_def_meth_prefix,
+           seex_exit_class_prefix TYPE sxrt_clif_prefix VALUE
+           sxrt_exit_class_prefix,
+           seex_exit_intf_prefix  TYPE sxrt_clif_prefix VALUE
+           sxrt_exit_intf_prefix,
+           seex_coco_class_prefix TYPE sxrt_clif_prefix VALUE
+           sxrt_coco_class_prefix,
+           seex_imp_class_prefix  TYPE sxrt_clif_prefix VALUE
+           sxrt_imp_class_prefix,
+           seex_def_imp_class_prefix  TYPE sxrt_clif_prefix VALUE
+           sxrt_def_imp_class_prefix,
+           seex_exm_imp_class_prefix  TYPE sxrt_clif_prefix VALUE
+           sxrt_exm_imp_class_prefix.
+
+CONSTANTS: seex_mode_exit    LIKE rsex_navi-mode VALUE 'E',
+           seex_mode_insert  LIKE rsex_navi-mode VALUE 'I',
+           seex_mode_display LIKE rsex_navi-mode VALUE 'D',
+           seex_mode_modify  LIKE rsex_navi-mode VALUE 'M'.
+CONSTANTS: seex_cls_type_default TYPE seex_cls_type VALUE 'DEF',
+           seex_cls_type_example TYPE seex_cls_type VALUE 'EXM',
+           seex_cls_type_coco    TYPE seex_cls_type VALUE 'COC',
+           seex_cls_type_normal  TYPE seex_cls_type VALUE 'IMP'.
+CONSTANTS: seex_okay TYPE seex_rcode VALUE 'OKAY',
+           seex_cancel TYPE seex_rcode VALUE swbm_c_fc_cancel,
+           seex_exit   TYPE seex_rcode VALUE 'EXIT',
+           seex_rcode_add TYPE seex_rcode VALUE 'Add',
+           seex_rcode_no  TYPE seex_rcode VALUE 'No'.
+CONSTANTS: seex_imp_mode_show TYPE seex_imp_mode VALUE
+                  'SHOW_INTERFACE',
+           seex_imp_mode_implement TYPE seex_imp_mode VALUE
+                  'IMPLEMENT_INTERFACE'.
+CONSTANTS:
+     seex_insens_for_imp_read_mode  TYPE seex_sp_group VALUE 'IIR',
+     seex_insens_for_implementer    TYPE seex_sp_group VALUE 'IMI',
+     seex_sensitive_for_implementer TYPE seex_sp_group VALUE 'IMC',
+     seex_invisible_for_implementer TYPE seex_sp_group VALUE 'IMU',
+     seex_inv_for_imp_filter_dep    TYPE seex_sp_group VALUE 'IFU',
+     seex_inv_for_imp_and_def_inde  TYPE seex_sp_group VALUE 'IDI',
+     seex_invisible_for_imp_inact   TYPE seex_sp_group VALUE 'IMA',
+     seex_invisible_for_definer     TYPE seex_sp_group VALUE 'DEI',
+     seex_insens_when_implemented   TYPE seex_sp_group VALUE 'IWI',
+     seex_sensitive_for_definer     TYPE seex_sp_group VALUE 'DEC',
+     seex_implementation_mode_read  TYPE seex_sp_group VALUE 'IMR'.
+
+CONSTANTS: seex_pgmid           LIKE tadir-pgmid      VALUE 'R3TR',
+           seex_def_ob_class    TYPE seex_eq_class    VALUE 'SXSD',
+           seex_imp_ob_class    TYPE seex_eq_class    VALUE 'SXCI',
+           seex_def_eu_type     TYPE seex_eutype      VALUE 'XD',
+           seex_imp_eu_type     TYPE seex_eutype      VALUE 'XI',
+           seex_docu_class_simg LIKE tdcld-dokclass   VALUE 'SIMG',
+           seex_docu_id_bi      LIKE dokhl-id         VALUE 'BI',
+           seex_docu_id_hy      LIKE dokhl-id         VALUE 'HY',
+           seex_docu_typ        LIKE dokhl-typ        VALUE 'E',
+           seex_imp_docu_template LIKE dokhl-object   VALUE
+                                                      'BADI_IMP_TEMP',
+           seex_access_modify   TYPE seex_access_mode VALUE 'MODIFY',
+           seex_access_show     TYPE seex_access_mode VALUE 'SHOW',
+           seex_access_insert   TYPE seex_access_mode VALUE 'INSERT',
+           seex_access_free     TYPE seex_access_mode VALUE 'FREE',
+           seex_access_delete   TYPE seex_access_mode VALUE 'DELETE',
+           seex_access_check    TYPE seex_access_mode VALUE 'CHECK'.
+
+CONSTANTS:
+ seex_stat_read     TYPE seex_status    VALUE 'Read',       "#EC NOTEXT
+ seex_stat_write    TYPE seex_status    VALUE 'Write',      "#EC NOTEXT
+ seex_role_def      TYPE seex_role_type VALUE 'Definer',    "#EC NOTEXT
+ seex_role_imp      TYPE seex_role_type VALUE 'Implementer',"#EC NOTEXT
+ seex_action_insert TYPE seex_action    VALUE 'I',          "#EC NOTEXT
+ seex_action_delete TYPE seex_action    VALUE 'D'.          "#EC NOTEXT
+
+* Konstanten für Dynpronummern
+* ab Nummer 150: Subscreens
+CONSTANTS: seex_dynnr_start_exit           LIKE sy-dynnr VALUE '0100',
+           seex_dynnr_start_imp            LIKE sy-dynnr VALUE '0120',
+           seex_dyn_popup_to_provide_imp   LIKE sy-dynnr VALUE '0115',
+           seex_dyn_popup_to_provide_doku  LIKE sy-dynnr VALUE '0105',
+           seex_dyn_popup_for_new_imp      LIKE sy-dynnr VALUE '0116',
+           seex_dyn_popup_for_new_imp_iso  LIKE sy-dynnr VALUE '0117',
+           seex_dyn_popup_to_provide_exit  LIKE sy-dynnr VALUE '0125',
+           seex_dyn_popup_for_new_exit     LIKE sy-dynnr VALUE '0126',
+           seex_dyn_popup_for_overview     LIKE sy-dynnr VALUE '0130',
+           seex_dyn_popup_for_colors       LIKE sy-dynnr VALUE '0131',
+           seex_dyn_popup_for_badi_name    LIKE sy-dynnr VALUE '0140',
+           seex_dyn_popup_for_imp_name     LIKE sy-dynnr VALUE '0145',
+           seex_dyn_popup_for_interface    LIKE sy-dynnr VALUE '0146',
+           seex_dyn_popup_for_class        LIKE sy-dynnr VALUE '0147',
+           seex_dyn_popup_for_defexm_clas  LIKE sy-dynnr VALUE '0148',
+           seex_dynnr_tabstrip             LIKE sy-dynnr VALUE '0150',
+           seex_dynnr_head                 LIKE sy-dynnr VALUE '0160',
+           seex_dyn_popup_filter           LIKE sy-dynnr VALUE '0161',
+           seex_dynnr_methods              LIKE sy-dynnr VALUE '0170',
+           seex_dynnr_docu                 LIKE sy-dynnr VALUE '0190',
+           seex_dynnr_comp_coco            LIKE sy-dynnr VALUE '0180',
+           seex_dynnr_comp_sscr            LIKE sy-dynnr VALUE '0200',
+           seex_dyn_popup_scr_a            LIKE sy-dynnr VALUE '0201',
+           seex_dyn_popup_scr_p            LIKE sy-dynnr VALUE '0202',
+           seex_dynnr_comp_fcod            LIKE sy-dynnr VALUE '0210',
+           seex_dyn_popup_fcod             LIKE sy-dynnr VALUE '0211',
+           seex_dynnr_comp_inta            LIKE sy-dynnr VALUE '0220',
+           seex_dynn_popup_inta            LIKE sy-dynnr VALUE '0221',
+           seex_dyn_popup_coco             LIKE sy-dynnr VALUE '0231',
+           seex_dynnr_fkt_codes            LIKE sy-dynnr VALUE '0300',
+           seex_dynnr_sorting              LIKE sy-dynnr VALUE '0400'.
+
+* Konstanten für FCodes
+CONSTANTS:seex_reference_list    TYPE seex_fcode VALUE
+                                         swbm_c_fc_where_used_list,
+          seex_color_list        TYPE seex_fcode VALUE 'COLS',
+          seex_mltp_akt_imps     TYPE seex_fcode VALUE 'MLTP_AKT',
+          seex_mltp_int_in_defs  TYPE seex_fcode VALUE 'MLTP_INT',
+          seex_mltp_fun_in_defs  TYPE seex_fcode VALUE 'MLTP_FUN',
+          seex_delete            TYPE seex_fcode VALUE swbm_c_fc_delete,
+          seex_test              TYPE seex_fcode VALUE 'TEST',
+          seex_goto_back         TYPE seex_fcode VALUE swbm_c_fc_back,
+          seex_goto_exit         TYPE seex_fcode VALUE swbm_c_fc_end,
+          seex_goto_canc         TYPE seex_fcode VALUE swbm_c_fc_cancel,
+          seex_goto_togg         TYPE seex_fcode VALUE
+                                          swbm_c_fc_disp_edit_toggle,
+          seex_goto_add          TYPE seex_fcode VALUE 'ADD',
+          seex_goto_upda         TYPE seex_fcode VALUE 'UPDA',
+          seex_goto_show         TYPE seex_fcode VALUE 'SHOW',
+          seex_goto_test         TYPE seex_fcode VALUE 'TEST',
+          seex_migrate           TYPE seex_fcode VALUE 'BADI_MIG',
+          seex_goto_save         TYPE seex_fcode VALUE swbm_c_fc_save,
+          seex_goto_imp_nor_code TYPE seex_fcode VALUE 'GOTO_IMP',
+          seex_def_imp_create    TYPE seex_fcode VALUE 'DEF_CREA',
+          seex_def_imp_show      TYPE seex_fcode VALUE 'DEF_SHOW',
+          seex_def_imp_update    TYPE seex_fcode VALUE 'DEF_UPDA',
+          seex_def_imp_delete    TYPE seex_fcode VALUE 'DEF_DELE',
+          seex_exm_imp_create    TYPE seex_fcode VALUE 'EXM_CREA',
+          seex_exm_imp_show      TYPE seex_fcode VALUE 'EXM_SHOW',
+          seex_exm_imp_update    TYPE seex_fcode VALUE 'EXM_UPDA',
+          seex_exm_imp_delete    TYPE seex_fcode VALUE 'EXM_DELE',
+          seex_exm_imp_take      TYPE seex_fcode VALUE 'EXM_TAKE',
+          seex_goto_interface    TYPE seex_fcode VALUE 'GOTO_INTF',
+          seex_goto_imp_class    TYPE seex_fcode VALUE 'GOTO_IMCL',
+          seex_goto_parameters   TYPE seex_fcode VALUE 'GOTO_PARA',
+          seex_goto_dynpro       TYPE seex_fcode VALUE 'GOTO_DYN',
+          seex_goto_gui_prog     TYPE seex_fcode VALUE 'GOTO_GUIP',
+          seex_goto_control_comp TYPE seex_fcode VALUE 'GOTO_COMP',
+          seex_goto_data_element TYPE seex_fcode VALUE 'GOTO_DTEL',
+          seex_goto_devclass     TYPE seex_fcode VALUE 'GOTO_DEVC',
+          seex_goto_inc_struct   TYPE seex_fcode VALUE 'GOTO_INC',
+          seex_goto_app_struct   TYPE seex_fcode VALUE 'GOTO_APP',
+          seex_goto_task         TYPE seex_fcode VALUE 'TASK',
+          seex_goto_tadir        TYPE seex_fcode VALUE 'TADIR',
+          seex_history           TYPE seex_fcode VALUE 'HIST',
+          seex_activate          TYPE seex_fcode VALUE
+                                          swbm_c_fc_activate,
+          seex_deactivate        TYPE seu_action VALUE 'DEACTIVATE',
+          seex_check             TYPE seex_fcode VALUE swbm_c_fc_check,
+          seex_line_deletion     TYPE seex_fcode VALUE 'LIDE',
+          seex_line_renaming     TYPE seex_fcode VALUE 'LIRENA',
+          seex_line_insertion    TYPE seex_fcode VALUE 'LIIN',
+          seex_line_cut          TYPE seex_fcode VALUE 'LICUT',
+          seex_line_cut_all      TYPE seex_fcode VALUE 'LICUTALL',
+          seex_line_copy         TYPE seex_fcode VALUE 'LICOPY',
+          seex_line_mark         TYPE seex_fcode VALUE 'LIMARK',
+          seex_line_paste        TYPE seex_fcode VALUE 'LIPASTE',
+          seex_line_refresh      TYPE seex_fcode VALUE 'REFRESH',
+          seex_demark            TYPE seex_fcode VALUE 'DEMARK',
+          seex_implement_inter   TYPE seex_fcode VALUE
+                                          seex_imp_mode_implement,
+          seex_show_inter        TYPE seex_fcode VALUE
+                                          seex_imp_mode_show,
+          seex_implement_show    TYPE seex_fcode VALUE 'IMP_SHOW',
+          seex_implement_upda    TYPE seex_fcode VALUE 'IMP_UPDA',
+          seex_implement_add     TYPE seex_fcode VALUE 'IMP_ADD',
+          seex_implement_delete  TYPE seex_fcode VALUE 'IMP_DELETE',
+          seex_implement_overview TYPE seex_fcode VALUE 'IMP_OVER',
+          seex_implement_show_for_badi
+                                 TYPE seex_fcode VALUE 'IMP_SHOWB',
+          seex_implement_upda_for_badi
+                                 TYPE seex_fcode VALUE 'IMP_UPDAB',
+          seex_implement_add_for_badi
+                                 TYPE seex_fcode VALUE 'IMP_ADDB',
+          seex_goto_text         TYPE seex_fcode VALUE 'TEXT',
+          seex_goto_okay         TYPE seex_fcode VALUE 'OKAY',
+          seex_class_generate    TYPE seex_fcode VALUE 'CLASS_GEN',
+          seex_sort              TYPE seex_fcode VALUE 'SORT',
+          seex_double            TYPE seex_fcode VALUE 'DOUBLE',
+          seex_copy              TYPE seex_fcode VALUE swbm_c_fc_copy,
+          seex_implement_copy    TYPE seex_fcode VALUE 'IMP_COPY',
+          seex_rename            TYPE seex_fcode VALUE swbm_c_fc_rename,
+          seex_implement_rename  TYPE seex_fcode VALUE 'IMP_RENAME',
+          seex_another_badi      TYPE seex_fcode VALUE 'ANOT',
+          seex_another_imp       TYPE seex_fcode VALUE 'ANOT_IMP',
+          seex_components        TYPE seex_fcode VALUE 'COMPS',
+          seex_implement_comps   TYPE seex_fcode VALUE 'IMP_COMPS',
+          seex_docu              TYPE seex_fcode VALUE 'DEF_DOCU',
+          seex_exit_docu_show    TYPE seex_fcode VALUE 'DOCU_EXIT_SHOW',
+          seex_exit_docu_edit    TYPE seex_fcode VALUE 'DOCU_EXIT_EDIT',
+          seex_imp_docu_show     TYPE seex_fcode VALUE 'DOCU_IMP_SHOW',
+          seex_imp_docu_edit     TYPE seex_fcode VALUE 'DOCU_IMP_EDIT',
+          seex_implement_docu    TYPE seex_fcode VALUE 'IMP_DOCU',
+          seex_badi_check        TYPE seex_fcode VALUE 'WB_CHECK',
+          seex_implement_check   TYPE seex_fcode VALUE 'IMP_CHECK',
+          seex_tab_strip_head      TYPE seex_fcode VALUE 'GOTO_HEAD',
+          seex_tab_strip_class     TYPE seex_fcode VALUE 'GOTO_CLASS',
+          seex_tab_strip_comp_sscr TYPE seex_fcode VALUE 'GOTO_SSCR',
+          seex_tab_strip_comp_fcod TYPE seex_fcode VALUE 'GOTO_FCOD',
+          seex_tab_strip_comp_coco TYPE seex_fcode VALUE 'GOTO_COCO',
+          seex_tab_strip_comp_inta TYPE seex_fcode VALUE 'GOTO_INTA'.
+
+* Konstanten für Tab-Strip-Reiter-Namen
+CONSTANTS:
+   seex_tab_strip_name_mtd(25)    TYPE c VALUE 'EXIT_TAB_STRIP_CLASS',
+   seex_tab_strip_name_screen(25) TYPE c VALUE 'EXIT_TAB_STRIP_CO_SSCR',
+   seex_tab_strip_name_fcode(25)  TYPE c VALUE 'EXIT_TAB_STRIP_CO_FCOD',
+   seex_tab_strip_name_coco(25)   TYPE c VALUE 'EXIT_TAB_STRIP_CO_COCO',
+   seex_tab_strip_name_table(25)  TYPE c VALUE 'EXIT_TAB_STRIP_CO_INTA'.
+
+* Please increase this number always if you perform major changes
+* to the generator unit consisting of function groups SXIF, SXCV
+CONSTANTS:
+   seex_generator_version TYPE version VALUE '1'.

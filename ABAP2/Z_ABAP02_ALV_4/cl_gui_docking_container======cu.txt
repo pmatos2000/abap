@@ -1,0 +1,84 @@
+class CL_GUI_DOCKING_CONTAINER definition
+  public
+  inheriting from CL_GUI_CONTAINER
+  create public .
+
+*"* public components of class CL_GUI_DOCKING_CONTAINER
+*"* do not include other source files here!!!
+public section.
+
+  constants DOCK_AT_LEFT type I value 1 .
+  constants DOCK_AT_TOP type I value 2 .
+  constants DOCK_AT_BOTTOM type I value 4 .
+  constants DOCK_AT_RIGHT type I value 8 .
+  constants PROPERTY_DOCKING type I value 470 .
+  constants PROPERTY_FLOATING type I value 480 .
+
+  methods GET_RATIO
+    exporting
+      !RATIO type I
+    exceptions
+      NOT_AVAILABLE .
+  methods CONSTRUCTOR
+    importing
+      value(PARENT) type ref to CL_GUI_CONTAINER optional
+      value(REPID) type SYREPID optional
+      value(DYNNR) type SYDYNNR optional
+      value(SIDE) type I default DOCK_AT_LEFT
+      value(EXTENSION) type I default 50
+      value(STYLE) type I optional
+      value(LIFETIME) type I default LIFETIME_DEFAULT
+      value(CAPTION) type C optional
+      value(METRIC) type I default 0
+      value(RATIO) type I optional
+      value(NO_AUTODEF_PROGID_DYNNR) type C optional
+      value(NAME) type STRING optional
+    exceptions
+      CNTL_ERROR
+      CNTL_SYSTEM_ERROR
+      CREATE_ERROR
+      LIFETIME_ERROR
+      LIFETIME_DYNPRO_DYNPRO_LINK .
+  methods DOCK_AT
+    importing
+      value(SIDE) type I
+    exceptions
+      CNTL_ERROR
+      CNTL_SYSTEM_ERROR .
+  methods FLOAT
+    importing
+      value(DO_FLOAT) type I
+    exceptions
+      CNTL_ERROR
+      CNTL_SYSTEM_ERROR .
+  methods GET_EXTENSION
+    exporting
+      !EXTENSION type I
+    exceptions
+      CNTL_ERROR
+      CNTL_SYSTEM_ERROR .
+  methods SET_CAPTION
+    importing
+      value(CAPTION) type C
+    exceptions
+      CNTL_ERROR
+      CNTL_SYSTEM_ERROR .
+  methods SET_EXTENSION
+    importing
+      !EXTENSION type I
+    exceptions
+      CNTL_ERROR .
+  methods GET_DOCKING_SIDE
+    returning
+      value(DOCKING_SIDE) type I
+    exceptions
+      NOT_DOCKED .
+
+  methods FREE
+    redefinition .
+  methods LINK
+    redefinition .
+  methods SET_METRIC
+    redefinition .
+  methods SET_VISIBLE
+    redefinition .

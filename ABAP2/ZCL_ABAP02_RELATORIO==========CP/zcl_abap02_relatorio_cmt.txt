@@ -1,0 +1,5 @@
+ZCL_ABAP02_RELATORIO          DEU_CERTO                     P
+ZCL_ABAP02_RELATORIO          DEU_CERTO_O_RELATORIO         P
+ZCL_ABAP02_RELATORIO          EXIBE_RELATORIO               P
+ZCL_ABAP02_RELATORIO          EXPORTA_RELATORIO             P
+ZCL_ABAP02_RELATORIO          RELATORIO                     P

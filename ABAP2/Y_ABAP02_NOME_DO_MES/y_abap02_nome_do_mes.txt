@@ -1,0 +1,33 @@
+REPORT y_abap02_nome_do_mes.
+
+PARAMETERS:
+  n TYPE i.
+
+START-OF-SELECTION.
+  IF n = 1.
+    WRITE: 'Janeiro'.
+  ELSEIF n = 2.
+    WRITE: 'Fevereiro'.
+  ELSEIF n = 3.
+    WRITE: 'Março'.
+  ELSEIF n = 4.
+    WRITE: 'Abril'.
+  ELSEIF n = 5.
+    WRITE: 'Maio'.
+  ELSEIF n = 6.
+    WRITE: 'Junho'.
+  ELSEIF n = 7.
+    WRITE: 'Julho'.
+  ELSEIF n = 8.
+    WRITE: 'Agosto'.
+  ELSEIF n = 9.
+    WRITE: 'Setembro'.
+  ELSEIF n = 10.
+    WRITE: 'Outubro'.
+  ELSEIF n = 11.
+    WRITE: 'Novembro'.
+  ELSEIF n = 12.
+    WRITE: 'Dezembro'.
+  ELSE.
+    WRITE: 'Entrada invalida'.
+  ENDIF.

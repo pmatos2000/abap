@@ -1,0 +1,3 @@
+  method SET_CPF_PUBLICO.
+    me->set_cpf( p_cpf ).
+  endmethod.

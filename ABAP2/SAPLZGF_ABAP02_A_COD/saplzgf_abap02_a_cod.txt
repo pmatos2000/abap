@@ -1,0 +1,21 @@
+* regenerated at 25.07.2019 16:26:53
+*******************************************************************
+*   System-defined Include-files.                                 *
+*******************************************************************
+  INCLUDE LZGF_ABAP02_A_CODTOP.              " Global Data
+  INCLUDE LZGF_ABAP02_A_CODUXX.              " Function Modules
+
+*******************************************************************
+*   User-defined Include-files (if necessary).                    *
+*******************************************************************
+* INCLUDE LZGF_ABAP02_A_CODF...              " Subroutines
+* INCLUDE LZGF_ABAP02_A_CODO...              " PBO-Modules
+* INCLUDE LZGF_ABAP02_A_CODI...              " PAI-Modules
+* INCLUDE LZGF_ABAP02_A_CODE...              " Events
+* INCLUDE LZGF_ABAP02_A_CODP...              " Local class implement.
+* INCLUDE LZGF_ABAP02_A_CODT99.              " ABAP Unit tests
+  INCLUDE LZGF_ABAP02_A_CODF00                    . " subprograms
+  INCLUDE LZGF_ABAP02_A_CODI00                    . " PAI modules
+  INCLUDE LSVIMFXX                                . " subprograms
+  INCLUDE LSVIMOXX                                . " PBO modules
+  INCLUDE LSVIMIXX                                . " PAI modules

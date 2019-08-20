@@ -1,0 +1,3 @@
+  method ZIF_ABAP02_HUMANO~FALAR.
+    WRITE: 'Eu sou motorista!', /.
+  endmethod.

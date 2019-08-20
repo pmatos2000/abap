@@ -1,0 +1,4 @@
+ZCL_ABAP02_CALC               ADD                           PFaz a som de dois números
+ZCL_ABAP02_CALC               DIV                           PFaz a divição de dois números
+ZCL_ABAP02_CALC               MUL                           PFaz a multiplicação de dois numero
+ZCL_ABAP02_CALC               SUB                           PFaz a subtração de dois números

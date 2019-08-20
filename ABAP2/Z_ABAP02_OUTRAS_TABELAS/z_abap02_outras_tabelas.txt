@@ -1,0 +1,17 @@
+REPORT z_abap02_outras_tabelas.
+
+START-OF-SELECTION.
+
+  DATA: minhas_pessoas TYPE REF TO zcl_abap16_tabelas.
+
+  minhas_pessoas = NEW #( ).
+
+  minhas_pessoas->add_pessoa( NEW zcl_abap16_pessoa(
+      nome            = 'Valdir'
+      data_nascimento = '20000101'
+  ) ).
+
+  minhas_pessoas->add_pessoa( NEW zcl_abap16_pessoa(
+    nome            = 'Abap'
+    data_nascimento = '20000101'
+) ).

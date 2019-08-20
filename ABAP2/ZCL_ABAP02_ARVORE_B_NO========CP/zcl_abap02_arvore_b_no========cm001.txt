@@ -1,0 +1,21 @@
+  METHOD adiciona.
+    IF ( me->chave > p_chave ).
+      IF ( me->esq IS INITIAL ).
+        me->esq = NEW zcl_abap02_arvore_b_no( ).
+        me->esq->chave = p_chave.
+      ELSE.
+        me->esq->adiciona(
+           p_chave = p_chave
+        ).
+      ENDIF.
+    ELSEIF ( me->chave < p_chave ).
+      IF ( me->dir IS INITIAL ).
+        me->dir = NEW zcl_abap02_arvore_b_no( ).
+        me->dir->chave = p_chave.
+      ELSE.
+        me->dir->adiciona(
+           p_chave = p_chave
+        ).
+      ENDIF.
+    ENDIF.
+  ENDMETHOD.

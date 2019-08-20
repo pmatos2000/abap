@@ -1,0 +1,12 @@
+REPORT Y_ABAP02_EVENTOS.
+
+PARAMETERS:
+  p_nome TYPE string.
+
+AT SELECTION-SCREEN.
+  IF STRLEN( p_nome ) < 3.
+    MESSAGE e003(y_abap02_msg).
+  ENDIF.
+
+START-OF-SELECTION.
+  WRITE: 'Nome: ', p_nome.

@@ -1,0 +1,28 @@
+class-pool .
+*"* class pool for class ZCL_ABAP02_CLASS_ECLIPSE
+
+*"* local type definitions
+include ZCL_ABAP02_CLASS_ECLIPSE======ccdef.
+
+*"* class ZCL_ABAP02_CLASS_ECLIPSE definition
+*"* public declarations
+  include ZCL_ABAP02_CLASS_ECLIPSE======cu.
+*"* protected declarations
+  include ZCL_ABAP02_CLASS_ECLIPSE======co.
+*"* private declarations
+  include ZCL_ABAP02_CLASS_ECLIPSE======ci.
+endclass. "ZCL_ABAP02_CLASS_ECLIPSE definition
+
+*"* macro definitions
+include ZCL_ABAP02_CLASS_ECLIPSE======ccmac.
+*"* local class implementation
+include ZCL_ABAP02_CLASS_ECLIPSE======ccimp.
+
+*"* test class
+include ZCL_ABAP02_CLASS_ECLIPSE======ccau.
+
+class ZCL_ABAP02_CLASS_ECLIPSE implementation.
+*"* method's implementations
+  include methods.
+endclass. "ZCL_ABAP02_CLASS_ECLIPSE implementation
+

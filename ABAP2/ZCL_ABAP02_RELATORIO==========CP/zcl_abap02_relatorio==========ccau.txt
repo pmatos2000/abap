@@ -1,0 +1,72 @@
+*"* use this source file for your ABAP unit test classes
+
+CLASS lcl_injecao_dados_relatorio DEFINITION.
+
+  PUBLIC SECTION.
+
+    INTERFACES: zif_dados_relatorio.
+
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+
+ENDCLASS.
+
+CLASS lcl_injecao_dados_relatorio IMPLEMENTATION.
+
+  METHOD zif_dados_relatorio~get_dados_aluno.
+
+  ENDMETHOD.
+
+ENDCLASS.
+
+CLASS ltcl_relatorio DEFINITION FINAL FOR TESTING
+  DURATION SHORT
+  RISK LEVEL HARMLESS.
+
+  PRIVATE SECTION.
+
+    DATA: o_cut TYPE REF TO zcl_relatorio.
+
+    METHODS:
+      verifica_dados_relatorio FOR TESTING.
+
+ENDCLASS.
+
+
+CLASS ltcl_relatorio IMPLEMENTATION.
+
+  METHOD verifica_dados_relatorio.
+
+    DATA: dados_relatorio TYPE REF TO zif_dados_relatorio.
+
+
+    "o cenário
+    "valores de entrada
+    CREATE OBJECT dados_relatorio TYPE lcl_injecao_dados_relatorio.
+
+    o_cut = NEW #( ).
+
+
+    "Execução
+    "chamada do método
+
+    o_cut->exibe_relatorio( dados_relatorio ).
+
+    "Análise
+    "Assert
+    cl_abap_unit_assert=>assert_equals(
+      EXPORTING
+        act                  = o_cut->deu_certo( )
+        exp                  = abap_true
+*        ignore_hash_sequence = ABAP_FALSE
+*        tol                  =
+        msg                  = 'deveria retornar que o relatório funcionou'
+*        level                =
+*        quit                 =
+*      RECEIVING
+*        assertion_failed     =
+    ).
+
+  ENDMETHOD.
+
+ENDCLASS.

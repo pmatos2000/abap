@@ -1,0 +1,4 @@
+ZCL_ABAP02_PESSOA             CONSTRUCTOR                   P_DATA_NASCIMENTO             120
+ZCL_ABAP02_PESSOA             CONSTRUCTOR                   P_NOME                        120
+ZCL_ABAP02_PESSOA             GET_DATA_NASCIMENTO           R_DATA_NASCIMENTO             100
+ZCL_ABAP02_PESSOA             SET_CPF                       P_CPF                         100

@@ -1,0 +1,92 @@
+REPORT y_abap02_tab_interna_loop.
+
+TYPES:
+  codigo_pais(3) TYPE c,
+
+  BEGIN OF pessoa,
+    nome TYPE string,
+    pais TYPE codigo_pais,
+  END OF pessoa,
+
+  ty_pessoas TYPE STANDARD TABLE OF pessoa.
+
+
+FORM adiciona_pessoa USING nome TYPE string
+                           pais TYPE codigo_pais
+                     CHANGING pessoas TYPE ty_pessoas.
+  DATA:
+    pessoa TYPE pessoa.
+
+  pessoa-nome = nome.
+  pessoa-pais = pais.
+  APPEND pessoa TO pessoas.
+
+ENDFORM.
+
+PARAMETERS:
+  c_pais  TYPE c AS CHECKBOX,
+  s_pais  TYPE codigo_pais,
+  c_lista TYPE c AS CHECKBOX,
+  p_ind   TYPE i.
+
+START-OF-SELECTION.
+
+  DATA:
+    pessoa  TYPE pessoa,
+    pessoas TYPE  ty_pessoas.
+
+  PERFORM adiciona_pessoa USING 'PAULO'
+                                'AAA'
+                     CHANGING pessoas.
+
+  PERFORM adiciona_pessoa USING 'CAMILA'
+                                'BBB'
+                     CHANGING pessoas.
+
+  PERFORM adiciona_pessoa USING 'EMANUEL'
+                                'CCC'
+                     CHANGING pessoas.
+
+  PERFORM adiciona_pessoa USING 'JOAO'
+                                 'AAA'
+                      CHANGING pessoas.
+
+  PERFORM adiciona_pessoa USING 'LET'
+                                'BBB'
+                     CHANGING pessoas.
+
+  PERFORM adiciona_pessoa USING 'CAIO'
+                                'CCC'
+                     CHANGING pessoas.
+
+  PERFORM adiciona_pessoa USING 'HUGO'
+                                'AAA'
+                     CHANGING pessoas.
+
+  PERFORM adiciona_pessoa USING 'ISADORA'
+                                'BBB'
+                     CHANGING pessoas.
+
+  PERFORM adiciona_pessoa USING 'TATI'
+                                'CCC'
+                     CHANGING pessoas.
+
+  PERFORM adiciona_pessoa USING 'RENATA'
+                                'CCC'
+                     CHANGING pessoas.
+
+  IF c_pais = 'X'.
+    SORT pessoas BY pais.
+    LOOP AT pessoas INTO pessoa WHERE pais = s_pais.
+      WRITE: pessoa-nome, /.
+      " AT LAST.
+      "   ULINE.
+      " ENDAT.
+    ENDLOOP.
+  ENDIF.
+
+  IF c_lista = 'X'.
+    LOOP AT pessoas INTO pessoa FROM p_ind.
+      WRITE: pessoa-nome, /.
+    ENDLOOP.
+  ENDIF.

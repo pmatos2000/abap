@@ -1,0 +1,5 @@
+  METHOD em_ordem.
+    IF ( NOT me->no IS INITIAL ).
+      me->no->em_ordem( ).
+    ENDIF.
+  ENDMETHOD.

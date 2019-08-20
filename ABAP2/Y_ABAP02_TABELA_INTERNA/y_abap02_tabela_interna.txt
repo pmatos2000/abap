@@ -1,0 +1,51 @@
+REPORT y_abap02_tabela.
+
+PARAMETERS:
+  p_radd TYPE c RADIOBUTTON GROUP g1,
+  p_rler TYPE c RADIOBUTTON GROUP g1,
+  p_ridx TYPE c RADIOBUTTON GROUP g2,
+  p_rfim TYPE c RADIOBUTTON GROUP g2,
+  p_idx  TYPE i,
+  p_num  TYPE i.
+
+
+DATA:
+  t_num       TYPE STANDARD TABLE OF i,
+  num         TYPE i,
+  tamanho_tab TYPE i.
+
+START-OF-SELECTION.
+
+  " Cria uma tabela
+  DO 10 TIMES.
+    APPEND sy-index TO t_num.
+  ENDDO.
+
+  IF p_radd = 'X'.
+    IF p_ridx = 'X'.
+      INSERT p_num  INTO t_num INDEX p_idx.
+    ELSE.
+      APPEND p_num TO t_num.
+    ENDIF.
+    IF sy-subrc <> 0.
+      WRITE: 'Erro ao inserir na tabela', /.
+    ENDIF.
+  ELSE.
+    IF p_ridx = 'X'.
+      READ TABLE t_num INTO num INDEX p_idx.
+    ELSE.
+      tamanho_tab = lines( t_num ).
+      READ TABLE t_num INTO num INDEX tamanho_tab.
+    ENDIF.
+    IF sy-subrc = 0.
+      WRITE: num, /.
+    ELSE.
+      WRITE: 'Não encontrado', /.
+    ENDIF.
+  ENDIF.
+
+  " Exibe a tabela
+  WRITE: 'Tabela: ', /.
+  LOOP AT t_num INTO num.
+    WRITE: sy-tabix, ' - ', num, /.
+  ENDLOOP.

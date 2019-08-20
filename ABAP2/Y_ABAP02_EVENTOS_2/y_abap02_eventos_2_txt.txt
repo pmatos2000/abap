@@ -1,0 +1,2 @@
+R        Teste de validação de campo                                                                                                                                                                                                                                    0027
+SP_NOME          Nome                                                                                                                                                                                                                                                   0012

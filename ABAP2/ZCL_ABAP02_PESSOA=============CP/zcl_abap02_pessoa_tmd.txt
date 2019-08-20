@@ -1,0 +1,6 @@
+ZCL_ABAP02_PESSOA             00000                                                             0
+ZCL_ABAP02_PESSOA             00001ESCREVER_NOME                                                0
+ZCL_ABAP02_PESSOA             00002CONSTRUCTOR                                                  0
+ZCL_ABAP02_PESSOA             00003GET_DATA_NASCIMENTO                                          0
+ZCL_ABAP02_PESSOA             00004SET_CPF                                                      0
+ZCL_ABAP02_PESSOA             00005ZIF_ABAP02_HUMANO~FALAR                                      0

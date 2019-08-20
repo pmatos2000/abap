@@ -1,0 +1,18 @@
+FUNCTION Y_ABAP02_FUNC_FAT .
+*"----------------------------------------------------------------------
+*"*"Interface local:
+*"  IMPORTING
+*"     REFERENCE(N) TYPE  I
+*"  EXPORTING
+*"     REFERENCE(RES) TYPE  I
+*"----------------------------------------------------------------------
+  res = 1.
+
+  DO n TIMES.
+    res = res * sy-index.
+  ENDDO.
+
+
+
+
+ENDFUNCTION.

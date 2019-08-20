@@ -1,0 +1,3 @@
+Y_ABAP02_FUNC_FAT             SAPLY_ABAP02_G_FUNC                     0100000000              
+Y_ABAP02_FUNC_VAL_DIA         SAPLY_ABAP02_G_FUNC                     0200000000              
+Y_ABAP02_FUNC_DIV             SAPLY_ABAP02_G_FUNC                     0300000000              

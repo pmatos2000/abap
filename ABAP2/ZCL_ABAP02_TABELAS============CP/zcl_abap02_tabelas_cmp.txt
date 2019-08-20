@@ -1,0 +1,6 @@
+ZCL_ABAP02_TABELAS            ADD_PESSOA                    10
+ZCL_ABAP02_TABELAS            GET_PESSOA                    10
+ZCL_ABAP02_TABELAS            OUTRAS_PESSOAS                00
+ZCL_ABAP02_TABELAS            PESSOAS                       00
+ZCL_ABAP02_TABELAS            REGISTRO_PESSOA               30
+ZCL_ABAP02_TABELAS            TY_PESSOAS                    30

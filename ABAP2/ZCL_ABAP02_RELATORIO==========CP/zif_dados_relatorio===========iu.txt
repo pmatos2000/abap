@@ -1,0 +1,8 @@
+INTERFACE zif_dados_relatorio
+  PUBLIC .
+
+  METHODS:
+    get_dados_aluno
+      RETURNING VALUE(result) TYPE mara_tab.
+
+ENDINTERFACE.

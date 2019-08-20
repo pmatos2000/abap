@@ -1,0 +1,44 @@
+class CL_SCP_LINEBREAK_UTIL definition
+  public
+  final
+  create public .
+
+public section.
+*"* public components of class CL_SCP_LINEBREAK_UTIL
+*"* do not include other source files here!!!
+
+  constants C_BOUNDARY_UNICHAR type CHAR1 value 'U'. "#EC NOTEXT
+  constants C_BOUNDARY_GRAPHEME type CHAR1 value 'G'. "#EC NOTEXT
+  constants C_BOUNDARY_WORD type CHAR1 value 'W'. "#EC NOTEXT
+  constants C_BOUNDARY_LINE type CHAR1 value 'L'. "#EC NOTEXT
+  constants C_BOUNDARY_WORD_UC type CHAR1 value 'w'. "#EC NOTEXT
+
+  class-methods STRING_SPLIT_AT_POSITION
+    importing
+      !IM_STRING type CLIKE
+      !IM_LANGU type SYLANGU default SY-LANGU
+      !IM_POS_VIS type INT4 optional
+      !IM_POS_TECH type INT4 optional
+      !IM_BOUNDARY_KIND type CHAR1 default C_BOUNDARY_GRAPHEME
+      !IM_METRICS type I optional
+    exporting
+      !EX_POS_VIS type INT4
+      !EX_POS_TECH type INT4
+    exceptions
+      POS_NOT_VALID
+      UNSUPPORTED_BOUNDARY_KIND
+      INVALID_TEXT_ENVIROMENT .
+  class-methods STICKY_CONCAT
+    importing
+      !IM_LANGU type SYLANGU
+    exporting
+      !EX_GLUE type CHAR1 .
+  class-methods GET_VISUAL_STRINGLENGTH
+    importing
+      !IM_STRING type CLIKE
+      !IM_LANGU type SYLANGU default SY-LANGU
+      !IM_METRICS type I optional
+    exporting
+      !EX_POS_VIS type INT4
+    exceptions
+      INVALID_TEXT_ENVIROMENT .

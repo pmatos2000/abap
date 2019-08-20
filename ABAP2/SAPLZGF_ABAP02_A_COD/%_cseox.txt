@@ -1,0 +1,21 @@
+type-pool seox .
+
+types:
+  seox_boolean type seoflag,
+  seox_index type syindex,
+  seox_tabix type sytabix,
+  seox_subrc type sysubrc,
+  seox_action(1) type c,
+  seox_unknown_error(20) type c.
+
+constants:
+* boolean
+  seox_true type seox_boolean
+    value 'X',
+  seox_false type seox_boolean
+    value ' ',
+* actions
+  seox_action_create type seox_action
+    value 'C',
+  seox_action_modify type seox_action
+    value 'M'.

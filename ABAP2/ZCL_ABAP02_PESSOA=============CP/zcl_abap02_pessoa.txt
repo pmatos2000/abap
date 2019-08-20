@@ -1,0 +1,25 @@
+class-pool .
+*"* class pool for class ZCL_ABAP02_PESSOA
+
+*"* local type definitions
+include ZCL_ABAP02_PESSOA=============ccdef.
+
+*"* class ZCL_ABAP02_PESSOA definition
+*"* public declarations
+  include ZCL_ABAP02_PESSOA=============cu.
+*"* protected declarations
+  include ZCL_ABAP02_PESSOA=============co.
+*"* private declarations
+  include ZCL_ABAP02_PESSOA=============ci.
+endclass. "ZCL_ABAP02_PESSOA definition
+
+*"* macro definitions
+include ZCL_ABAP02_PESSOA=============ccmac.
+*"* local class implementation
+include ZCL_ABAP02_PESSOA=============ccimp.
+
+class ZCL_ABAP02_PESSOA implementation.
+*"* method's implementations
+  include methods.
+endclass. "ZCL_ABAP02_PESSOA implementation
+

@@ -1,0 +1,12 @@
+class ZCL_ABAP02_CLIENTE definition
+  public
+  inheriting from ZCL_ABAP02_PESSOA
+  final
+  create public .
+
+public section.
+
+  methods MENSAGEM .
+  methods SET_CPF_PUBLICO
+    importing
+      !P_CPF type Y_ABAP02_CPF_DADOS .

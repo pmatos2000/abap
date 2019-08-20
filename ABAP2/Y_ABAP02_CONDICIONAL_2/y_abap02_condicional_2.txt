@@ -1,0 +1,21 @@
+REPORT y_abap02_condicional_2.
+
+PARAMETERS:
+  r_soma TYPE c RADIOBUTTON GROUP g1,
+  r_subt TYPE c RADIOBUTTON GROUP g1,
+  r_div  TYPE c RADIOBUTTON GROUP g1,
+  r_mul  TYPE c RADIOBUTTON GROUP g1.
+
+START-OF-SELECTION.
+  CASE 'X'.
+    WHEN r_soma.
+      WRITE:  'somar'.
+    WHEN r_subt.
+      WRITE:  'subtrair'.
+    WHEN r_div.
+      WRITE:  'dividir'.
+    WHEN r_mul.
+      WRITE:  'multiplicar'.
+    WHEN OTHERS.
+      WRITE:  'Você não selecionou nada!'.
+  ENDCASE.

@@ -1,0 +1,5 @@
+  method PRE_ORDEM.
+    IF ( NOT me->no IS INITIAL ).
+      me->no->pre_ordem( ).
+    ENDIF.
+  endmethod.

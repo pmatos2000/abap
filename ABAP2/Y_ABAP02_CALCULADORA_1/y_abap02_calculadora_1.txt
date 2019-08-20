@@ -1,0 +1,24 @@
+REPORT y_abap02_calculadora_1.
+
+PARAMETERS:
+  num1   TYPE i,
+  num2   TYPE i,
+  ehsoma TYPE c RADIOBUTTON GROUP g1,
+  ehsub  TYPE c RADIOBUTTON GROUP g1.
+
+
+DATA:
+    num3 TYPE i.
+
+
+START-OF-SELECTION.
+
+  IF ehsoma = 'X'.
+    num3 = num1 + num2.
+  ENDIF.
+  IF ehsub = 'X'.
+    num3 = num1 - num2.
+  ENDIF.
+
+  WRITE:
+    'Resultado: ', num3.

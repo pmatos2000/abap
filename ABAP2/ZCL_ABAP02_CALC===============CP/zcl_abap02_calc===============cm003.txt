@@ -1,0 +1,3 @@
+  method MUL.
+    res = num1 * num2.
+  endmethod.

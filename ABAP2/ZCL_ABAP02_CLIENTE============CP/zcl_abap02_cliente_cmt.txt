@@ -1,0 +1,2 @@
+ZCL_ABAP02_CLIENTE            MENSAGEM                      PEscreve na tela uma mensagem
+ZCL_ABAP02_CLIENTE            SET_CPF_PUBLICO               PAltera o CPF

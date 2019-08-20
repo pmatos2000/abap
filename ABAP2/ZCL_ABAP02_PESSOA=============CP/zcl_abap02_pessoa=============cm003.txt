@@ -1,0 +1,3 @@
+  method GET_DATA_NASCIMENTO.
+    r_data_nascimento = data_nascimento.
+  endmethod.

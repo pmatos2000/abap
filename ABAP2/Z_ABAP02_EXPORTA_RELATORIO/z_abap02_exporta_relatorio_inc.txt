@@ -1,0 +1,7 @@
+%_CABAP
+CL_ABAP_DATADESCR=============CT
+CL_ABAP_TYPEDESCR=============CT
+ZCL_ABAP02_RELATORIO==========CU
+ZCL_ABAP16_PDF================CU
+ZIF_DADOS_RELATORIO===========IT
+ZIF_TIPO_ARQUIVO==============IU

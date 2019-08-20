@@ -1,0 +1,74 @@
+REPORT y_abap02_nome_do_mes_3.
+
+PARAMETERS:
+  n TYPE i.
+
+TYPES:
+  BEGIN OF mes,
+    id   TYPE i,
+    nome TYPE string,
+  END OF mes.
+
+DATA:
+  t_meses TYPE STANDARD TABLE OF mes,
+  m       TYPE mes.
+
+START-OF-SELECTION.
+  " Cria a tabela de meses
+  m-id = 1.
+  m-nome = 'Janeiro'.
+  APPEND  m TO t_meses.
+  m-id = 2.
+  m-nome = 'Fevereiro'.
+  APPEND  m TO t_meses.
+  m-id = 3.
+  m-nome = 'Março'.
+  APPEND  m TO t_meses.
+  m-id = 4.
+  m-nome = 'Abril'.
+  APPEND  m TO t_meses.
+  m-id = 5.
+  m-nome = 'Maio'.
+  APPEND  m TO t_meses.
+  m-id = 6.
+  m-nome = 'Junho'.
+  APPEND  m TO t_meses.
+  m-id = 7.
+  m-nome = 'Julho'.
+  APPEND  m TO t_meses.
+  m-id = 8.
+  m-nome = 'Agosto'.
+  APPEND  m TO t_meses.
+  m-id = 9.
+  m-nome = 'Setembro'.
+  APPEND  m TO t_meses.
+  m-id = 10.
+  m-nome = 'Outubro'.
+  APPEND m TO t_meses.
+  m-id = 11.
+  m-nome = 'Novembro'.
+  APPEND  m TO t_meses.
+  m-id = 12.
+  m-nome = 'Dezembro'.
+  APPEND  m TO t_meses.
+
+  " Calcula o mes
+  n = ( ( sy-datum+4(2) - 1 + n ) MOD 12 ) + 1.
+
+  " Procura o mês
+  SORT t_meses BY id.
+  READ TABLE t_meses INTO m
+    WITH KEY id = n BINARY SEARCH.
+
+  IF sy-subrc = 0.
+    WRITE: m-nome.
+  ELSE.
+    WRITE: 'Não encontrado'.
+  ENDIF.
+
+*  LOOP AT t_meses INTO m.
+*    IF m-id = N.
+*      WRITE: m-nome.
+*      EXIT. "Sai do LOOP
+*    ENDIF.
+*  ENDLOOP.

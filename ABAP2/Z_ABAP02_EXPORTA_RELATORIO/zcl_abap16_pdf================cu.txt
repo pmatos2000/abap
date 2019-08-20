@@ -1,0 +1,9 @@
+CLASS zcl_abap16_pdf DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+
+    INTERFACES: zif_tipo_arquivo.
+

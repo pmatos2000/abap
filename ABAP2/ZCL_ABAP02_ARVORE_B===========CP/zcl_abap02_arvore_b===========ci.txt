@@ -1,0 +1,3 @@
+private section.
+
+  data NO type ref to ZCL_ABAP02_ARVORE_B_NO .

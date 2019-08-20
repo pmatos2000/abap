@@ -1,0 +1,10 @@
+REPORT Y_ABAP02_VARIAVEIS.
+DATA:
+  num1 TYPE i,
+  num2 TYPE i,
+  num3 TYPE i.
+START-OF-SELECTION.
+num1 = 4.
+num2 = 9.
+num3 = num1 + num2.
+write num3.

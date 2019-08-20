@@ -1,0 +1,3 @@
+  METHOD DEU_CERTO.
+    result = deu_certo_o_relatorio.
+  ENDMETHOD.

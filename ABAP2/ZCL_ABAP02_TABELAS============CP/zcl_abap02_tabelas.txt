@@ -1,0 +1,28 @@
+class-pool .
+*"* class pool for class ZCL_ABAP02_TABELAS
+
+*"* local type definitions
+include ZCL_ABAP02_TABELAS============ccdef.
+
+*"* class ZCL_ABAP02_TABELAS definition
+*"* public declarations
+  include ZCL_ABAP02_TABELAS============cu.
+*"* protected declarations
+  include ZCL_ABAP02_TABELAS============co.
+*"* private declarations
+  include ZCL_ABAP02_TABELAS============ci.
+endclass. "ZCL_ABAP02_TABELAS definition
+
+*"* macro definitions
+include ZCL_ABAP02_TABELAS============ccmac.
+*"* local class implementation
+include ZCL_ABAP02_TABELAS============ccimp.
+
+*"* test class
+include ZCL_ABAP02_TABELAS============ccau.
+
+class ZCL_ABAP02_TABELAS implementation.
+*"* method's implementations
+  include methods.
+endclass. "ZCL_ABAP02_TABELAS implementation
+

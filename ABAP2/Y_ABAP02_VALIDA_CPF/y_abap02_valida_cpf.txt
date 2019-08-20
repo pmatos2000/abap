@@ -1,0 +1,48 @@
+REPORT y_abap02_valida_cpf.
+
+SELECTION-SCREEN BEGIN OF BLOCK b_001 WITH FRAME TITLE text-t01.
+PARAMETERS:
+  p_cpf TYPE y_abap02_cpf_dados.
+SELECTION-SCREEN END OF BLOCK b_001.
+
+DATA:
+  codigo TYPE i VALUE 0,
+  it     TYPE i VALUE 0.
+
+START-OF-SELECTION.
+  " Calcula o primeiro digito verificador
+  WHILE it < 9.
+    codigo = codigo +  p_cpf+it(1) * ( 10 - it ).
+    it = it + 1.
+  ENDWHILE.
+  codigo =  11 - ( codigo MOD 11 ).
+  IF codigo > 9.
+    codigo = 0.
+  ENDIF.
+
+
+  " Valida o primeiro digito
+  IF p_cpf+9(1) <> codigo.
+    WRITE: 'O CPF: ', p_cpf, ' não é valido'.
+    EXIT. "Finaliza o programa
+  ENDIF.
+
+  " Calcula o segundo digito verificador
+  codigo = 0.
+  it = 0.
+  WHILE it < 10.
+    codigo = codigo +  p_cpf+it(1) * ( 11  - it ).
+    it = it + 1.
+  ENDWHILE.
+  codigo =  11 - ( codigo MOD 11 ).
+  IF codigo > 9.
+    codigo = 0.
+  ENDIF.
+
+  " Valida o segundo digito
+  IF p_cpf+10(1) <> codigo.
+    WRITE: 'O CPF: ', p_cpf, ' não é valido'.
+    EXIT.
+  ENDIF.
+
+  WRITE: 'O CPF: ', p_cpf, 'é valido'.

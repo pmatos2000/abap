@@ -1,0 +1,15 @@
+*******************************************************************
+*   System-defined Include-files.                                 *
+*******************************************************************
+  INCLUDE LY_ABAP02_G_FUNCTOP.               " Global Data
+  INCLUDE LY_ABAP02_G_FUNCUXX.               " Function Modules
+
+*******************************************************************
+*   User-defined Include-files (if necessary).                    *
+*******************************************************************
+* INCLUDE LY_ABAP02_G_FUNCF...               " Subroutines
+* INCLUDE LY_ABAP02_G_FUNCO...               " PBO-Modules
+* INCLUDE LY_ABAP02_G_FUNCI...               " PAI-Modules
+* INCLUDE LY_ABAP02_G_FUNCE...               " Events
+* INCLUDE LY_ABAP02_G_FUNCP...               " Local class implement.
+* INCLUDE LY_ABAP02_G_FUNCT99.               " ABAP Unit tests

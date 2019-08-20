@@ -1,0 +1,49 @@
+REPORT z_abap02_arvore_b.
+
+START-OF-SELECTION.
+
+  DATA:
+    arvore TYPE REF TO zcl_abap02_arvore_b.
+
+
+  arvore  = NEW zcl_abap02_arvore_b( ).
+
+  arvore->adiciona(
+            p_chave = 6 ).
+
+  arvore->adiciona(
+            p_chave = 3 ).
+
+  arvore->adiciona(
+            p_chave = 5 ).
+
+  arvore->adiciona(
+            p_chave = 9 ).
+
+  arvore->adiciona(
+            p_chave = 1 ).
+
+  arvore->adiciona(
+            p_chave = 4 ).
+
+  arvore->adiciona(
+            p_chave = 8 ).
+
+  arvore->adiciona(
+            p_chave = 2 ).
+
+  arvore->adiciona(
+            p_chave = 7 ).
+
+  arvore->adiciona(
+            p_chave = 10 ).
+
+  WRITE: 'Pre ordem: '.
+  arvore->pre_ordem( ).
+  WRITE: /.
+  WRITE: 'Em ordem: '.
+  arvore->em_ordem( ).
+  WRITE: /.
+  WRITE: 'Pos ordem: '.
+  arvore->pos_ordem( ).
+  WRITE: /.

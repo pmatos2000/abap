@@ -1,0 +1,2 @@
+R        Teste com MODIFY e DELETE em tabela interna                                                                                                                                                                                                                    0043
+SCARRID  D       .                                                                                                                                                                                                                                                      0009

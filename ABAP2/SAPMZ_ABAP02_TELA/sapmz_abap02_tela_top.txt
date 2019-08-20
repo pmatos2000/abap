@@ -1,0 +1,10 @@
+*&---------------------------------------------------------------------*
+*& Include SAPMZ_ABAP02_TELA_TOP                             PoolMóds.        SAPMZ_ABAP02_TELA
+*&
+*&---------------------------------------------------------------------*
+PROGRAM SAPMZ_ABAP02_TELA.
+
+TABLES: scustom.
+
+DATA:
+  okcode TYPE sy-ucomm.

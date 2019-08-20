@@ -1,0 +1,3 @@
+ZCL_ABAP02_RELATORIO          DEU_CERTO                     RESULT                        100
+ZCL_ABAP02_RELATORIO          EXIBE_RELATORIO               DADOS_RELATORIO               100
+ZCL_ABAP02_RELATORIO          EXPORTA_RELATORIO             ARG0                          100

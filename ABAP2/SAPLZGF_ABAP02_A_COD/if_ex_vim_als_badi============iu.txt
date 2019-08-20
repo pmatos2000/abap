@@ -1,0 +1,18 @@
+*"* components of interface IF_EX_VIM_ALS_BADI
+interface IF_EX_VIM_ALS_BADI
+  public .
+
+
+  methods ENABLE_ALS
+    importing
+      !VIEW_NAME type VIEWNAME
+    exporting
+      !ALS_ENABLED type VIM_CHAR25 .
+  methods GET_ALS_LANGUAGES
+    importing
+      !VIEW_NAME type VIEWNAME
+    exporting
+      !ALS_ACTIVE type VIM_CHAR25
+    changing
+      !ALS_LANGUS type ALS_T002 .
+endinterface.

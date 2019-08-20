@@ -1,0 +1,3 @@
+  method SET_CPF.
+    me->cpf = p_cpf.
+  endmethod.

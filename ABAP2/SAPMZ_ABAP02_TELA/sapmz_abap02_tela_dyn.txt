@@ -1,0 +1,2 @@
+SAPMZ_ABAP02_TELA                       9000Tela Inicial
+SAPMZ_ABAP02_TELA                       9001Segunda tela

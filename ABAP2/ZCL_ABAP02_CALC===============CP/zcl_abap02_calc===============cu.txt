@@ -1,0 +1,33 @@
+class ZCL_ABAP02_CALC definition
+  public
+  final
+  create public .
+
+public section.
+
+  methods ADD
+    importing
+      !NUM1 type I
+      !NUM2 type I
+    returning
+      value(RES) type I .
+  methods SUB
+    importing
+      !NUM1 type I
+      !NUM2 type I
+    returning
+      value(RES) type I .
+  methods DIV
+    importing
+      !NUM1 type I
+      !NUM2 type I
+    returning
+      value(RES) type I
+    raising
+      CX_SY_ZERODIVIDE .
+  methods MUL
+    importing
+      !NUM1 type I
+      !NUM2 type I
+    returning
+      value(RES) type I .

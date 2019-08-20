@@ -1,0 +1,2 @@
+TABLEFRAME_ZGF_ABAP02_A_COD   SAPLZGF_ABAP02_A_COD                    0100000000              
+TABLEPROC_ZGF_ABAP02_A_COD    SAPLZGF_ABAP02_A_COD                    0200000000              

@@ -1,0 +1,16 @@
+class ZCL_ABAP02_PESSOA definition
+  public
+  create public .
+
+public section.
+
+  interfaces ZIF_ABAP02_HUMANO .
+
+  methods ESCREVER_NOME .
+  methods CONSTRUCTOR
+    importing
+      !P_NOME type Y_ABAP02_NOME_DADOS
+      !P_DATA_NASCIMENTO type Y_ABAP02_DATA_DADOS .
+  methods GET_DATA_NASCIMENTO
+    returning
+      value(R_DATA_NASCIMENTO) type Y_ABAP02_DATA_DADOS .

@@ -1,0 +1,9 @@
+  method EM_ORDEM.
+    IF ( NOT me->esq IS INITIAL ).
+      me->esq->em_ordem( ).
+    ENDIF.
+    WRITE: me->chave, ' '.
+    IF ( NOT me->dir IS INITIAL ).
+      me->dir->em_ordem( ).
+    ENDIF.
+  endmethod.

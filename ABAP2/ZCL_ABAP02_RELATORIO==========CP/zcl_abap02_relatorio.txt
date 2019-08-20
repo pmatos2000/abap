@@ -1,0 +1,28 @@
+class-pool .
+*"* class pool for class ZCL_ABAP02_RELATORIO
+
+*"* local type definitions
+include ZCL_ABAP02_RELATORIO==========ccdef.
+
+*"* class ZCL_ABAP02_RELATORIO definition
+*"* public declarations
+  include ZCL_ABAP02_RELATORIO==========cu.
+*"* protected declarations
+  include ZCL_ABAP02_RELATORIO==========co.
+*"* private declarations
+  include ZCL_ABAP02_RELATORIO==========ci.
+endclass. "ZCL_ABAP02_RELATORIO definition
+
+*"* macro definitions
+include ZCL_ABAP02_RELATORIO==========ccmac.
+*"* local class implementation
+include ZCL_ABAP02_RELATORIO==========ccimp.
+
+*"* test class
+include ZCL_ABAP02_RELATORIO==========ccau.
+
+class ZCL_ABAP02_RELATORIO implementation.
+*"* method's implementations
+  include methods.
+endclass. "ZCL_ABAP02_RELATORIO implementation
+

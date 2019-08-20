@@ -1,0 +1,6 @@
+  method DIV.
+    IF num2 = 0.
+      RAISE EXCEPTION TYPE cx_sy_zerodivide.
+    ENDIF.
+    res = num1 / num2.
+  endmethod.

@@ -1,0 +1,5 @@
+protected section.
+
+  methods SET_CPF
+    importing
+      !P_CPF type Y_ABAP02_CPF_DADOS .

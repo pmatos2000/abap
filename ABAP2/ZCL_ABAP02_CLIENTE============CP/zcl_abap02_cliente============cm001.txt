@@ -1,0 +1,3 @@
+  method MENSAGEM.
+    WRITE: 'Eu sou um cliente', /.
+  endmethod.

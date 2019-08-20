@@ -1,0 +1,1 @@
+ZCL_ABAP02_TABELAS            PExemplo de outros tipos de tabela com classe

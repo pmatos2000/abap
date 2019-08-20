@@ -1,0 +1,3 @@
+  method ADD.
+    res = num1 + num2.
+  endmethod.

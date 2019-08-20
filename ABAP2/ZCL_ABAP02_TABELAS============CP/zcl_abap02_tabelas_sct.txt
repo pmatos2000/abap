@@ -1,0 +1,4 @@
+ZCL_ABAP02_TABELAS            ADD_PESSOA                    O_PESSOA                      P
+ZCL_ABAP02_TABELAS            GET_PESSOA                    NOME_NAO_ENCONTRADO           PO nome não foi encontrado na tabela interna da classe
+ZCL_ABAP02_TABELAS            GET_PESSOA                    P_NOME                        P
+ZCL_ABAP02_TABELAS            GET_PESSOA                    R_PESSOA                      PClasse de definição de uma pessoa

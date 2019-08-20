@@ -1,0 +1,901 @@
+TYPE-POOL swbm.
+
+TYPE-POOLS swbse.
+
+TYPES swbm_dummy TYPE c LENGTH 1.
+
+************************************************************************
+*********** Workbench Request: Type ************************************
+************************************************************************
+CONSTANTS:
+
+* browsers / lists
+  swbm_c_type_object_list        TYPE seu_objtyp VALUE 'REP',
+  swbm_c_type_infosystem_browser TYPE seu_objtyp VALUE 'RIS',
+  swbm_c_type_cts_request_list   TYPE seu_objtyp VALUE 'RL ',
+  swbm_c_type_o2_mime_repository TYPE seu_objtyp VALUE 'WMR',
+  swbm_c_type_o2_html_browser    TYPE seu_objtyp VALUE 'WHB',
+  swbm_c_type_esiservice_browser TYPE seu_objtyp VALUE 'ESI',
+  swbm_c_type_wdy_text_browser   TYPE seu_objtyp VALUE 'WTX',
+  swbm_c_type_enhmod_browser     TYPE seu_objtyp VALUE 'ENH',
+  swbm_c_type_aunit_test_browser TYPE seu_objtyp VALUE 'AUN',
+  swbm_c_type_atc_result_browser TYPE seu_objtyp VALUE 'ATC',
+  swbm_c_type_twbm_browser       TYPE seu_objtyp VALUE 'TWB',
+  swbm_c_type_cim_class_browser  TYPE seu_objtyp VALUE 'CIB',
+  swbm_c_type_eclipse_proj_expl  TYPE seu_objtyp VALUE 'ECL',
+  swbm_c_type_application_hier   TYPE seu_objtyp VALUE 'APH',
+
+* a workbench type for demo and test purposes:   (rd, 02/21/2005)
+  swbm_c_demo_type               TYPE seu_objtyp VALUE '00',
+
+* CUA
+  swbm_c_type_cua_tree           TYPE seu_objtyp VALUE 'PCA',
+  swbm_c_type_cua                TYPE seu_objtyp VALUE 'CUI',
+  swbm_c_type_cua_status         TYPE seu_objtyp VALUE 'PC ',
+  swbm_c_type_cua_menubar        TYPE seu_objtyp VALUE 'PCU',
+  swbm_c_type_cua_menu           TYPE seu_objtyp VALUE 'PCM',
+  swbm_c_type_cua_funcassignmnt  TYPE seu_objtyp VALUE 'PCP',
+  swbm_c_type_cua_pushbuttons    TYPE seu_objtyp VALUE 'PCB',
+  swbm_c_type_cua_title          TYPE seu_objtyp VALUE 'PZ ',
+  swbm_c_type_cua_title_list     TYPE seu_objtyp VALUE 'PZL',
+  swbm_c_type_cua_function       TYPE seu_objtyp VALUE 'PCF',
+  swbm_c_type_cua_whereusedlist  TYPE seu_objtyp VALUE 'PCR',
+
+* Program
+  swbm_c_type_source             TYPE seu_objtyp VALUE 'INC',
+  swbm_c_type_prg_source         TYPE seu_objtyp VALUE 'P  ',
+  swbm_c_type_prg_include        TYPE seu_objtyp VALUE 'I  ',
+  swbm_c_type_prg_field          TYPE seu_objtyp VALUE 'PD ',
+  swbm_c_type_prg_event          TYPE seu_objtyp VALUE 'PE ',
+  swbm_c_type_prg_macro          TYPE seu_objtyp VALUE 'PK ',
+  swbm_c_type_prg_class_def      TYPE seu_objtyp VALUE 'PL ',
+  swbm_c_type_prg_class_attr     TYPE seu_objtyp VALUE 'PLA',
+  swbm_c_type_prg_class_method   TYPE seu_objtyp VALUE 'PLM',
+  swbm_c_type_prg_class_event    TYPE seu_objtyp VALUE 'PLE',
+  swbm_c_type_prg_class_typedef  TYPE seu_objtyp VALUE 'PLY',
+  swbm_c_type_prg_pai_module     TYPE seu_objtyp VALUE 'PM ',
+  swbm_c_type_prg_intf_def       TYPE seu_objtyp VALUE 'PN ',
+  swbm_c_type_prg_intf_attr      TYPE seu_objtyp VALUE 'PNA',
+  swbm_c_type_prg_intf_method    TYPE seu_objtyp VALUE 'PNM',
+  swbm_c_type_prg_intf_event     TYPE seu_objtyp VALUE 'PNE',
+  swbm_c_type_prg_intf_typedef   TYPE seu_objtyp VALUE 'PNY',
+  swbm_c_type_prg_pbo_module     TYPE seu_objtyp VALUE 'PO ',
+  swbm_c_type_prg_class_impl     TYPE seu_objtyp VALUE 'PP ',
+  swbm_c_type_prg_table          TYPE seu_objtyp VALUE 'PT ',
+  swbm_c_type_prg_subroutine     TYPE seu_objtyp VALUE 'PU ',
+  swbm_c_type_prg_subr_param     TYPE seu_objtyp VALUE 'PUP',
+  swbm_c_type_prg_type           TYPE seu_objtyp VALUE 'PY ',
+  swbm_c_type_prg_dynpro         TYPE seu_objtyp VALUE 'PS ',
+  swbm_c_type_prg_textelement    TYPE seu_objtyp VALUE 'PX ',
+
+  swbm_c_type_control_composite  TYPE seu_objtyp VALUE 'CC ',  " obsolete since release 7.12
+
+* Function
+  swbm_c_type_function           TYPE seu_objtyp VALUE 'FF ',
+  swbm_c_type_function_pool      TYPE seu_objtyp VALUE 'F  ',
+
+* Set/Get-Parameter
+  swbm_c_type_parameter_id       TYPE seu_objtyp VALUE 'R  ',
+
+* Dialog Modules
+  swbm_c_type_dialog             TYPE seu_objtyp VALUE 'A  ',
+
+* Transaction maintanance
+  swbm_c_type_transaction        TYPE seu_objtyp VALUE 'T  ',
+
+* Dictionary
+  swbm_c_type_ddic_tabletype     TYPE seu_objtyp VALUE 'DA ',
+  swbm_c_type_ddic_domain        TYPE seu_objtyp VALUE 'DD ',
+  swbm_c_type_ddic_dataelement   TYPE seu_objtyp VALUE 'DE ',
+  swbm_c_type_ddic_pool_cluster  TYPE seu_objtyp VALUE 'DX ',
+  swbm_c_type_ddic_searchhelp    TYPE seu_objtyp VALUE 'DH ',
+  swbm_c_type_ddic_typepool      TYPE seu_objtyp VALUE 'DG ',
+  swbm_c_type_ddic_type          TYPE seu_objtyp VALUE 'DGT',
+  swbm_c_type_ddic_enqueue       TYPE seu_objtyp VALUE 'DL ',
+  swbm_c_type_ddic_matchcode     TYPE seu_objtyp VALUE 'DM ',
+  swbm_c_type_ddic_structure     TYPE seu_objtyp VALUE 'DS ',
+  swbm_c_type_ddic_struc_field   TYPE seu_objtyp VALUE 'DSF',
+  swbm_c_type_ddic_db_table      TYPE seu_objtyp VALUE 'DT ',
+  swbm_c_type_ddic_db_tabfield   TYPE seu_objtyp VALUE 'DTF',
+  swbm_c_type_ddic_db_tabindex   TYPE seu_objtyp VALUE 'DTI',
+  swbm_c_type_ddic_db_tabxinx    TYPE seu_objtyp VALUE 'DTX',
+  swbm_c_type_ddic_db_tabsetting TYPE seu_objtyp VALUE 'DTT',
+  swbm_c_type_dic_table_2nd_key  TYPE seu_objtyp VALUE 'DT2',
+  swbm_c_type_ddic_view          TYPE seu_objtyp VALUE 'DV ',
+  swbm_c_type_ddic_view_field    TYPE seu_objtyp VALUE 'DVF',
+  swbm_c_type_ddic_general_type  TYPE seu_objtyp VALUE 'DQ ',
+  swbm_c_type_ddic_db_sqlscript  TYPE seu_objtyp VALUE 'DU',
+  "! ABAP data definition language source DDLS
+  swbm_c_type_ddic_ddl_source    TYPE seu_objtyp VALUE 'DF ',
+  "! WB Type for Entities created by DDL
+  swbm_c_type_structured_object  TYPE seu_objtyp VALUE 'DO ',
+  "! WB Type for Entity Fields created by DDL
+  swbm_c_type_struct_obj_field   TYPE seu_objtyp VALUE 'DOF',
+  "! WB Type for Associations of Entities
+  swbm_c_type_struc_obj_assoc    TYPE seu_objtyp VALUE 'DOA',
+  "! WB Type for View Parameter of View Entities
+  swbm_c_type_struc_obj_vw_param TYPE seu_objtyp VALUE 'DOP',
+  "! WB Type for extending View Entities of enhanced View Entities
+  swbm_c_type_struc_obj_ext_vw   TYPE seu_objtyp VALUE 'DOE',
+  "! Structured Objects are not transported but for
+  "! internal communication it is defined
+  swbm_c_quasi_r3tr_struc_obj    TYPE trobjtype  VALUE 'STOB',
+
+* Object types
+  swbm_c_type_cls_object_type    TYPE seu_objtyp VALUE 'O  ',
+
+* class specific
+  swbm_c_type_class              TYPE seu_objtyp VALUE 'OC ',
+  swbm_c_type_cls_definition     TYPE seu_objtyp VALUE 'OCD',
+  swbm_c_type_cls_component      TYPE seu_objtyp VALUE 'OCC',
+  swbm_c_type_cls_signature      TYPE seu_objtyp VALUE 'OCS',
+  swbm_c_type_cls_attribute      TYPE seu_objtyp VALUE 'OA ',
+  swbm_c_type_cls_mtd_def        TYPE seu_objtyp VALUE 'OO ',
+  swbm_c_type_cls_mtd_param      TYPE seu_objtyp VALUE 'OOP',
+  swbm_c_type_cls_mtd_excep      TYPE seu_objtyp VALUE 'OOX',
+  swbm_c_type_cls_evt            TYPE seu_objtyp VALUE 'OE ',
+  swbm_c_type_cls_evt_param      TYPE seu_objtyp VALUE 'OEP',
+  swbm_c_type_cls_type           TYPE seu_objtyp VALUE 'OT ',
+  swbm_c_type_cls_intf_rel       TYPE seu_objtyp VALUE 'OR ',
+  swbm_c_type_cls_pers_mapping   TYPE seu_objtyp VALUE 'OCM',
+  swbm_c_type_cls_textelement    TYPE seu_objtyp VALUE 'OCX',
+
+* source code
+  swbm_c_type_cls_pool           TYPE seu_objtyp VALUE 'OCP',
+  swbm_c_type_cls_section        TYPE seu_objtyp VALUE 'OS ',
+  swbm_c_type_cls_pri_section    TYPE seu_objtyp VALUE 'OSI',
+  swbm_c_type_cls_pro_section    TYPE seu_objtyp VALUE 'OSO',
+  swbm_c_type_cls_pub_section    TYPE seu_objtyp VALUE 'OSU',
+*  swbm_c_type_cls_pak_section      TYPE seu_objtyp VALUE 'OSK',
+
+* class implementation
+  swbm_c_type_cls_implementation TYPE seu_objtyp VALUE 'OCI',
+  swbm_c_type_cls_local          TYPE seu_objtyp VALUE 'OCL',
+  swbm_c_type_cls_include        TYPE seu_objtyp VALUE 'OCN',
+  swbm_c_type_cls_mtd_impl       TYPE seu_objtyp VALUE 'OM ',
+
+* local classes in class-pools
+  swbm_c_type_cls_local_def      TYPE seu_objtyp VALUE 'OL ',    " local class (definition)
+  swbm_c_type_cls_local_impl     TYPE seu_objtyp VALUE 'OP ',    " local class (implementation)
+  swbm_c_type_cls_local_intf     TYPE seu_objtyp VALUE 'ON ',    " local interfaces
+  swbm_c_type_cls_local_type     TYPE seu_objtyp VALUE 'OY ',    " local types
+  swbm_c_type_cls_local_macro    TYPE seu_objtyp VALUE 'OK ',    " macro
+
+* subcompnents of local classes
+  swbm_c_type_cls_loc_meth_def   TYPE seu_objtyp VALUE 'OLD',  " method definition in a local class
+  swbm_c_type_cls_loc_meth_impl  TYPE seu_objtyp VALUE 'OLI',  " method implementation in a local class
+  swbm_c_type_cls_local_attr     TYPE seu_objtyp VALUE 'OLA',  " attribute of a local class
+  swbm_c_type_cls_local_event    TYPE seu_objtyp VALUE 'OLE',  " event of a local class
+  swbm_c_type_cls_local_type2    TYPE seu_objtyp VALUE 'OLT',  " local type in a local class
+  swbm_c_type_cls_local_intf2    TYPE seu_objtyp VALUE 'OLN',  " local interface in a local class
+
+* subcompnents of local interfaces
+  swbm_c_type_cls_lintf_meth     TYPE seu_objtyp VALUE 'OND',  " method definition in a local interface
+  swbm_c_type_cls_lintf_attr     TYPE seu_objtyp VALUE 'ONA',  " attribute of a local interface
+  swbm_c_type_cls_lintf_event    TYPE seu_objtyp VALUE 'ONE',  " event of a local interface
+  swbm_c_type_cls_lintf_type     TYPE seu_objtyp VALUE 'ONT',  " type in a local interface
+  swbm_c_type_cls_lintf_intf     TYPE seu_objtyp VALUE 'ONN',  " interface in a local interface
+
+* (free/available 'O*' constants are currently: OF, OD, OU, OB, OH, OJ, OQ, OV, OW, OX )
+
+* oxygen
+  swbm_c_type_cls_o2_page        TYPE seu_objtyp VALUE 'OG ',
+  swbm_c_type_cls_o2_local_mime  TYPE seu_objtyp VALUE 'OLM',
+
+* interface specific
+  swbm_c_type_interface          TYPE seu_objtyp VALUE 'OI ',
+  swbm_c_type_intf_component     TYPE seu_objtyp VALUE 'ICC',
+  swbm_c_type_intf_signature     TYPE seu_objtyp VALUE 'ICS',
+  swbm_c_type_intf_attribute     TYPE seu_objtyp VALUE 'IA ',
+  swbm_c_type_intf_mtd_def       TYPE seu_objtyp VALUE 'IO ',
+  swbm_c_type_intf_mtd_param     TYPE seu_objtyp VALUE 'IOP',
+  swbm_c_type_intf_mtd_excep     TYPE seu_objtyp VALUE 'IOX',
+  swbm_c_type_intf_evt           TYPE seu_objtyp VALUE 'IE ',
+  swbm_c_type_intf_evt_param     TYPE seu_objtyp VALUE 'IEP',
+  swbm_c_type_intf_type          TYPE seu_objtyp VALUE 'IT ',
+  swbm_c_type_intf_pool          TYPE seu_objtyp VALUE 'OIP',
+  swbm_c_type_intf_section       TYPE seu_objtyp VALUE 'ISU',
+*  swbm_c_type_intf_incl_intf       TYPE seu_objtyp VALUE 'II' ,  " (included interface)
+
+* package builder
+  swbm_c_type_package            TYPE seu_objtyp VALUE 'K  ',
+  swbm_c_type_enh_package        TYPE seu_objtyp VALUE 'KE ',
+  swbm_c_type_local_gen_app_pkg  TYPE seu_objtyp VALUE 'KG ',
+  swbm_c_type_package_hierarchy  TYPE seu_objtyp VALUE 'KH',
+  swbm_c_type_package_interface  TYPE seu_objtyp VALUE 'KI',
+  swbm_c_type_access_object      TYPE seu_objtyp VALUE 'KA',
+  swbm_c_type_permission_to_use  TYPE seu_objtyp VALUE 'KPU',
+  swbm_c_type_interface_element  TYPE seu_objtyp VALUE 'KIE',
+  swbm_c_type_interface_header   TYPE seu_objtyp VALUE 'KIH',
+
+* classification tool
+  swbm_c_type_classification     TYPE seu_objtyp VALUE '8',
+  swbm_c_type_object_type_group  TYPE seu_objtyp VALUE '8A',
+  swbm_c_type_cls_attribute_def  TYPE seu_objtyp VALUE '8B',
+  swbm_c_type_cls_attribute_val  TYPE seu_objtyp VALUE '8BV',
+  swbm_c_type_cls_assignment     TYPE seu_objtyp VALUE '8C',
+  swbm_c_type_cls_report_def     TYPE seu_objtyp VALUE '8D',
+  swbm_c_type_cls_report_run     TYPE seu_objtyp VALUE '8E',
+  swbm_c_type_cls_report_runstat TYPE seu_objtyp VALUE '8ES',
+
+* web tools
+  swbm_c_type_service            TYPE seu_objtyp VALUE 'WS ',
+  swbm_c_type_miniapp            TYPE seu_objtyp VALUE 'WA ',
+  swbm_c_type_url                TYPE seu_objtyp VALUE 'WU ',
+
+* enterprise service
+  swbm_c_type_cool_business_ob   TYPE seu_objtyp VALUE '3B',     " business object (SPROXY)
+  swbm_c_type_cool_business_oc   TYPE seu_objtyp VALUE '3BC',    " business object (COOL)
+  swbm_c_type_cool_bo_node       TYPE seu_objtyp VALUE '3BN',
+  swbm_c_type_business_obj_enh   TYPE seu_objtyp VALUE '3X',     " Business Object Enhancement
+  swbm_c_type_web_service        TYPE seu_objtyp VALUE '3S',
+  swbm_c_type_virt_interface     TYPE seu_objtyp VALUE '3I',     " Service Provider
+  swbm_c_type_server_proxy       TYPE seu_objtyp VALUE '3P',
+  swbm_c_type_client_proxy       TYPE seu_objtyp VALUE '3C',
+  swbm_c_type_servconsumer_group TYPE seu_objtyp VALUE '3G',     " Service Consumer Group
+  swbm_c_type_proxy_ddic         TYPE seu_objtyp VALUE '3D',
+  swbm_c_type_proxy_exception    TYPE seu_objtyp VALUE '3E',
+  swbm_c_type_proxy_agent        TYPE seu_objtyp VALUE '3A',     " obsolete!  (process agent)
+  swbm_c_type_task_agent         TYPE seu_objtyp VALUE '3A',
+  swbm_c_type_task_type          TYPE seu_objtyp VALUE '3Y',
+  swbm_c_type_process_agent_in   TYPE seu_objtyp VALUE '3O',
+  swbm_c_type_process_agent_out  TYPE seu_objtyp VALUE '3Q',
+  swbm_c_type_logical_port       TYPE seu_objtyp VALUE '3L',
+  swbm_c_type_logport_template   TYPE seu_objtyp VALUE '3T',
+  swbm_c_type_service_variant    TYPE seu_objtyp VALUE '3R',
+  swbm_c_type_event_provider     TYPE seu_objtyp VALUE '3V',     " Event Provider
+  swbm_c_type_mapping_facade     TYPE seu_objtyp VALUE '3M',
+  swbm_c_type_mapping_object     TYPE seu_objtyp VALUE '3N',
+  swbm_c_type_service_prov_enh   TYPE seu_objtyp VALUE '3F', "Service Provider Enhancement
+  swbm_c_type_service_cons_enh   TYPE seu_objtyp VALUE '3H', "Service Consumer Enhancement
+*  swbm_c_type_proc_type_domain     TYPE seu_objtyp VALUE '3J', "Processing Type Domain
+
+*  swbm_c_type_npm_semantic_contr   TYPE seu_objtyp VALUE '3K', "Semantic Contract
+*  swbm_c_type_npm_contract         TYPE seu_objtyp VALUE '3Z', "Contract
+*  swbm_c_type_npm_contract_usage   TYPE seu_objtyp VALUE '3U', "Contract Usage
+*  swbm_c_type_npm_scenario_def     TYPE seu_objtyp VALUE '30', "Scenario Definition
+  swbm_c_type_pi_messagetype     TYPE seu_objtyp VALUE '31', "Messagetype
+  swbm_c_type_pi_cons_factory    TYPE seu_objtyp VALUE '32', "Consumer Factory
+  swbm_c_type_pi_proxy_enh       TYPE seu_objtyp VALUE '33', "Data Type Enhancements
+
+* >>>>>>>>>>>>>>>>>>>>>>>>>
+** the following three constants are obsolete; don't use them anymore! (rd, 12/09/2004):
+  swbm_c_type_cool_aspect        TYPE seu_objtyp VALUE '4A',
+  swbm_c_type_cool_action        TYPE seu_objtyp VALUE '4C',
+  swbm_c_type_cool_service_mod   TYPE seu_objtyp VALUE '4S',
+* <<<<<<<<<<<<<<<<<<<<<<<<<
+* this is the re-use of the 4* values:   (rd 07/2008)
+  swbm_c_type_check_aspect       TYPE seu_objtyp VALUE '4A',
+  swbm_c_type_check_asp_group    TYPE seu_objtyp VALUE '4G',
+  swbm_c_type_check_asp_value    TYPE seu_objtyp VALUE '4V',
+  swbm_c_type_check_config       TYPE seu_objtyp VALUE '4C',
+  swbm_c_type_check_config_rule  TYPE seu_objtyp VALUE '4R',
+
+* form object
+  swbm_c_type_formobject_form    TYPE seu_objtyp VALUE '5F',
+  swbm_c_type_formobject_intf    TYPE seu_objtyp VALUE '5I',
+
+* switch framework
+  swbm_c_type_sf_switch          TYPE seu_objtyp VALUE '6S',
+  swbm_c_type_sf_function        TYPE seu_objtyp VALUE '6F',
+  swbm_c_type_sf_set             TYPE seu_objtyp VALUE '6T',
+  swbm_c_type_sf_bcset           TYPE seu_objtyp VALUE '6B',
+
+* "generic fast search" (GFS) services
+  swbm_c_type_f_search_def       TYPE seu_objtyp VALUE '7S',
+  swbm_c_type_f_view_def         TYPE seu_objtyp VALUE '7V',
+
+* reservation of a 'namespace' for AP/ByD Metadata Repository:
+  swbm_c_type_byd_mdr            TYPE seu_objtyp VALUE '9',
+
+  swbm_c_type_w3_service         TYPE seu_objtyp VALUE 'WS ',
+  swbm_c_type_w3_service_para    TYPE seu_objtyp VALUE 'WSP',
+  swbm_c_type_w3_service_intpara TYPE seu_objtyp VALUE 'WSI',
+  swbm_c_type_w3_template        TYPE seu_objtyp VALUE 'WT ',
+  swbm_c_type_w3_template_langu  TYPE seu_objtyp VALUE 'WK ',
+  swbm_c_type_w3_xml             TYPE seu_objtyp VALUE 'W2 ',
+  swbm_c_type_w3_mime            TYPE seu_objtyp VALUE 'WM ',
+  swbm_c_type_w3_mime_langu      TYPE seu_objtyp VALUE 'WL ',
+  swbm_c_type_w3_resource        TYPE seu_objtyp VALUE 'WP ',
+  swbm_c_type_w3_resource_para   TYPE seu_objtyp VALUE 'WPP',
+  swbm_c_type_w3_javascript      TYPE seu_objtyp VALUE 'WJ ', " obsolete since release 7.2 (7.12)
+  swbm_c_type_w3_miniapp         TYPE seu_objtyp VALUE 'WA ',
+  swbm_c_type_w3_bhtml_function  TYPE seu_objtyp VALUE 'WBF',
+  swbm_c_type_w3_bhtml_docu      TYPE seu_objtyp VALUE 'WBD',
+
+  swbm_c_type_o2_application     TYPE seu_objtyp VALUE 'WO ',
+  swbm_c_type_o2_page            TYPE seu_objtyp VALUE 'WG ',
+  swbm_c_type_o2_view            TYPE seu_objtyp VALUE 'WV ',
+  swbm_c_type_o2_controller      TYPE seu_objtyp VALUE 'WR ',
+  swbm_c_type_o2_page_attribute  TYPE seu_objtyp VALUE 'WGA',
+  swbm_c_type_o2_eventhandler    TYPE seu_objtyp VALUE 'WGE',
+  swbm_c_type_o2_type            TYPE seu_objtyp VALUE 'WGT',
+  swbm_c_type_o2_page_fragment   TYPE seu_objtyp VALUE 'W1 ', " 'WF' is possibly used for Flow Logics (Internet Services)
+  swbm_c_type_o2_local_mime      TYPE seu_objtyp VALUE 'WI ',
+  swbm_c_type_o2_xml_file        TYPE seu_objtyp VALUE 'WX ', " obsolete since release 7.2
+  swbm_c_type_o2_theme           TYPE seu_objtyp VALUE 'WH ',
+  swbm_c_type_o2_wcf_control     TYPE seu_objtyp VALUE 'WC ', " obsolete since release 7.2
+  swbm_c_type_o2_wcf_browser     TYPE seu_objtyp VALUE 'WCB', " obsolete since release 7.2
+  swbm_c_type_o2_taglibrary      TYPE seu_objtyp VALUE 'WB ',
+  swbm_c_type_o2_tag             TYPE seu_objtyp VALUE 'WD ',
+  swbm_c_type_o2_tag_attribute   TYPE seu_objtyp VALUE 'WDA',
+  swbm_c_type_o2_tag_variable    TYPE seu_objtyp VALUE 'WDV',
+
+* Web Dynpro
+  swbm_c_type_wdy_application    TYPE seu_objtyp VALUE 'YY',  " changed from 'WY' (rd, 01/26/2005)
+  swbm_c_type_wdy_application_tm TYPE seu_objtyp VALUE 'YYT', " ('Text editor' mode)
+  swbm_c_type_wdy_cs_controller  TYPE seu_objtyp VALUE 'WQ',
+  swbm_c_type_wdy_view           TYPE seu_objtyp VALUE 'WZ',
+  swbm_c_type_wdy_view_tm        TYPE seu_objtyp VALUE 'WZT', " ('Text editor' mode)
+  swbm_c_type_wdy_window         TYPE seu_objtyp VALUE 'WW',
+  swbm_c_type_wdy_window_tm      TYPE seu_objtyp VALUE 'WWT', " ('Text editor' mode)
+  swbm_c_type_wdy_win_controller TYPE seu_objtyp VALUE 'WE',
+  swbm_c_type_wdy_component      TYPE seu_objtyp VALUE 'YC',
+  swbm_c_type_wdy_component_tm   TYPE seu_objtyp VALUE 'YCT', " ('Text editor' mode)
+  swbm_c_type_wdy_compusage      TYPE seu_objtyp VALUE 'YU',
+  swbm_c_type_wdy_contr_usage    TYPE seu_objtyp VALUE 'YZ',
+  swbm_c_type_wdy_comp_model     TYPE seu_objtyp VALUE 'YO',
+  swbm_c_type_wdy_cp_controller  TYPE seu_objtyp VALUE 'YT',
+  swbm_c_type_wdy_cp_interface   TYPE seu_objtyp VALUE 'YI',
+  swbm_c_type_wdy_cp_intf_view   TYPE seu_objtyp VALUE 'YV',
+  swbm_c_type_wdy_cf_controller  TYPE seu_objtyp VALUE 'YF',
+  swbm_c_type_wdy_cp_intf_def    TYPE seu_objtyp VALUE 'YD',
+  swbm_c_type_wdy_intf_view_def  TYPE seu_objtyp VALUE 'YW',
+  swbm_c_type_wdy_mime           TYPE seu_objtyp VALUE 'YM',
+  swbm_c_type_wdy_comp_config    TYPE seu_objtyp VALUE 'YG',
+  swbm_c_type_wdy_appl_config    TYPE seu_objtyp VALUE 'YA',
+  swbm_c_type_wdy_chip           TYPE seu_objtyp VALUE 'YP',
+  swbm_c_type_wdy_fpm_fp_conf    TYPE seu_objtyp VALUE 'Y10',
+  swbm_c_type_wdy_fpm_adapt_conf TYPE seu_objtyp VALUE 'Y11',
+  swbm_c_type_wdy_fpm_layout_cnf TYPE seu_objtyp VALUE 'Y12',
+  swbm_c_type_wdy_fpm_guibb_conf TYPE seu_objtyp VALUE 'Y13',
+  swbm_c_type_wdy_fpm_ruibb_conf TYPE seu_objtyp VALUE 'Y14',
+
+
+* BAdIs
+  swbm_c_type_badi_def           TYPE seu_objtyp VALUE 'XD ',
+  swbm_c_type_badi_imp           TYPE seu_objtyp VALUE 'XI ',
+
+* kernel based BAdIs
+  swbm_c_type_cbadi_def          TYPE seu_objtyp VALUE 'XB ',
+  swbm_c_type_cbadi_imp          TYPE seu_objtyp VALUE 'XC ',
+
+* enhancements
+  swbm_c_type_enhancement        TYPE seu_objtyp VALUE 'XH',
+  swbm_c_type_enh_dictionary     TYPE seu_objtyp VALUE 'XR',
+  swbm_c_type_enh_composite      TYPE seu_objtyp VALUE 'XF',
+  swbm_c_type_enh_spot           TYPE seu_objtyp VALUE 'XS',
+  swbm_c_type_enh_spot_comp      TYPE seu_objtyp VALUE 'XT',
+  swbm_c_type_enh_comp_hierarchy TYPE seu_objtyp VALUE 'XY',
+  swbm_c_type_enh_subcomp        TYPE seu_objtyp VALUE 'XU',  " (a subordinate composite is in fact a composite: 'XF')
+  swbm_c_type_enh_subspotcomp    TYPE seu_objtyp VALUE 'XO',  " (a subordinate spot composite is in fact a spot composite: 'XT')
+  swbm_c_type_spau               TYPE seu_objtyp VALUE 'XSP', " 'SPAU object'
+  swbm_c_type_enh_undefined      TYPE seu_objtyp VALUE 'X?',
+
+* types within the 'Easy Enhancement Workbench' - 'Expert tool for extensibility'
+*    (application development, system ABA):
+  swbm_c_type_easy_enh           TYPE seu_objtyp VALUE 'X_',  " (this denotes the namespace; individual types will be called 'X_A', 'X_B' etc.)
+
+* XML support (object types starting with prefix V)
+* DMC objecttypes
+  swbm_c_type_dmc_application    TYPE seu_objtyp VALUE 'VA ',
+  swbm_c_type_dmc_project        TYPE seu_objtyp VALUE 'VP ',
+  swbm_c_type_dmc_subproject     TYPE seu_objtyp VALUE 'VS ',
+  swbm_c_type_dmc_conv_object    TYPE seu_objtyp VALUE 'VO ',
+* XSLT files
+  swbm_c_type_xslt_file          TYPE seu_objtyp VALUE 'VT ',
+  swbm_c_type_st_designer        TYPE seu_objtyp VALUE 'VD ',
+
+* external types - WB
+  swbm_c_type_devclass           TYPE seu_objtyp VALUE 'K  ',
+  swbm_c_type_devclass_local     TYPE seu_objtyp VALUE '$TM',
+  swbm_c_type_message_id         TYPE seu_objtyp VALUE 'N  ',
+  swbm_c_type_message            TYPE seu_objtyp VALUE 'NN ',
+  swbm_c_type_area_menu          TYPE seu_objtyp VALUE 'E  ',
+  swbm_c_type_datamodel          TYPE seu_objtyp VALUE 'MD ',
+  swbm_c_type_entity             TYPE seu_objtyp VALUE 'ME ',
+  swbm_c_type_bor_objtype        TYPE seu_objtyp VALUE 'MO ',
+  swbm_c_type_project            TYPE seu_objtyp VALUE 'SP ',
+
+* Workbench organizer integration
+  swbm_c_type_cts_request        TYPE seu_objtyp VALUE 'RQ ',
+  swbm_c_type_cts_client         TYPE seu_objtyp VALUE 'CTC',
+  swbm_c_type_cts_system         TYPE seu_objtyp VALUE 'CTS',
+  swbm_c_type_cts_reqtarget      TYPE seu_objtyp VALUE 'CTT',
+  swbm_c_type_cts_author         TYPE seu_objtyp VALUE 'CTA',
+
+* external types - not WB
+  swbm_c_type_auth_object        TYPE seu_objtyp VALUE 'B  ',
+  swbm_c_type_logical_database   TYPE seu_objtyp VALUE 'L  ',
+  swbm_c_type_wf_task            TYPE seu_objtyp VALUE 'MA ',
+  swbm_c_type_wf_role            TYPE seu_objtyp VALUE 'MR ',
+  swbm_c_type_wf_workflow        TYPE seu_objtyp VALUE 'MM ',
+  swbm_c_type_proc_process       TYPE seu_objtyp VALUE 'MP ',
+  swbm_c_type_proc_procvar       TYPE seu_objtyp VALUE 'MV ',
+  swbm_c_type_proc_function      TYPE seu_objtyp VALUE 'MF ',
+  swbm_c_type_busconf_schema     TYPE seu_objtyp VALUE '{S ', " AP/A1S Business Configuration Content: Schema
+  swbm_c_type_busconf_smnode     TYPE seu_objtyp VALUE '{N ', " AP/A1S Business Configuration Content: Schema Node
+
+* BOR migration
+  swbm_c_type_bor_mig_tree       TYPE seu_objtyp VALUE 'MOT',
+  swbm_c_type_bor_mig_impl       TYPE seu_objtyp VALUE 'MOI',
+
+* CATT type
+  swbm_c_type_testcase           TYPE seu_objtyp VALUE 'GT',
+
+* eCATT external types
+  swbm_c_type_ecatt_types        TYPE seu_objtyp VALUE 'E00',
+  swbm_c_type_ecatt_test_script  TYPE seu_objtyp VALUE 'GE',
+  swbm_c_type_ecatt_test_config  TYPE seu_objtyp VALUE 'GC',
+  swbm_c_type_ecatt_test_data    TYPE seu_objtyp VALUE 'GD',
+  swbm_c_type_ecatt_system_data  TYPE seu_objtyp VALUE 'GS',
+  swbm_c_type_ecatt_val_object   TYPE seu_objtyp VALUE 'GB',
+  swbm_c_type_ecatt_scen_object  TYPE seu_objtyp VALUE 'GZ',
+  swbm_c_type_ecatt_cobj_object  TYPE seu_objtyp VALUE 'GU',
+  swbm_c_type_ecatt_scen_sp      TYPE seu_objtyp VALUE 'GF',
+  swbm_c_type_ecatt_start_profil TYPE seu_objtyp VALUE 'GY',
+
+* eCATT internal types
+  swbm_c_type_ecatt_scr_param    TYPE seu_objtyp VALUE 'GP',
+  swbm_c_type_ecatt_dat_param    TYPE seu_objtyp VALUE 'GQ',
+  swbm_c_type_ecatt_tsys         TYPE seu_objtyp VALUE 'GR',
+  swbm_c_type_ecatt_dat_variant  TYPE seu_objtyp VALUE 'GV',
+  swbm_c_type_ecatt_cfg_variant  TYPE seu_objtyp VALUE 'GW',
+  swbm_c_type_ecatt_vo_param     TYPE seu_objtyp VALUE 'GX',
+  swbm_c_type_ecatt_smud         TYPE seu_objtyp VALUE 'GM',  " eCATT SMUD branch
+  swbm_c_type_solman_project     TYPE seu_objtyp VALUE 'GJ',  " Solution Manager Project
+  swbm_c_type_solman_solution    TYPE seu_objtyp VALUE 'GO',  " Solution Manager Solution
+
+* testworkbench types
+* swbm_c_type_twbm_browser         TYPE seu_objtyp VALUE 'TWB',   " see above ('browsers')
+  swbm_c_type_twbm_none          TYPE seu_objtyp VALUE 'TWI',
+  swbm_c_type_twbm_testcase      TYPE seu_objtyp VALUE 'TWS',
+  swbm_c_type_twbm_testcatalog   TYPE seu_objtyp VALUE 'GK',
+  swbm_c_type_twbm_catt          TYPE seu_objtyp VALUE 'TWA',
+  swbm_c_type_twbm_external      TYPE seu_objtyp VALUE 'TWX',
+  swbm_c_type_twbm_obj_name      TYPE seu_objtyp VALUE 'TWN',
+  swbm_c_type_twbm_obj_type      TYPE seu_objtyp VALUE 'TWT',
+  swbm_c_type_twbm_testplan      TYPE seu_objtyp VALUE 'GL',
+  swbm_c_type_twbm_testpackage   TYPE seu_objtyp VALUE 'GA',
+
+* Other types
+  swbm_c_type_activator          TYPE seu_objtyp VALUE 'ACT',
+  swbm_c_type_tool               TYPE seu_objtyp VALUE 'TOL',
+  swbm_c_type_info_channel       TYPE seu_objtyp VALUE 'WBI',
+  swbm_c_type_html_document      TYPE seu_objtyp VALUE 'HTM',
+  swbm_c_type_syntax_error_list  TYPE seu_objtyp VALUE 'ER ',
+  swbm_c_type_worklist           TYPE seu_objtyp VALUE 'TDO',
+  swbm_c_type_edit_table         TYPE seu_objtyp VALUE 'TB ',
+  swbm_c_type_navigation_stack   TYPE seu_objtyp VALUE 'STK',
+  swbm_c_type_history_list       TYPE seu_objtyp VALUE 'HIS',
+  swbm_c_type_fcode              TYPE seu_objtyp VALUE 'FC ',
+  swbm_c_type_split_screen       TYPE seu_objtyp VALUE 'SSE',
+  swbm_c_type_no_object          TYPE seu_objtyp VALUE 'INI',
+  swbm_c_type_inactive_objects   TYPE seu_objtyp VALUE 'WIA',
+  swbm_c_type_abap_pragma        TYPE seu_objtyp VALUE '0P',  " not used any more
+  swbm_c_type_shared_obj_area    TYPE seu_objtyp VALUE 'SH',   " shared objects
+  swbm_c_type_activation_id      TYPE seu_objtyp VALUE 'AD'.
+
+TYPES:
+  swbm_type_list TYPE REF TO cl_wb_object_type OCCURS 0.
+
+************************************************************************
+*********** Workbench Request: Operation *******************************
+************************************************************************
+CONSTANTS:
+  swbm_c_op_activate             TYPE seu_action VALUE 'ACTIVATE',
+  swbm_c_op_activate_generate    TYPE seu_action VALUE 'ACTGEN',
+  swbm_c_op_add_objects          TYPE seu_action VALUE 'ADDOBJECTS',
+  swbm_c_op_adjust               TYPE seu_action VALUE 'ADJUST',
+  swbm_c_op_amo_generate         TYPE seu_action VALUE 'AMO_GEN',
+  swbm_c_op_atc_check            TYPE seu_action VALUE 'ATC_CHECK',
+  swbm_c_op_atc_check_default    TYPE seu_action VALUE 'ATC_CHECKD', " ABAP Test Cockpit with default settings
+  swbm_c_op_aunit_favorites      TYPE seu_action VALUE 'AUNIT_FAV',  " display ABAP Unit Favorites Editor
+  swbm_c_op_aunit_tag_assistant  TYPE seu_action VALUE 'AUNIT_TAGS', " display ABAP Unit Tag Assistant
+  swbm_c_op_browse               TYPE seu_action VALUE 'BROWSE',
+  swbm_c_op_callgr_called_by     TYPE seu_action VALUE 'CG_CALLED',
+  swbm_c_op_callgr_calls         TYPE seu_action VALUE 'CG_CALLS',
+  swbm_c_op_change_devcls        TYPE seu_action VALUE 'MOVE',     "this is the standard operation for package reassignment
+  swbm_c_op_reassign_package     TYPE seu_action VALUE 'MOVE_PKG', "this is the operation for type-specific package reassignment
+  swbm_c_op_change_owner         TYPE seu_action VALUE 'CHNGOWNER',
+  swbm_c_op_check                TYPE seu_action VALUE 'CHECK',
+  swbm_c_op_check_extended       TYPE seu_action VALUE 'CHKEXTEND',
+  swbm_c_op_check_genlimits      TYPE seu_action VALUE 'CHECKLIMIT',
+  swbm_c_op_check_remote         TYPE seu_action VALUE 'CHECKREMOT',
+  swbm_c_op_check_mainprog       TYPE seu_action VALUE 'CHECKMAIN',
+  swbm_c_op_check_mainprog_all   TYPE seu_action VALUE 'CHKMAINALL',
+  swbm_c_op_check_all            TYPE seu_action VALUE 'CHECKALL',
+  swbm_c_op_check_r2             TYPE seu_action VALUE 'CHECKR2',
+  swbm_c_op_package_explain      TYPE seu_action VALUE 'PACKEXPL',
+  swbm_c_op_package_explain_refr TYPE seu_action VALUE 'PACKEXPL_R',
+  swbm_c_op_package_explain_assi TYPE seu_action VALUE 'PACKASSI',
+  swbm_c_op_cl_append            TYPE seu_action VALUE 'CL_APPEND',
+  swbm_c_op_copy                 TYPE seu_action VALUE 'COPY',
+  swbm_c_op_correct              TYPE seu_action VALUE 'CORRECT',
+  swbm_c_op_create_as_enhancemnt TYPE seu_action VALUE 'CREATASENH',    " 'Create object as an enhancement'
+  swbm_c_op_create               TYPE seu_action VALUE 'CREATE',
+*obsolete:  swbm_c_op_create_access_object TYPE seu_action VALUE 'CREATEACCO',    " (Package Builder)
+  swbm_c_op_create_no_edit       TYPE seu_action VALUE 'CREANOEDIT',
+  swbm_c_op_delete               TYPE seu_action VALUE 'DELETE',
+  swbm_c_op_delete_no_dialog     TYPE seu_action VALUE 'DELETEND',
+  swbm_c_op_delete_testclas      TYPE seu_action VALUE 'DELTESTCL',
+  swbm_c_op_display              TYPE seu_action VALUE 'DISPLAY',
+  swbm_c_op_display_only         TYPE seu_action VALUE 'DISPONLY',
+  swbm_c_op_disp_or_create       TYPE seu_action VALUE 'DISPCREATE',
+  swbm_c_op_disp_or_edit         TYPE seu_action VALUE 'DISPEDIT',
+  swbm_c_op_disp_classification  TYPE seu_action VALUE 'DISPCLS',
+  swbm_c_op_edit_classification  TYPE seu_action VALUE 'EDITCLS',
+  swbm_c_op_disp_access_object   TYPE seu_action VALUE 'DISPACCO', " (Package Builder)
+  swbm_c_op_disp_obj_propagation TYPE seu_action VALUE 'DISPPROP',
+  swbm_c_op_disp_package_browser TYPE seu_action VALUE 'DISPPACK',
+  swbm_c_op_package_check        TYPE seu_action VALUE 'PACKCHECK',
+  swbm_c_op_disp_properties      TYPE seu_action VALUE 'PROPERTIES',
+  swbm_c_op_docu_edit            TYPE seu_action VALUE 'DOCUEDIT',
+  swbm_c_op_docu_show            TYPE seu_action VALUE 'DOCUSHOW',
+  swbm_c_op_documentation        TYPE seu_action VALUE 'DOCU',
+  swbm_c_op_download             TYPE seu_action VALUE 'DOWNLOAD',
+  swbm_c_op_edit                 TYPE seu_action VALUE 'EDIT',
+  swbm_c_op_edit_or_create       TYPE seu_action VALUE 'EDITCREATE',
+  swbm_c_op_edit_enhancement     TYPE seu_action VALUE 'EDITENH',
+  swbm_c_op_edit_no_enhancement  TYPE seu_action VALUE 'EDITNOENH',
+  swbm_c_op_enh_auto_repair      TYPE seu_action VALUE 'ENHAUTOREP',
+  swbm_c_op_form_edit            TYPE seu_action VALUE 'EDITFORM',
+  swbm_c_op_form_display         TYPE seu_action VALUE 'DISPFORM',
+  swbm_c_op_form_create          TYPE seu_action VALUE 'CREATEFORM',
+  swbm_c_op_form_delete          TYPE seu_action VALUE 'DELETEFORM',
+  swbm_c_op_form_public          TYPE seu_action VALUE 'PUBLICFORM',
+  swbm_c_op_enhance              TYPE seu_action VALUE 'ENHANCE',
+  swbm_c_op_enha_intf            TYPE seu_action VALUE 'ENHAINTF',
+  swbm_c_op_end                  TYPE seu_action VALUE 'END',
+  swbm_c_op_environment          TYPE seu_action VALUE 'ENVIRON',
+  swbm_c_op_exec_batch           TYPE seu_action VALUE 'EXECBTC',
+  swbm_c_op_exec_bc_html         TYPE seu_action VALUE 'EXECBCHTML', " execute in NetWeaver Business Client - HTML Client
+  swbm_c_op_exec_bc_desktop      TYPE seu_action VALUE 'EXECBCDESK', " execute in NetWeaver Business Client - Desktop Client
+  swbm_c_op_exec_debug           TYPE seu_action VALUE 'EXECDBG',
+  swbm_c_op_exec_ecatt_all       TYPE seu_action VALUE 'EXECECATTA', " execute eCATT testconfiguration: all (within a package)
+  swbm_c_op_exec_ecatt_sel       TYPE seu_action VALUE 'EXECECATTS', " execute eCATT testconfiguration: selected (within a package)
+  swbm_c_op_exec_runtime         TYPE seu_action VALUE 'EXECRT',
+  swbm_c_op_exec_sequence        TYPE seu_action VALUE 'EXECSEQ',
+  swbm_c_op_execute              TYPE seu_action VALUE 'EXECUTE',
+  swbm_c_op_exec_transaction     TYPE seu_action VALUE 'EXECTRANS',
+  swbm_c_op_find                 TYPE seu_action VALUE 'FIND', " find string within object
+  swbm_c_op_generate             TYPE seu_action VALUE 'GENERATE',
+  swbm_c_op_generate_template    TYPE seu_action VALUE 'GENTEMPL',
+  swbm_c_op_generate_itsxml      TYPE seu_action VALUE 'GENITSXML', " xml template for ITS html template
+  swbm_c_op_generate_testclas    TYPE seu_action VALUE 'GENTESTCL',
+  swbm_c_op_initial_screen       TYPE seu_action VALUE 'INITIAL',
+  swbm_c_op_log                  TYPE seu_action VALUE 'SHOWLOG',
+  swbm_c_op_modify               TYPE seu_action VALUE 'MODIFY',
+  swbm_c_op_insert               TYPE seu_action VALUE 'INSERT',
+  swbm_c_op_not_used_list        TYPE seu_action VALUE 'NOTUSED',
+  swbm_c_op_pack_intf_analysis   TYPE seu_action VALUE 'PINTFANL',
+  swbm_c_op_parameter_list       TYPE seu_action VALUE 'MTDPARAM',
+  swbm_c_op_print                TYPE seu_action VALUE 'PRINT',
+  swbm_c_op_realize              TYPE seu_action VALUE 'REALIZE',
+  swbm_c_op_realize_no_dialog    TYPE seu_action VALUE 'REALIZEND',
+  swbm_c_op_redefine             TYPE seu_action VALUE 'REDEFINE',
+  swbm_c_op_undo_redefine        TYPE seu_action VALUE 'UNDO_REDEF',
+  swbm_c_op_refresh              TYPE seu_action VALUE 'REFRESH',
+  swbm_c_op_rename               TYPE seu_action VALUE 'RENAME',
+  swbm_c_op_release              TYPE seu_action VALUE 'RELEASE',
+  swbm_c_op_req_add_user         TYPE seu_action VALUE 'RQADDUSER',
+  swbm_c_op_search               TYPE seu_action VALUE 'SEARCH', " search object
+  swbm_c_op_shift                TYPE seu_action VALUE 'SHIFT',
+  swbm_c_op_show_esi_browser     TYPE seu_action VALUE 'SHOWESIBRO',
+  swbm_c_op_show_object_list     TYPE seu_action VALUE 'SHOWOBJLST',
+  swbm_c_op_show_cue_card        TYPE seu_action VALUE 'CUECARD',
+  swbm_c_op_split_screen         TYPE seu_action VALUE 'SPLITSCRN',
+  swbm_c_op_st_design            TYPE seu_action VALUE 'ST_DESIGN',
+  swbm_c_op_st_display           TYPE seu_action VALUE 'ST_DISPLAY',
+  swbm_c_op_table_content        TYPE seu_action VALUE 'TABCONT',
+  swbm_c_op_tadir_edit           TYPE seu_action VALUE 'TADIREDT',
+  swbm_c_op_tadir_edit_with_doc  TYPE seu_action VALUE 'TADIREDTWD',
+  swbm_c_op_transport            TYPE seu_action VALUE 'TRANSPORT',
+  swbm_c_op_transport_with_doc   TYPE seu_action VALUE 'TRANSPWDOC',
+  swbm_c_op_version_create       TYPE seu_action VALUE 'NEWVERSION',
+  swbm_c_op_versions             TYPE seu_action VALUE 'VERSIONS',
+  swbm_c_op_dispvers             TYPE seu_action VALUE 'DISPVERS',
+  swbm_c_op_check_show_detail    TYPE seu_action VALUE 'CHKSHOWDET',
+  swbm_c_op_where_used_list      TYPE seu_action VALUE 'WHEREUSED',
+  swbm_c_op_pass_down_use_access TYPE seu_action VALUE 'PASS_DOWN',
+  swbm_c_op_propagate            TYPE seu_action VALUE 'PROPAGATE',
+  swbm_c_op_propagate_display    TYPE seu_action VALUE 'PROPAGDISP',
+  swbm_c_op_package_check_hier   TYPE seu_action VALUE 'PACKCHECKH',
+  swbm_c_op_publish              TYPE seu_action VALUE 'PUBLISH',
+  swbm_c_op_publish_all          TYPE seu_action VALUE 'PUBLISHALL',
+  swbm_c_op_abap_unit            TYPE seu_action VALUE 'MODULETEST',
+  swbm_c_op_abap_unit_with_cov   TYPE seu_action VALUE 'MODTESTCOV',
+  swbm_c_op_abap_unit_with_bch1  TYPE seu_action VALUE 'MODTESTBT1',
+  swbm_c_op_abap_unit_with_bch2  TYPE seu_action VALUE 'MODTESTBT2',
+  swbm_c_op_ws_wzd_start         TYPE seu_action VALUE 'WS_WIZARD',
+  swbm_c_op_wdy_wzd_start        TYPE seu_action VALUE 'WDY_WIZARD',
+  swbm_c_op_wdy_show_using       TYPE seu_action VALUE 'WDY_USING',  " (Web Dynpro Component Usage)
+  swbm_c_op_wdy_show_used        TYPE seu_action VALUE 'WDY_USED',   " (Web Dynpro Component Usage)
+  swbm_c_op_wdy_config_contr     TYPE seu_action VALUE 'WDY_CONFIG', " Web Dynpro: Set as Configuration Controller / Edit Configuration
+  swbm_c_op_workingarea_copy     TYPE seu_action VALUE 'WORKAREA_C', " copy the list of inactive objects
+  swbm_c_op_col_disp_graphic     TYPE seu_action VALUE 'DISPGRAPH',  " Enterprise Services: Display Graphic for Business Object
+  swbm_c_op_col_edit_graphic     TYPE seu_action VALUE 'EDITGRAPH',  " Enterprise Services: Edit Graphic for Business Object
+  swbm_c_op_theme_customizing    TYPE seu_action VALUE 'THEMECUST',
+  swbm_c_op_record_ecatt         TYPE seu_action VALUE 'REC_ECATT',
+  swbm_c_op_implement            TYPE seu_action VALUE 'IMPLEMENT',
+  swbm_c_op_uml_generate         TYPE seu_action VALUE 'UML_GEN',
+  swbm_c_op_upload               TYPE seu_action VALUE 'UPLOAD',
+  swbm_c_op_pack_navigate_error  TYPE seu_action VALUE 'PACKNAVERR'.
+* specials for ABAP Dictionary
+CONSTANTS:
+  swbm_c_op_create_derived       TYPE seu_action VALUE 'CREDERIVED'.
+
+************************************************************************
+*********** Workbench Request: Types dealing with requests *************
+************************************************************************
+TYPES:
+  swbm_wb_request_set            TYPE REF TO cl_wb_request OCCURS 0.
+
+************************************************************************
+*********** Workbench: OK-Codes ****************************************
+************************************************************************
+CONSTANTS:
+  swbm_c_fc_act_inact_toggle     TYPE sy-ucomm VALUE 'WB_ACT_INACT_TOGGLE',
+  swbm_c_fc_act_inact_toggle_eh  TYPE sy-ucomm VALUE 'WB_ACT_INACT_TOG_ENH',
+  swbm_c_fc_activate             TYPE sy-ucomm VALUE 'WB_ACTIVATE',
+  swbm_c_fc_activate_enh         TYPE sy-ucomm VALUE 'WB_ACTIVATE_ENH',
+  swbm_c_fc_active_version       TYPE sy-ucomm VALUE 'WB_ACTIVE_VERSION',
+  swbm_c_fc_active_version_enh   TYPE sy-ucomm VALUE 'WB_ACTIVE_VERS_ENH',
+  swbm_c_fc_add_objects          TYPE sy-ucomm VALUE 'WB_ADD_OBJECTS',
+  swbm_c_fc_amo_generate         TYPE sy-ucomm VALUE 'WB_AMO_GENERATE',
+  swbm_c_fc_atc_check            TYPE sy-ucomm VALUE 'WB_ATC_CHECK',
+  swbm_c_fc_atc_check_default    TYPE sy-ucomm VALUE 'WB_ATC_CHECK_DEFAULT', " ATC Check with default settings
+  swbm_c_fc_aunit_favorites      TYPE sy-ucomm VALUE 'WB_AUNIT_FAVORITES',   " display ABAP Unit Favorites Editor
+  swbm_c_fc_aunit_tag_assist     TYPE sy-ucomm VALUE 'WB_AUNIT_TAG_ASSIST',  " display ABAP Unit Tag Assistant
+  swbm_c_fc_back                 TYPE sy-ucomm VALUE 'WB_BACK',
+  swbm_c_fc_back_tb              TYPE sy-ucomm VALUE 'WB_BACK_TB',
+  swbm_c_fc_blck_copy            TYPE sy-ucomm VALUE 'WB_BLCK_COPY',
+  swbm_c_fc_blck_cut             TYPE sy-ucomm VALUE 'WB_BLCK_CUT',
+  swbm_c_fc_blck_mark            TYPE sy-ucomm VALUE 'WB_BLCK_MARK',
+  swbm_c_fc_blck_paste           TYPE sy-ucomm VALUE 'WB_BLCK_PASTE',
+  swbm_c_fc_bookmark_create      TYPE sy-ucomm VALUE 'WB_BOOKMARK_CREATE',
+  swbm_c_fc_bookmark_select      TYPE sy-ucomm VALUE 'WB_BOOKMARK_SELECT',
+  swbm_c_fc_bookmarks_display    TYPE sy-ucomm VALUE 'WB_BOOKMARKS_DISPLAY',
+  swbm_c_fc_bookmarks_edit       TYPE sy-ucomm VALUE 'WB_BOOKMARKS_EDIT',
+  swbm_c_fc_callgr_called_by     TYPE sy-ucomm VALUE 'WB_CG_CALLED_BY',
+  swbm_c_fc_callgr_calls         TYPE sy-ucomm VALUE 'WB_CG_CALLS',
+  swbm_c_fc_cancel               TYPE sy-ucomm VALUE 'WB_CANCEL',
+  swbm_c_fc_change_devclass      TYPE sy-ucomm VALUE 'WB_CHANGE_DEVCLASS', "this is the standard function code for package reassignment
+  swbm_c_fc_reassign_package     TYPE sy-ucomm VALUE 'WB_MOVE_PKG',        "this is the function code for type-specific package reassignment
+  swbm_c_fc_change_owner         TYPE sy-ucomm VALUE 'WB_CHANGE_OWNER',
+  swbm_c_fc_check                TYPE sy-ucomm VALUE 'WB_CHECK',
+  swbm_c_fc_check_all_errors     TYPE sy-ucomm VALUE 'WB_CHECK_ALL_ERRORS',
+  swbm_c_fc_check_consist        TYPE sy-ucomm VALUE 'WB_CHECK_CONSIST',
+  swbm_c_fc_check_extended       TYPE sy-ucomm VALUE 'WB_CHECK_EXTENDED',
+  swbm_c_fc_check_genlimits      TYPE sy-ucomm VALUE 'WB_CHECK_GENLIMITS',
+  swbm_c_fc_check_layout         TYPE sy-ucomm VALUE 'WB_CHECK_LAYOUT',
+  swbm_c_fc_check_mainprog       TYPE sy-ucomm VALUE 'WB_CHECK_MAINPROG',
+  swbm_c_fc_code_inspector       TYPE sy-ucomm VALUE 'WB_CODE_INSPECTOR',
+  swbm_c_fc_check_remote         TYPE sy-ucomm VALUE 'WB_CHECK_REMOTE',
+  swbm_c_fc_check_r2             TYPE sy-ucomm VALUE 'WB_CHECK_R2',
+  swbm_c_fc_check_warnings       TYPE sy-ucomm VALUE 'WB_CHECK_WARNINGS',
+  swbm_c_fc_package_check        TYPE sy-ucomm VALUE 'WB_PACKAGE_CHECK',
+  swbm_c_fc_classification       TYPE sy-ucomm VALUE 'WB_CLASSIFICATION',
+  swbm_c_fc_comp_hier            TYPE sy-ucomm VALUE 'WB_COMP_HIER',
+  swbm_c_fc_comp_hier_cust       TYPE sy-ucomm VALUE 'WB_COMP_HIER_CUST',
+  swbm_c_fc_comp_hier_sap        TYPE sy-ucomm VALUE 'WB_COMP_HIER_SAP',
+  swbm_c_fc_copy                 TYPE sy-ucomm VALUE 'WB_COPY',
+  swbm_c_fc_create               TYPE sy-ucomm VALUE 'WB_CREATE',
+*obsolete: swbm_c_fc_create_access_object TYPE sy-ucomm VALUE 'WB_CREATEACCO',     " (Package Builder)
+  swbm_c_fc_create_as_enhancemnt TYPE sy-ucomm VALUE 'WB_CREATASENH',     " 'Create object as an enhancement'
+  swbm_c_fc_data_browser         TYPE sy-ucomm VALUE 'WB_DATA_BROWSER',
+  swbm_c_fc_delete               TYPE sy-ucomm VALUE 'WB_DELETE',
+  swbm_c_fc_delete_all           TYPE sy-ucomm VALUE 'WB_DELETE_ALL',
+  swbm_c_fc_delete_line          TYPE sy-ucomm VALUE 'WB_DELETE_LINE',
+  swbm_c_fc_delete_block         TYPE sy-ucomm VALUE 'WB_DELETE_BLOCK',
+  swbm_c_fc_disp_access_object   TYPE sy-ucomm VALUE 'WB_DISPACCO',      " (Package Builder)
+  swbm_c_fc_disp_edit_toggle     TYPE sy-ucomm VALUE 'WB_DISP_EDIT_TOGGLE',
+  swbm_c_fc_disp_or_edit         TYPE sy-ucomm VALUE 'WB_DISP_OR_EDIT',
+  swbm_c_fc_disp_properties      TYPE sy-ucomm VALUE 'WB_DISP_PROPERTIES',
+  swbm_c_fc_display              TYPE sy-ucomm VALUE 'WB_DISPLAY',
+  swbm_c_fc_display_frame        TYPE sy-ucomm VALUE 'WB_SHOW_FRAME',
+  swbm_c_fc_display_nw           TYPE sy-ucomm VALUE 'NW_WB_DISPLAY',
+  swbm_c_fc_display_topincl      TYPE sy-ucomm VALUE 'WB_SHOW_TOPINCLUDE',
+  swbm_c_fc_docu_edit            TYPE sy-ucomm VALUE 'WB_DOCU_EDIT',
+  swbm_c_fc_docu_show            TYPE sy-ucomm VALUE 'WB_DOCU_SHOW',
+  swbm_c_fc_docu_tool            TYPE sy-ucomm VALUE 'WB_DOCU_TOOL',
+  swbm_c_fc_documentation        TYPE sy-ucomm VALUE 'WB_DOCUMENTATION',
+  swbm_c_fc_download             TYPE sy-ucomm VALUE 'WB_DOWNLOAD',
+  swbm_c_fc_edit                 TYPE sy-ucomm VALUE 'WB_EDIT',
+  swbm_c_fc_edit_enhancements    TYPE sy-ucomm VALUE 'WB_EDIT_ENH',
+  swbm_c_fc_edit_noenhancements  TYPE sy-ucomm VALUE 'WB_EDIT_NOENH',
+  swbm_c_fc_end                  TYPE sy-ucomm VALUE 'WB_END',
+  swbm_c_fc_enh_auto_repair      TYPE sy-ucomm VALUE 'WB_ENH_AUTO_REPAIR',
+  swbm_c_fc_environment          TYPE sy-ucomm VALUE 'WB_ENVIRONMENT',
+  swbm_c_fc_ex_controls          TYPE sy-ucomm VALUE 'WB_EX_CONTROLS',
+  swbm_c_fc_ex_demos             TYPE sy-ucomm VALUE 'WB_EX_DEMOS',
+  swbm_c_fc_ex_ergo_list         TYPE sy-ucomm VALUE 'WB_EX_ERGO_LIST',
+  swbm_c_fc_ex_ergo_dynpro       TYPE sy-ucomm VALUE 'WB_EX_ERGO_DYNPRO',
+  swbm_c_fc_ex_perf              TYPE sy-ucomm VALUE 'WB_EX_PERF',
+  swbm_c_fc_exec                 TYPE sy-ucomm VALUE 'WB_EXEC',
+  swbm_c_fc_exec_batch           TYPE sy-ucomm VALUE 'WB_EXEC_BATCH',
+  swbm_c_fc_exec_bc_html         TYPE sy-ucomm VALUE 'WB_EXEC_BC_HTML',  " execute in NetWeaver Business Client - HTML Client
+  swbm_c_fc_exec_bc_desktop      TYPE sy-ucomm VALUE 'WB_EXEC_BC_DESK',  " execute in NetWeaver Business Client - Desktop Client
+  swbm_c_fc_exec_catt            TYPE sy-ucomm VALUE 'WB_EXEC_CATT',
+  swbm_c_fc_exec_ecatt_all       TYPE sy-ucomm VALUE 'WB_EXEC_ECATT_A',  " execute eCATT testconfiguration: all (within a package)
+  swbm_c_fc_exec_ecatt_sel       TYPE sy-ucomm VALUE 'WB_EXEC_ECATT_S',  " execute eCATT testconfiguration: selected (within a package)
+  swbm_c_fc_exec_debug           TYPE sy-ucomm VALUE 'WB_EXEC_DEBUG',
+  swbm_c_fc_exec_runtime         TYPE sy-ucomm VALUE 'WB_EXEC_RUNTIME',
+  swbm_c_fc_exec_sequence        TYPE sy-ucomm VALUE 'WB_EXEC_SEQUENCE',
+  swbm_c_fc_find                 TYPE sy-ucomm VALUE 'WB_FIND',
+  swbm_c_fc_forward              TYPE sy-ucomm VALUE 'WB_FORWARD',
+  swbm_c_fc_fullscreen_toggle    TYPE sy-ucomm VALUE 'WB_FULLSCREEN',
+  swbm_c_fc_generate             TYPE sy-ucomm VALUE 'WB_GENERATE',
+  swbm_c_fc_generate_template    TYPE sy-ucomm VALUE 'WB_GENERATE_TEMPL',
+  swbm_c_fc_generate_testclass   TYPE sy-ucomm VALUE 'WB_GENERATE_TESTCL',
+  swbm_c_fc_html_tags            TYPE sy-ucomm VALUE 'WB_HTML_TAGS',
+  swbm_c_fc_inactive_objects     TYPE sy-ucomm VALUE 'WB_INACTIVE_OBJECTS',
+  swbm_c_fc_ia_activate          TYPE sy-ucomm VALUE 'WB_IA_ACTIVATE',
+  swbm_c_fc_ifr                  TYPE sy-ucomm VALUE 'WB_IFR',
+  swbm_c_fc_infosystem           TYPE sy-ucomm VALUE 'WB_INFOSYSTEM',
+  swbm_c_fc_info_channel         TYPE sy-ucomm VALUE 'WB_INFO_CHANNEL',
+  swbm_c_fc_line_delete          TYPE sy-ucomm VALUE 'WB_LINE_DELETE',
+  swbm_c_fc_line_insert          TYPE sy-ucomm VALUE 'WB_LINE_INSERT',
+  swbm_c_fc_mime_repository      TYPE sy-ucomm VALUE 'WB_MIME_REP',
+  swbm_c_fc_mod_assistent_off    TYPE sy-ucomm VALUE 'WB_MOD_ASSISTENT_OFF',
+  swbm_c_fc_mod_browser          TYPE sy-ucomm VALUE 'WB_MOD_BROWSER',
+  swbm_c_fc_mod_create           TYPE sy-ucomm VALUE 'WB_MOD_CREATE',
+  swbm_c_fc_mod_display_orig     TYPE sy-ucomm VALUE 'WB_MOD_DISPLAY_ORIG',
+  swbm_c_fc_mod_overview         TYPE sy-ucomm VALUE 'WB_MOD_OVERVIEW',
+  swbm_c_fc_mod_reset            TYPE sy-ucomm VALUE 'WB_MOD_RESET',
+  swbm_c_fc_mod_sel_delete       TYPE sy-ucomm VALUE 'WB_MOD_SEL_DELETE',
+  swbm_c_fc_mod_sel_edit         TYPE sy-ucomm VALUE 'WB_MOD_SEL_EDIT',
+  swbm_c_fc_mod_sel_replace      TYPE sy-ucomm VALUE 'WB_MOD_SEL_REPLACE',
+  swbm_c_fc_mod_sub_edit         TYPE sy-ucomm VALUE 'WB_MOD_SUB_EDIT',
+  swbm_c_fc_mod_sub_orig         TYPE sy-ucomm VALUE 'WB_MOD_SUB_ORIG',
+  swbm_c_fc_mod_sub_overview     TYPE sy-ucomm VALUE 'WB_MOD_SUB_OVERVIEW',
+  swbm_c_fc_mod_undo             TYPE sy-ucomm VALUE 'WB_MOD_UNDO',
+  swbm_c_fc_mod_display_inter    TYPE sy-ucomm VALUE 'WB_MOD_DISPLAY_INTER',
+  swbm_c_fc_multi_object_next    TYPE sy-ucomm VALUE 'WB_MULTI_OBJECT_NEXT',
+  swbm_c_fc_multi_object_prev    TYPE sy-ucomm VALUE 'WB_MULTI_OBJECT_PREV',
+  swbm_c_fc_navstack_edit        TYPE sy-ucomm VALUE 'WB_NAVSTACK_EDIT',
+  swbm_c_fc_not_used_list        TYPE sy-ucomm VALUE 'WB_NOT_USED_LIST',
+  swbm_c_fc_object_list          TYPE sy-ucomm VALUE 'WB_OBJECT_LIST',  " there seems to be an inconsistency
+  " with database table WBACTIONS, where the value is 'WB_SHOW_OBJECT_LIST'
+  swbm_c_fc_okay                 TYPE sy-ucomm VALUE 'WB_OKAY',
+  swbm_c_fc_online_manual        TYPE sy-ucomm VALUE 'WB_ONLINE_MANUAL',
+  swbm_c_fc_options              TYPE sy-ucomm VALUE 'WB_OPTIONS',
+  swbm_c_fc_organizer            TYPE sy-ucomm VALUE 'WB_ORGANIZER',
+  swbm_c_fc_other_object         TYPE sy-ucomm VALUE 'WB_OTHER_OBJECT',
+  swbm_c_fc_print                TYPE sy-ucomm VALUE 'WB_PRINT',
+  swbm_c_fc_persistence          TYPE sy-ucomm VALUE 'WB_PERSISTENCE',
+  swbm_c_fc_propagate            TYPE sy-ucomm VALUE 'WB_PROPAGATE',
+  swbm_c_fc_proxy_editor         TYPE sy-ucomm VALUE 'WB_PROXY_EDITOR',
+  swbm_c_fc_proxy_generator      TYPE sy-ucomm VALUE 'WB_PROXY_GENERATOR',
+  swbm_c_fc_log                  TYPE sy-ucomm VALUE 'WB_SHOW_LOG',
+  swbm_c_fc_realize              TYPE sy-ucomm VALUE 'WB_REALIZE',
+  swbm_c_fc_realize_all          TYPE sy-ucomm VALUE 'WB_REALIZE_ALL',
+  swbm_c_fc_redefine             TYPE sy-ucomm VALUE 'WB_REDEFINE',
+  swbm_c_fc_undo_redefine        TYPE sy-ucomm VALUE 'WB_UNDO_REDEF',
+  swbm_c_fc_refresh              TYPE sy-ucomm VALUE 'WB_REFRESH',
+  swbm_c_fc_release              TYPE sy-ucomm VALUE 'WB_RELEASE',
+  swbm_c_fc_rename               TYPE sy-ucomm VALUE 'WB_RENAME',
+  swbm_c_fc_rep_browser          TYPE sy-ucomm VALUE 'WB_REP_BROWSER',
+  swbm_c_fc_req_add_user         TYPE sy-ucomm VALUE 'WB_REQ_ADD_USER',
+  swbm_c_fc_request_trace        TYPE sy-ucomm VALUE 'WB_REQ_TRACE',
+  swbm_c_fc_reuse_library        TYPE sy-ucomm VALUE 'WB_REUSE_LIB',
+  swbm_c_fc_save                 TYPE sy-ucomm VALUE 'WB_SAVE',
+  swbm_c_fc_save_enh             TYPE sy-ucomm VALUE 'WB_SAVE_ENH',
+  swbm_c_fc_save_as              TYPE sy-ucomm VALUE 'WB_SAVE_AS',
+  swbm_c_fc_search_object        TYPE sy-ucomm VALUE 'WB_SEARCH_OBJECT',
+  swbm_c_fc_send_request         TYPE sy-ucomm VALUE 'WB_SEND_REQUEST',
+  swbm_c_fc_select_object        TYPE sy-ucomm VALUE 'WB_SELECT_OBJECT',
+  swbm_c_fc_shift                TYPE sy-ucomm VALUE 'WB_SHIFT',
+  swbm_c_fc_show_cue_card        TYPE sy-ucomm VALUE 'WB_CUE_CARD',
+  swbm_c_fc_space                TYPE sy-ucomm VALUE '    ',
+  swbm_c_fc_st_design            TYPE sy-ucomm VALUE 'WB_ST_DESIGN',    " call simple transformation designer
+  swbm_c_fc_st_display           TYPE sy-ucomm VALUE 'WB_ST_DISPLAY',
+  swbm_c_fc_tadir_edit           TYPE sy-ucomm VALUE 'WB_TADIR_EDIT',
+  swbm_c_fc_tadir_edit_with_doc  TYPE sy-ucomm VALUE 'WB_TADIR_WITH_DOC',
+  swbm_c_fc_testworkbench        TYPE sy-ucomm VALUE 'WB_TESTMNGR',
+  swbm_c_fc_testcat              TYPE sy-ucomm VALUE 'WB_TESTCAT',
+  swbm_c_fc_testplan             TYPE sy-ucomm VALUE 'WB_TESTPLAN',
+  swbm_c_fc_translation          TYPE sy-ucomm VALUE 'WB_TRANSLATION',
+  swbm_c_fc_transport            TYPE sy-ucomm VALUE 'WB_TRANSPORT',
+  swbm_c_fc_transport_with_doc   TYPE sy-ucomm VALUE 'WB_TRANSP_WITH_DOC',
+  swbm_c_fc_tree_refresh         TYPE sy-ucomm VALUE 'WB_TREE_REFRESH',
+  swbm_c_fc_undo                 TYPE sy-ucomm VALUE 'WB_UNDO',
+  swbm_c_fc_upload               TYPE sy-ucomm VALUE 'WB_UPLOAD',
+  swbm_c_fc_uml_generate         TYPE sy-ucomm VALUE 'WB_UML_GENERATE',
+  swbm_c_fc_version_create       TYPE sy-ucomm VALUE 'WB_VERSION_CREATE',
+  swbm_c_fc_versions             TYPE sy-ucomm VALUE 'WB_VERSIONS',
+  swbm_c_fc_dispvers             TYPE sy-ucomm VALUE 'WB_DISPVERS',
+  swbm_c_fc_disp_pack_browser    TYPE sy-ucomm VALUE 'WB_DISPPACK',
+  swbm_c_fc_disp_obj_propag      TYPE sy-ucomm VALUE 'WB_DISPPROP',
+  swbm_c_fc_wcf_controls         TYPE sy-ucomm VALUE 'WB_WCF_CONTROLS',
+  swbm_c_fc_web_repository       TYPE sy-ucomm VALUE 'WB_WEB_REP',
+  swbm_c_fc_where_used_list      TYPE sy-ucomm VALUE 'WB_WHERE_USED_LIST',
+  swbm_c_fc_ppms                 TYPE sy-ucomm VALUE 'WB_PPMS',
+  swbm_c_fc_worklist_add_object  TYPE sy-ucomm VALUE 'WB_WL_ADD_OBJECT',
+  swbm_c_fc_worklist_edit        TYPE sy-ucomm VALUE 'WB_WL_SHOW',
+  swbm_c_fc_worklist_hide        TYPE sy-ucomm VALUE 'WB_WL_HIDE',
+  swbm_c_fc_workingarea_copy     TYPE sy-ucomm VALUE 'WB_WORKINGAREA_COPY',  " copy the list of inactive objects
+  swbm_c_fc_abap_unit            TYPE sy-ucomm VALUE 'WB_MODULE_TEST',
+  swbm_c_fc_abap_unit_with_cov   TYPE sy-ucomm VALUE 'WB_MODULE_TEST_COV',
+  swbm_c_fc_abap_unit_with_bch1  TYPE sy-ucomm VALUE 'WB_MODULE_TEST_TRUN1',
+  swbm_c_fc_abap_unit_with_bch2  TYPE sy-ucomm VALUE 'WB_MODULE_TEST_TRUN2',
+  swbm_c_fc_wdy_wzd_start        TYPE sy-ucomm VALUE 'WB_WDY_WZD_START',
+  swbm_c_fc_wdy_show_using       TYPE sy-ucomm VALUE 'WB_WDY_SHOW_USING',   " test (Web Dynpro Component Usage)
+  swbm_c_fc_wdy_show_used        TYPE sy-ucomm VALUE 'WB_WDY_SHOW_USED',    " test (Web Dynpro Component Usage)
+  swbm_c_fc_wdy_config_contr     TYPE sy-ucomm VALUE 'WB_WDY_CONFIG_CONTR', " Web Dynpro: Set as Configuration Controller
+  swbm_c_fc_ws_wzd_start         TYPE sy-ucomm VALUE 'WB_WS_WZD_START',
+  swbm_c_fc_col_disp_graphic     TYPE sy-ucomm VALUE 'WB_DISPGRAPH',     " Enterprise Services: Display Graphic for Business Object
+  swbm_c_fc_col_edit_graphic     TYPE sy-ucomm VALUE 'WB_EDITGRAPH',     " Enterprise Services: Edit Graphic for Business Object
+  swbm_c_fc_ws_wizard_fugr       TYPE sy-ucomm VALUE 'WB_WS_WIZARD_FUGR',
+  swbm_c_fc_ws_wizard_func       TYPE sy-ucomm VALUE 'WB_WS_WIZARD_FUNC',
+  swbm_c_fc_wdy_next             TYPE sy-ucomm VALUE 'WB_WDY_NEXT',       " Web Dynpro Text Browser: show next object to be processed
+  swbm_c_fc_wdy_filter           TYPE sy-ucomm VALUE 'WB_WDY_FILTER',     " Web Dynpro Text Browser: only show objects to be processed
+  swbm_c_fc_enha_intf            TYPE sy-ucomm VALUE 'WB_ENHA_INTF',
+  swbm_c_fc_record_ecatt         TYPE sy-ucomm VALUE 'WB_RECORD_ECATT',
+  swbm_c_fc_implement            TYPE sy-ucomm VALUE 'WB_IMPLEMENT',
+  swbm_c_fc_enhance              TYPE sy-ucomm VALUE 'WB_ENHANCE',
+  swbm_c_fc_check_show_detail    TYPE sy-ucomm VALUE 'WB_CHKSHOWDET',
+  swbm_c_fc_rfac_rename          TYPE sy-ucomm VALUE 'WB_RFAC_RENAME',
+  swbm_c_fc_rfac_get_types       TYPE sy-ucomm VALUE 'WB_RFAC_GET_TYPES',
+  swbm_c_fc_rfac_undo            TYPE sy-ucomm VALUE 'WB_RFAC_UNDO',
+  swbm_c_fc_rfac_redo            TYPE sy-ucomm VALUE 'WB_RFAC_REDO',
+  swbm_c_fc_rfac_dele_datadecl   TYPE sy-ucomm VALUE 'WB_RFAC_DELE_DATADEC',
+  swbm_c_fc_rfac_show_preview    TYPE sy-ucomm VALUE 'WB_RFAC_SHOW_PREVIEW',
+  swbm_c_fc_upgrade              TYPE sy-ucomm VALUE 'WB_UPGRADE',
+  swbm_c_fc_upgrade_enh          TYPE sy-ucomm VALUE 'WB_UPGRADE_ENH',
+  swbm_c_fc_upgrade_spau         TYPE sy-ucomm VALUE 'WB_UPGRADE_SPAU',
+  swbm_c_fc_adjust_del_flag      TYPE sy-ucomm VALUE 'WB_DELFLAG'.
+
+************************************************************************
+*******************ERROR-CODES for WB Programs**************************
+************************************************************************
+CONSTANTS:
+  swbm_c_er_no_error            TYPE seu_ercode VALUE 0,
+  swbm_c_er_action_cancelled    TYPE seu_ercode VALUE 1,
+  swbm_c_er_object_not_found    TYPE seu_ercode VALUE 2,
+  swbm_c_er_op_not_supported    TYPE seu_ercode VALUE 3,
+  swbm_c_er_permission_failure  TYPE seu_ercode VALUE 4,
+  swbm_c_er_wrong_program_state TYPE seu_ercode VALUE 5,
+  swbm_c_er_error_occured       TYPE seu_ercode VALUE 6,
+  swbm_c_er_same_request        TYPE seu_ercode VALUE 7,
+  swbm_c_er_unknown_error       TYPE seu_ercode VALUE 99.
+
+************************************************************************
+*******************ERROR-TYPES for CHECKLIST****************************
+************************************************************************
+
+CONSTANTS:
+  swbm_c_message_type_error      TYPE c LENGTH 1 VALUE 'E',
+  swbm_c_message_type_warning    TYPE c LENGTH 1 VALUE 'W',
+  swbm_c_message_type_info       TYPE c LENGTH 1 VALUE 'I',
+  swbm_c_message_type_bapi_e     TYPE c LENGTH 1 VALUE 'B',
+  swbm_c_message_type_bapi_w     TYPE c LENGTH 1 VALUE 'C',
+  swbm_c_message_free_arrangemnt TYPE c LENGTH 1 VALUE '-'.
+
+************************************************************************
+*******************Types of general use*********************************
+************************************************************************
+CONSTANTS:
+  swbm_c_max_line_width TYPE i VALUE '72',
+  swbm_version_active   TYPE r3state VALUE 'A',
+  swbm_version_inactive TYPE r3state VALUE 'I',
+  swbm_version_new      TYPE r3state VALUE 'N',
+  swbm_version_dirty    TYPE r3state VALUE 'D'.
+
+************************************************************************
+*******************Activation environment*******************************
+************************************************************************
+CONSTANTS:
+  BEGIN OF swbm_c_activation_environment,
+    aie       TYPE string VALUE 'aie',
+    workbench TYPE string VALUE space, "Default
+  END OF swbm_c_activation_environment.
+
+***********************************************************************
+**********************Lifecycle operation******************************
+***********************************************************************
+CONSTANTS:
+  BEGIN OF swbm_c_op_lifecycle,
+    deletion   TYPE seu_lifecycle_operation VALUE 'DELETION',
+    activation TYPE seu_lifecycle_operation VALUE 'ACTIVATION',
+  END OF swbm_c_op_lifecycle.

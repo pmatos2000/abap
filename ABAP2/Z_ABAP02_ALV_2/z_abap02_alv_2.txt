@@ -1,0 +1,149 @@
+REPORT z_abap02_alv_2.
+
+TABLES: scarr.
+
+SELECTION-SCREEN BEGIN OF BLOCK b1 WITH FRAME TITLE text-001.
+SELECT-OPTIONS:
+  p_id FOR scarr-carrid.
+SELECTION-SCREEN END OF BLOCK b1.
+
+CLASS lcl_app DEFINITION.
+
+  PUBLIC SECTION.
+
+    METHODS:
+      selecionar_dados,
+      configura_alv,
+      exibir_resultados.
+
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+
+    DATA: o_alv          TYPE REF TO cl_gui_alv_grid,
+          o_container    TYPE REF TO cl_gui_docking_container,
+          tab_resultados TYPE STANDARD TABLE OF scarr.
+
+ENDCLASS.
+
+CLASS lcl_app IMPLEMENTATION.
+
+  METHOD selecionar_dados.
+    DATA:
+      tab_selecao TYPE STANDARD TABLE OF scarr.
+
+      SELECT *
+        FROM scarr
+        INTO TABLE tab_selecao
+        WHERE carrid in p_id.
+
+      IF sy-subrc = 0.
+        tab_resultados[] = tab_selecao[].
+      ENDIF.
+
+
+  ENDMETHOD.
+
+  METHOD exibir_resultados.
+    o_alv->refresh_table_display( ).
+  ENDMETHOD.
+
+  METHOD configura_alv.
+
+    IF me->o_container IS BOUND.
+      EXIT.
+    ENDIF.
+
+    o_container = NEW cl_gui_docking_container(
+*        parent                      =
+        repid                       = sy-repid
+        dynnr                       = sy-dynnr
+*        side                        = DOCK_AT_LEFT
+        extension                   = 2000
+*        style                       =
+*        lifetime                    = LIFETIME_DEFAULT
+*        caption                     =
+*        metric                      = 0
+*        ratio                       =
+*        no_autodef_progid_dynnr     =
+*        name                        =
+    ).
+
+
+    o_alv = NEW cl_gui_alv_grid(
+*        i_shellstyle      = 0
+*        i_lifetime        =
+        i_parent          = o_container
+*        i_appl_events     = SPACE
+*        i_parentdbg       =
+*        i_applogparent    =
+*        i_graphicsparent  =
+*        i_name            =
+*        i_fcat_complete   = SPACE
+    ).
+
+    o_alv->set_table_for_first_display(
+      EXPORTING
+*        i_buffer_active               =
+*        i_bypassing_buffer            =
+*        i_consistency_check           =
+        i_structure_name              = 'SCARR'
+*        is_variant                    =
+*        i_save                        =
+*        i_default                     = 'X'
+*        is_layout                     =
+*        is_print                      =
+*        it_special_groups             =
+*        it_toolbar_excluding          =
+*        it_hyperlink                  =
+*        it_alv_graphics               =
+*        it_except_qinfo               =
+*        ir_salv_adapter               =
+      CHANGING
+        it_outtab                     = tab_resultados
+*        it_fieldcatalog               =
+*        it_sort                       =
+*        it_filter                     =
+      EXCEPTIONS
+        invalid_parameter_combination = 1
+        program_error                 = 2
+        too_many_lines                = 3
+        OTHERS                        = 4
+    ).
+    IF sy-subrc <> 0.
+      MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+                 WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+    ENDIF.
+
+  ENDMETHOD.
+
+ENDCLASS.
+
+START-OF-SELECTION.
+
+  DATA: lo_app TYPE REF TO lcl_app.
+
+  lo_app = NEW #( ).
+
+  lo_app->selecionar_dados( ).
+  CALL SCREEN 9000.
+
+*&---------------------------------------------------------------------*
+*&      Module  EXIBIR_ALV  OUTPUT
+*&---------------------------------------------------------------------*
+MODULE exibir_alv OUTPUT.
+  lo_app->configura_alv( ).
+ENDMODULE.
+
+*&---------------------------------------------------------------------*
+*&      Module  USER_COMMAND_9000  INPUT
+*&---------------------------------------------------------------------*
+MODULE user_command_9000 INPUT.
+  CASE sy-ucomm.
+    WHEN 'BACK' OR 'EXIT' OR 'CANCEL'.
+      LEAVE TO SCREEN 0.
+    WHEN 'UPDATE'.
+      lo_app->exibir_resultados( ).
+  ENDCASE.
+ENDMODULE.
+
+INCLUDE z_abap02_alv_2_status_9000o01.

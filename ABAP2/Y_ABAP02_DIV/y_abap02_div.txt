@@ -1,0 +1,28 @@
+REPORT y_abap02_div.
+
+PARAMETERS:
+  p_a TYPE i,
+  p_b TYPE i.
+
+START-OF-SELECTION.
+
+  DATA:
+    res TYPE i.
+
+  CALL FUNCTION 'Y_ABAP02_FUNC_DIV'
+    EXPORTING
+      a        = p_a
+      b        = p_b
+    IMPORTING
+      res      = res
+    EXCEPTIONS
+      div_zero = 1
+      OTHERS   = 2.
+
+  IF sy-subrc <> 0.
+    IF sy-subrc = 1.
+      WRITE: text-e01.
+    ENDIF.
+  ELSE.
+    WRITE: 'res = ', res.
+  ENDIF.

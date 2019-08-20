@@ -1,0 +1,26 @@
+*----------------------------------------------------------------------*
+***INCLUDE MZ_ABAP02_TELA_VERIFICA_IDI01.
+*----------------------------------------------------------------------*
+*&---------------------------------------------------------------------*
+*&      Module  VERIFICA_ID  INPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+MODULE verifica_id INPUT.
+    PERFORM form_verifica_id.
+ENDMODULE.
+
+FORM form_verifica_id.
+  data:
+    estrutura TYPE scustom.
+
+  SELECT SINGLE *
+    FROM scustom
+    INTO estrutura
+    WHERE id = scustom-id.
+
+  IF sy-subrc <> 0.
+    MESSAGE 'Digitou um valor inválido' TYPE 'E'.
+    EXIT.
+  ENDIF.
+ENDFORM.

@@ -1,0 +1,4 @@
+  PRIVATE SECTION.
+
+    DATA: deu_certo_o_relatorio TYPE abap_bool.
+

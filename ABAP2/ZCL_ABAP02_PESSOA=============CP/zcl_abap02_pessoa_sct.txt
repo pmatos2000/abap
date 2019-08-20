@@ -1,0 +1,4 @@
+ZCL_ABAP02_PESSOA             CONSTRUCTOR                   P_DATA_NASCIMENTO             PData de nascimento
+ZCL_ABAP02_PESSOA             CONSTRUCTOR                   P_NOME                        PNome da pessoa
+ZCL_ABAP02_PESSOA             GET_DATA_NASCIMENTO           R_DATA_NASCIMENTO             PData de nascimento
+ZCL_ABAP02_PESSOA             SET_CPF                       P_CPF                         PUtilizado para salvar o CPF de uma pessoa fisica

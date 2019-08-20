@@ -1,0 +1,110 @@
+class CL_VIEWFIELDS_ORG_CRIT definition
+  public
+  final
+  create public .
+
+*"* public components of class CL_VIEWFIELDS_ORG_CRIT
+*"* do not include other source files here!!!
+public section.
+
+  data ORG_CRIT_TAB type ORGCRIT read-only .
+  data VIEW_NAME type VIEWNAME read-only .
+  data OC_SELCRIT_READ_TAB type OCSELFIELDS read-only .
+  data OC_SELCRIT_MAINT_TAB type OCSELFIELDS read-only .
+  data LAST_ACTIVITY type XUVAL read-only .
+
+  type-pools SHLP .
+  class-methods FIND_OC_FOR_F4
+    importing
+      !TABNAME type TABNAME
+      !FIELDNAME type FIELDNAME optional
+    changing
+      !SHLP type SHLP_DESCR_T
+    exceptions
+      NO_SELECTION_FOUND .
+  class-methods GET_OC_FOR_TABLE
+    importing
+      !TABNAME type TABNAME
+    changing
+      !OC_INST type ref to CL_VIEWFIELDS_ORG_CRIT
+    exceptions
+      NO_OC_FOUND .
+  methods LIST_OC_SELECTIONS
+    importing
+      !ACTIVITY type XUVAL
+      !SCREEN_START_COLUMN type I
+      !SCREEN_START_LINS type I
+    exceptions
+      NO_SELECTIONS_FOUND
+      LIST_ERROR .
+  methods CONSTRUCTOR
+    importing
+      !VIEW_NAME type VIEWNAME
+      !ACTIVITY type XUVAL
+      value(VIEW_FIELDS) type DDFIELDS optional
+    exceptions
+      NO_RESTRICTIONS_BY_OC
+      NO_OC_FOUND
+      VIEW_NOT_FOUND
+      OC_ERROR
+      PARAMETER_ERROR .
+  methods CHECK_OC_AUTHORITY
+    importing
+      !ACTIVITY type XUVAL
+    changing
+      !KEY_VALUES type OCCHECKKEYFLDS
+    exceptions
+      NO_AUTH
+      KEY_INCOMPLETE
+      WRONG_PARAMETER .
+  methods CHECK_OC_AUTH_GEN
+    importing
+      !ACTIVITY type XUVAL
+    exceptions
+      NO_AUTH
+      PARAMETER_ERROR
+      AUTHORISATION_ERROR .
+  methods CHECK_OC_AUTH_SINGLE
+    importing
+      !FIELDNAME type FIELDNAME
+      !VALUE type ref to DATA
+    exceptions
+      FIELD_IS_NO_KEY .
+  type-pools SVORG .
+  methods CONVERT_OC_SELECTIONS
+    importing
+      !ACTIVITY type ACTIV_AUTH
+    exporting
+      !OC_VIMSELL type SVORG_VIMSELLIST_TYPE .
+  methods CHECK_OC_AUTH_VIM_SELLIST
+    importing
+      !SELLIST type SVORG_VIMSELLIST_TYPE
+      !ACTION type XUVAL
+    changing
+      !KEY_FIELDS type OCCHECKKEYFLDS optional
+    exceptions
+      NO_AUTH .
+  methods SET_KEY_USAGE
+    importing
+      !DOMNAME type DOMNAME default SPACE
+    exporting
+      !NEW type SYCHAR01
+    changing
+      !KEYFIELD type FIELDNAME default SPACE
+    exceptions
+      NOT_FOUND .
+  methods BUILD_KEY_VALUE_TAB
+    importing
+      !ENTRY type ANY
+    exporting
+      !KEYVALUES type OCCHECKKEYFLDS .
+  methods GET_TO_BE_CHECKED
+    exporting
+      !TO_BE_CHECKED type XFELD .
+  methods COMBINE_VIMSEL_WITH_AUTH
+    importing
+      !ACTION type ACTIV_AUTH
+    changing
+      !SELLIST type SVORG_VIMSELLIST_TYPE .
+  methods SET_TO_BE_CHECKED2 .
+  type-pools SVOCL .

@@ -1,0 +1,28 @@
+REPORT y_abap02_equacao_segundo_grau.
+
+PARAMETERS:
+  a TYPE decfloat34 OBLIGATORY,
+  b TYPE decfloat34 OBLIGATORY,
+  c TYPE decfloat34 OBLIGATORY.
+
+DATA:
+  delta TYPE decfloat34,
+  x1    TYPE decfloat34,
+  x2    TYPE decfloat34.
+
+START-OF-SELECTION.
+  IF a <> 0.
+    delta = b ** 2 - 4 * a * c.
+    IF delta > 0.
+      x1 = ( - b + sqrt( delta ) ) / ( 2 * a ).
+      x2 = ( - b - sqrt( delta ) ) / ( 2 * a ).
+      WRITE: 'x1 = ', x1, ' ', 'x2 = ', x2.
+    ELSEIF delta = 0.
+      x1 = - b / ( 2 * a ).
+      WRITE: 'x1 = x2 = ', x1.
+    ELSE.
+      WRITE: text-e02.
+    ENDIF.
+  ELSE.
+    WRITE: text-e01.
+  ENDIF.

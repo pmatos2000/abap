@@ -1,0 +1,5 @@
+private section.
+
+  data NOME type Y_ABAP02_NOME_DADOS .
+  data DATA_NASCIMENTO type Y_ABAP02_DATA_DADOS .
+  data CPF type Y_ABAP02_CPF_DADOS .

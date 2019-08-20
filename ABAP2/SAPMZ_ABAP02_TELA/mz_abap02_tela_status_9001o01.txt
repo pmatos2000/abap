@@ -1,0 +1,19 @@
+*----------------------------------------------------------------------*
+***INCLUDE MZ_ABAP02_TELA_STATUS_9001O01.
+*----------------------------------------------------------------------*
+*&---------------------------------------------------------------------*
+*&      Module  STATUS_9001  OUTPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+MODULE status_9001 OUTPUT.
+  PERFORM f_status_9001.
+ENDMODULE.
+
+FORM f_status_9001.
+  DATA fcode TYPE TABLE OF sy-ucomm.
+  APPEND 'PESQUISAR' TO fcode.
+  APPEND 'PROX_TELA' TO fcode.
+  SET PF-STATUS 'STAT_9000' EXCLUDING fcode.
+  SET TITLEBAR 'T2_ALT_ABAP02'.
+ENDFORM.

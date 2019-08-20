@@ -1,0 +1,139 @@
+type-pool seop .
+
+type-pools:
+  seox,
+  srext,
+  schek.
+
+types:
+  seop_schek_corr_tab type schek_corr occurs 10,
+
+* Types for Source Code ( sections/methods)
+  seop_source_line type edpline,
+  seop_source_line_string type rsline,
+  seop_source type edpline occurs 0,
+  seop_source_string type rswsourcet,
+
+* method's source
+  begin of seop_method_source,
+    implementation type seop_source,
+  end of seop_method_source,
+  seop_method_sources type seop_method_source occurs 0,
+* class' source
+  begin of seop_class_source,                   "CLASS-POOL.
+    locals type seop_source,                    "...
+    pre_public type seop_source,                "TYPE-POOLS, ...LOAD
+    header type seop_source,                    "CLASS c DEFINITION
+                                                "... PUBLIC.
+    public type seop_source,                    "PUBLIC SECTION. ...
+    protected type seop_source,                 "PROTECTED SECTION. ...
+    private type seop_source,                   "PRIVATE SECTION. ...
+    package type seop_source,                   "PACKAGE SECTION. ...  !!! needed for VERIs
+                                                "ENDCLASS.
+  end of seop_class_source,                     "ENDCLASS
+  begin of seop_method_w_source,
+    cpdname like seocpdkey-cpdname,
+    redefine type seox_boolean,
+    source type seop_source,
+  end of seop_method_w_source,
+  seop_methods_w_source type seop_method_w_source occurs 0,
+* method generation info struct
+  begin of seop_method_source_gen,
+    cpdname like seocpdkey-cpdname,
+    begin of flags,
+      implementation type seox_boolean,
+    end of flags,
+    source type seop_method_source,
+  end of seop_method_source_gen,
+  seop_method_sources_gen type seop_method_source_gen occurs 0,
+* class generation info struct
+  begin of seop_class_source_gen,
+    clsname like seoclskey-clsname,
+    begin of flags,
+      locals type seox_boolean,
+      header type seox_boolean,
+      pre_public type seox_boolean,
+      public type seox_boolean,
+      protected type seox_boolean,
+      private type seox_boolean,
+      package type seox_boolean,
+    end of flags,
+    source type seop_class_source,
+    methods type seop_method_sources_gen,
+  end of seop_class_source_gen,
+* interface's source
+  begin of seop_interface_source,               "CLASS-POOL.INTERFACE i.
+    section type seop_source,                    "PUBLIC SECTION. ...
+                                                "...
+  end of seop_interface_source,                 "ENDINTERFACE
+* interface generation info struct
+  begin of seop_interface_source_gen,
+    clsname like seoclskey-clsname,
+    begin of flags,
+      section type seox_boolean,
+    end of flags,
+    source type seop_interface_source,
+  end of seop_interface_source_gen,
+  begin of seop_method_w_include,
+    cpdkey type seocpdkey,
+    incname type programm,
+  end of seop_method_w_include,
+  seop_methods_w_include type seop_method_w_include occurs 0,
+  begin of seop_editor_info,
+    begin of section,
+      clskey type seoclskey,
+      inctype(2) type c,
+    end of section,
+    begin of method,
+*     mtdkey type seocmpkey,
+      mtdkey type seocpdkey,
+    end of method,
+    incname type programm,
+  end of seop_editor_info,
+  seop_class_includes type programm
+    occurs 0,
+  seop_include_category type progcateg,     "=progstruc-categorya
+  seop_include_code(1),                     "=progstruc-codea(1)
+  seop_include_extension(2),                "=category+code (see srext)
+  seop_include_appendage(3),                "=progstruc-codea+1(3)
+  seop_include_ext_app(5).                  "=programm+30(5)
+
+constants:
+  seop_inctype_class type seop_include_category value 'C',
+  seop_inctype_interface type seop_include_category value 'I',
+  seop_inccode_pool value 'P',
+  seop_inccode_local value 'L',
+  seop_inccode_public value 'U',
+*  seop_inccode_package value 'A',
+  seop_inccode_protected value 'O',
+  seop_inccode_private value 'I',
+  seop_inccode_method value 'M',
+  seop_inccode_typeref value 'T',
+  seop_inccode_include value 'C',
+  seop_incappend_definition type seop_include_appendage value 'DEF',
+  seop_incappend_implementation type seop_include_appendage value 'IMP',
+  seop_incappend_macros type seop_include_appendage value 'MAC',
+  seop_incappend_testclasses type seop_include_appendage value 'AU',
+
+  seop_incextapp_definition type seop_include_ext_app value 'CCDEF',
+  seop_incextapp_implementation type seop_include_ext_app value 'CCIMP',
+  seop_incextapp_macros type seop_include_ext_app value 'CCMAC',
+  seop_incextapp_testclasses type seop_include_ext_app value 'CCAU',
+
+  seop_ext_class_locals_def type seop_include_ext_app value 'CCDEF',
+  seop_ext_class_locals_imp type seop_include_ext_app value 'CCIMP',
+  seop_ext_class_macros type seop_include_ext_app value 'CCMAC',
+  seop_ext_class_testclasses type seop_include_ext_app value 'CCAU',
+  seop_ext_class_source type seop_include_extension value 'CS',
+
+
+*** obsolete ***
+  seop_inccode_include_ext_def type seop_include_appendage value 'DEF',
+  seop_inccode_include_ext_imp type seop_include_appendage value 'IMP',
+  seop_inccode_include_ext_mac type seop_include_appendage value 'MAC',
+
+
+  seop_src_inactive_deleted type seop_source_line
+      value '*** inactive deleted ***',
+  seop_src_inactive_new type seop_source_line
+      value '*** inactive new ***'.

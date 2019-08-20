@@ -1,0 +1,8 @@
+class ZCL_ABAP02_MOTORISTA definition
+  public
+  final
+  create public .
+
+public section.
+
+  interfaces ZIF_ABAP02_HUMANO .

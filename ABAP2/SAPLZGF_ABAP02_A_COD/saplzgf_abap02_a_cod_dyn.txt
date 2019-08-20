@@ -1,0 +1,2 @@
+SAPLZGF_ABAP02_A_COD                    9000Atualização visão: síntese YABAP02_CODIGO
+SAPLZGF_ABAP02_A_COD                    9001Atualização de visões: detalhe YABAP02_CODIGO

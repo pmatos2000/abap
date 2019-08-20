@@ -1,0 +1,5 @@
+ZCL_ABAP02_ARVORE_B           ADICIONA                      10
+ZCL_ABAP02_ARVORE_B           EM_ORDEM                      10
+ZCL_ABAP02_ARVORE_B           NO                            00
+ZCL_ABAP02_ARVORE_B           POS_ORDEM                     10
+ZCL_ABAP02_ARVORE_B           PRE_ORDEM                     10

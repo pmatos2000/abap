@@ -1,0 +1,3 @@
+  METHOD exporta_relatorio.
+    ARG0->EXPORTAR( ).
+  ENDMETHOD.

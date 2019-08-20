@@ -1,0 +1,3 @@
+  method ZIF_TIPO_ARQUIVO~EXPORTAR.
+    result = 'Estou vivo'.
+  endmethod.

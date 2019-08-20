@@ -1,0 +1,7 @@
+INTERFACE zif_tipo_arquivo
+  PUBLIC .
+
+  METHODS: exportar
+    RETURNING VALUE(result) TYPE string.
+
+ENDINTERFACE.

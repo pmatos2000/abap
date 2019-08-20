@@ -1,0 +1,201 @@
+*"* use this source file for your ABAP unit teste
+
+
+CLASS ltcl_calculadora DEFINITION
+  FINAL
+  FOR TESTING
+  DURATION SHORT
+  RISK LEVEL HARMLESS.
+
+  PRIVATE SECTION.
+
+    "(C)ode (U)nder (T)est
+    DATA: o_cut TYPE REF TO zcl_abap02_calc.
+
+    METHODS:
+      add FOR TESTING,
+      add_neg FOR TESTING,
+      sub FOR TESTING,
+      sub_neg FOR TESTING,
+      div FOR TESTING,
+      div_zero FOR TESTING,
+      mul FOR TESTING.
+
+ENDCLASS.
+
+
+CLASS ltcl_calculadora IMPLEMENTATION.
+
+  METHOD add.
+
+    o_cut = NEW #( ).
+    "Informar os números + Executar o código
+    DATA: resultado TYPE i.
+    resultado = o_cut->add(
+                num1   = 1
+                num2   = 1
+            ).
+    "Analisar a saída
+    cl_abap_unit_assert=>assert_equals(
+      EXPORTING
+        act = resultado
+        exp = 2
+*        ignore_hash_sequence = ABAP_FALSE
+*        tol                  =
+        msg = 'deveria retornar a soma de dois números'
+*        level                =
+*        quit                 =
+*      RECEIVING
+*        assertion_failed     =
+    ).
+
+  ENDMETHOD.
+
+
+  METHOD add_neg.
+
+    o_cut = NEW #( ).
+    "Informar os números + Executar o código
+    DATA: resultado TYPE i.
+    resultado = o_cut->add(
+                num1   = -1
+                num2   = -4
+            ).
+    "Analisar a saída
+    cl_abap_unit_assert=>assert_equals(
+      EXPORTING
+        act = resultado
+        exp = -5
+*        ignore_hash_sequence = ABAP_FALSE
+*        tol                  =
+        msg = 'deveria retornar a soma de dois números negativos'
+*        level                =
+*        quit                 =
+*      RECEIVING
+*        assertion_failed     =
+    ).
+
+  ENDMETHOD.
+
+
+  METHOD sub.
+
+    o_cut = NEW #( ).
+    "Informar os números + Executar o código
+    DATA: resultado TYPE i.
+    resultado = o_cut->sub(
+                num1   = 1
+                num2   = 1
+            ).
+    "Analisar a saída
+    cl_abap_unit_assert=>assert_equals(
+      EXPORTING
+        act = resultado
+        exp = 0
+*        ignore_hash_sequence = ABAP_FALSE
+*        tol                  =
+        msg = 'deveria retornar a subtração de dois números'
+*        level                =
+*        quit                 =
+*      RECEIVING
+*        assertion_failed     =
+    ).
+
+  ENDMETHOD.
+
+
+  METHOD sub_neg.
+
+    o_cut = NEW #( ).
+    "Informar os números + Executar o código
+    DATA: resultado TYPE i.
+    resultado = o_cut->sub(
+                num1   = -1
+                num2   = -1
+            ).
+    "Analisar a saída
+    cl_abap_unit_assert=>assert_equals(
+      EXPORTING
+        act = resultado
+        exp = 0
+*        ignore_hash_sequence = ABAP_FALSE
+*        tol                  =
+        msg = 'deveria retornar a subtração de dois números negativos'
+*        level                =
+*        quit                 =
+*      RECEIVING
+*        assertion_failed     =
+    ).
+
+  ENDMETHOD.
+
+
+  METHOD div.
+
+    o_cut = NEW #( ).
+    "Informar os números + Executar o código
+    DATA: resultado TYPE i.
+    resultado = o_cut->div(
+                num1   = 1
+                num2   = 1
+            ).
+    "Analisar a saída
+    cl_abap_unit_assert=>assert_equals(
+      EXPORTING
+        act = resultado
+        exp = 1
+*        ignore_hash_sequence = ABAP_FALSE
+*        tol                  =
+        msg = 'deveria retornar a divição de dois números'
+*        level                =
+*        quit                 =
+*      RECEIVING
+*        assertion_failed     =
+    ).
+
+  ENDMETHOD.
+
+  METHOD div_zero.
+    o_cut = NEW #( ).
+    "Informar os números + Executar o código
+    DATA: resultado TYPE i.
+    TRY.
+      resultado = o_cut->div(
+                  num1   = 1
+                  num2   = 0
+              ).
+    cl_abap_unit_assert=>fail( 'deveria levantar uma exceção de divisão por zero' ).
+
+    CATCH cx_sy_zerodivide.
+        "A exceção é o comportamento esperado
+    ENDTRY.
+
+  ENDMETHOD.
+
+  METHOD mul.
+
+    o_cut = NEW #( ).
+    "Informar os números + Executar o código
+    DATA: resultado TYPE i.
+    resultado = o_cut->mul(
+                num1   = 1
+                num2   = 1
+            ).
+    "Analisar a saída
+    cl_abap_unit_assert=>assert_equals(
+      EXPORTING
+        act = resultado
+        exp = 1
+*        ignore_hash_sequence = ABAP_FALSE
+*        tol                  =
+        msg = 'deveria retornar a multiplicação de dois números'
+*        level                =
+*        quit                 =
+*      RECEIVING
+*        assertion_failed     =
+    ).
+
+  ENDMETHOD.
+
+
+ENDCLASS.

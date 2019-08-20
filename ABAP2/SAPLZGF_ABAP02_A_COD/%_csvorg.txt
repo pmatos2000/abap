@@ -1,0 +1,56 @@
+TYPE-POOL svorg .
+
+* fields for OC attributes
+TYPES: svorg_oc_found_tab_type TYPE TABLE OF orgcrfld WITH NON-UNIQUE
+        KEY org_crit org_attr tabname.
+* attributes
+TYPES: BEGIN OF svorg_oc_attribute,
+         org_attr TYPE org_attr,
+         authfld TYPE org_autfld,
+         outputlen type dfies-outputlen,
+         shlp type shlpname,
+         shlpfield type shlpfield,
+         attrbez TYPE orgattrbez,
+       END OF svorg_oc_attribute,
+       svorg_oc_found_attrs_type TYPE SORTED TABLE OF svorg_oc_attribute
+        WITH UNIQUE KEY authfld.
+* authority values
+TYPES: BEGIN OF svorg_ustabset_mark,
+         sfield TYPE xufield,
+         von TYPE xuval,
+         bis TYPE xuval,
+         mark TYPE xfeld,
+       END OF svorg_ustabset_mark,
+       svorg_marked_authval_type TYPE TABLE OF svorg_ustabset_mark
+        WITH NON-UNIQUE KEY sfield,
+       svorg_actgr_authval_type TYPE TABLE OF ustabset
+        WITH NON-UNIQUE KEY sfield,
+       svorg_usval_tab_type TYPE TABLE OF usvalues WITH KEY objct auth
+        field,
+       svorg_vimsellist_type type table of vimsellist.
+TYPES: BEGIN OF svorg_tabkey_type ,
+        keyfield TYPE fieldname,
+        tabname TYPE tabname,
+        domname TYPE domname,
+        used TYPE xfeld,
+       END OF svorg_tabkey_type ,
+       svorg_tabkeys_tab_type TYPE TABLE OF
+        svorg_tabkey_type WITH KEY keyfield.
+
+TYPES: BEGIN OF svorg_message_type,
+         msgid LIKE sy-msgid,
+         msgty LIKE sy-msgty,
+         msgno LIKE sy-msgno,
+         msgv1 LIKE sy-msgv1,
+         msgv2 LIKE sy-msgv2,
+         msgv3 LIKE sy-msgv3,
+         msgv4 LIKE sy-msgv4,
+        END OF svorg_message_type.
+CONSTANTS: svorg_org_crit type org_autfld value 'ORG_CRIT',
+           svorg_actvt type org_autfld value 'ACTVT',
+           svorg_maint type xuval value '02',
+           svorg_read type xuval value '03',
+           svorg_org_field TYPE org_autfld VALUE 'ORG_FIELD',
+           SVORG_line_auth type xuobject value 'S_TABU_LIN',
+           svorg_direct TYPE xfeld VALUE 'D',
+           svorg_referenced TYPE xfeld VALUE 'R'.

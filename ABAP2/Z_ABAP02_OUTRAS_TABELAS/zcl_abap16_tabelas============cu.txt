@@ -1,0 +1,16 @@
+CLASS zcl_abap16_tabelas DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+
+    TYPES:
+
+      BEGIN OF ty_novo,
+        nome TYPE string,
+      END OF ty_novo.
+
+    METHODS add_pessoa
+      IMPORTING
+        !o_pessoa TYPE REF TO zcl_abap16_pessoa .

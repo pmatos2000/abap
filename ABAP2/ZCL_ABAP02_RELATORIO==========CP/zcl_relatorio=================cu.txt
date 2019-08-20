@@ -1,0 +1,22 @@
+CLASS zcl_relatorio DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+
+    TYPES: relatorio TYPE STANDARD TABLE OF string WITH DEFAULT KEY.
+
+    METHODS:
+      exibe_relatorio
+        IMPORTING dados_relatorio TYPE REF TO zif_dados_relatorio.
+*        RETURNING VALUE(dados_organizados) TYPE relatorio.
+
+    METHODS:
+      exporta_relatorio
+        IMPORTING tipo_arquivo TYPE REF TO zif_tipo_arquivo.
+
+    METHODS:
+      deu_certo
+        RETURNING VALUE(result) TYPE abap_bool.
+

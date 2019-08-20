@@ -1,0 +1,29 @@
+REPORT Y_ABAP02_EVENTOS_2.
+
+PARAMETERS:
+  p_nome(32) TYPE c.
+
+INITIALIZATION.
+  p_nome = 'nome'.
+
+
+SELECT-OPTIONS:
+  filtro FOR p_nome.
+
+AT SELECTION-SCREEN.
+  IF STRLEN( p_nome ) < 3.
+    MESSAGE e003(y_abap02_msg).
+  ENDIF.
+
+START-OF-SELECTION.
+  IF p_nome IN filtro[].
+    WRITE: 'Está dentro do range desejado'.
+  ELSE.
+    WRITE: 'Não está dentro do range'.
+  ENDIF.
+
+  ULINE.
+
+  LOOP AT filtro.
+    WRITE: /, filtro.
+  ENDLOOP.

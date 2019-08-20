@@ -1,0 +1,79 @@
+REPORT z_abap02_alv.
+
+CLASS lcl_app DEFINITION.
+  PUBLIC SECTION.
+    METHODS:
+      constructor,
+      selecionar_dados,
+      exibir_resultados.
+
+  PRIVATE SECTION.
+    DATA: alv            TYPE REF TO cl_gui_alv_grid,
+          container      TYPE REF TO cl_gui_docking_container,
+          tab_resultados TYPE STANDARD TABLE OF yabap02_pessoa.
+ENDCLASS.
+
+CLASS lcl_app IMPLEMENTATION.
+
+  METHOD constructor.
+
+    alv = NEW cl_gui_alv_grid(
+        i_parent          = cl_gui_custom_container=>screen0
+    ).
+  ENDMETHOD.
+
+
+  METHOD selecionar_dados.
+
+  ENDMETHOD.
+
+  METHOD exibir_resultados.
+
+    DATA: pessoa TYPE yabap02_pessoa.
+    pessoa-id = 1.
+    pessoa-nome = 'PAULO'.
+    APPEND pessoa TO tab_resultados.
+    pessoa-id = 2.
+    pessoa-nome = 'LUCAS'.
+    APPEND pessoa TO tab_resultados.
+
+
+    alv->set_table_for_first_display(
+       EXPORTING
+         i_structure_name              = 'YABAP02_PESSOA'
+       CHANGING
+         it_outtab                     = tab_resultados
+       EXCEPTIONS
+         invalid_parameter_combination = 1
+         program_error                 = 2
+         too_many_lines                = 3
+         OTHERS                        = 4
+     ).
+    IF sy-subrc <> 0.
+      MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+                 WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+    ENDIF.
+
+    alv->refresh_table_display( ).
+
+  ENDMETHOD.
+
+ENDCLASS.
+
+START-OF-SELECTION.
+
+  DATA: lo_app TYPE REF TO lcl_app.
+
+  lo_app = NEW lcl_app( ).
+
+  lo_app->selecionar_dados( ).
+  CALL SCREEN 9000.
+
+*&---------------------------------------------------------------------*
+*&      Module  EXIBIR_ALV  OUTPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+MODULE exibir_alv OUTPUT.
+  lo_app->exibir_resultados( ).
+ENDMODULE.

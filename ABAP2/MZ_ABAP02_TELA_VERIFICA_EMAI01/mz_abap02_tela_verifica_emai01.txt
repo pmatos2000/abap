@@ -1,0 +1,48 @@
+*----------------------------------------------------------------------*
+***INCLUDE MZ_ABAP02_TELA_VERIFICA_EMAI01.
+*----------------------------------------------------------------------*
+*&---------------------------------------------------------------------*
+*&      Module  VERIFICA_EMAIL  INPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+MODULE verifica_email INPUT.
+  PERFORM form_verifica_email.
+ENDMODULE.
+
+FORM form_verifica_email.
+  DATA:
+    cont TYPE i,
+    n    TYPE i,
+    i    TYPE i.
+
+  cont = 0.
+  n = strlen( scustom-email ).
+  i = 0.
+  WHILE i < n.
+    IF scustom-email+i(1) = '@'.
+      cont = cont + 1.
+    ENDIF.
+    i = i + 1.
+  ENDWHILE.
+
+  IF cont <> 1.
+    MESSAGE 'Digitou um valor inválido' TYPE 'E'.
+    EXIT.
+  ENDIF.
+
+  i = 0.
+  cont = 0.
+  WHILE i < n.
+    IF scustom-email+i(1) = '.'.
+      cont = cont + 1.
+    ENDIF.
+    i = i + 1.
+  ENDWHILE.
+
+  IF cont = 0.
+    MESSAGE 'Digitou um valor inválido' TYPE 'E'.
+    EXIT.
+  ENDIF.
+
+ENDFORM.

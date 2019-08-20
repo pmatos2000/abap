@@ -1,0 +1,7 @@
+REPORT Y_ABAP02_MANIPULACAO_STRING.
+
+
+START-OF-SELECTION.
+  WRITE SY-DATUM+6(2) && '/' && SY-DATUM+4(2) && '/' && SY-DATUM(4).
+  WRITE SY-DATUM+4(2) && '/' && SY-DATUM+6(2) && '/' && SY-DATUM(4).
+  WRITE SY-DATUM+4(2) && '/' && SY-DATUM+6(2) && '/' && SY-DATUM(4).

@@ -1,0 +1,14 @@
+  PRIVATE SECTION.
+
+    TYPES:
+      BEGIN OF registro_pessoa,
+        nome   TYPE string,
+        pessoa TYPE REF TO zcl_abap16_pessoa,
+      END OF registro_pessoa,
+
+      ty_pessoas TYPE SORTED TABLE OF registro_pessoa WITH UNIQUE KEY nome.
+
+    DATA: pessoas        TYPE ty_pessoas,
+          outras_pessoas TYPE HASHED TABLE OF registro_pessoa WITH UNIQUE KEY nome.
+
+

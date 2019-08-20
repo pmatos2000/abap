@@ -1,0 +1,27 @@
+CLASS zcl_abap16_pessoa DEFINITION
+  PUBLIC
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+
+    CLASS-DATA numero_pessoas_criadas TYPE i VALUE '20' ##NO_TEXT.
+
+    METHODS get_cpf
+      RETURNING VALUE(result) TYPE ze_abap11_cpf.
+    METHODS andar .
+    METHODS escrever_nome .
+    METHODS constructor
+      IMPORTING
+        !nome            TYPE zabap01_nome
+        !data_nascimento TYPE zabap03_elemento_datanasciment .
+    METHODS get_data_nascimento
+      RETURNING
+        VALUE(data_nascimento) TYPE zabap03_elemento_datanasciment .
+
+    METHODS metodo_novo.
+
+    METHODS
+      get_nome
+        RETURNING VALUE(result) TYPE string.
+
+    CLASS-METHODS escreve_independente_instancia .

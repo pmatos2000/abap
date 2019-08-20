@@ -1,0 +1,18 @@
+class CX_SY_ZERODIVIDE definition
+  public
+  inheriting from CX_SY_ARITHMETIC_ERROR
+  final
+  create public .
+
+*"* public components of class CX_SY_ZERODIVIDE
+*"* do not include other source files here!!!
+public section.
+
+  constants CX_SY_ZERODIVIDE type SOTR_CONC
+ value '155FB739985CE619E10000000A11447B' .
+
+  methods CONSTRUCTOR
+    importing
+      !TEXTID like TEXTID optional
+      !PREVIOUS like PREVIOUS optional
+      value(OPERATION) type STRING optional .

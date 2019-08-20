@@ -1,0 +1,9 @@
+TYPE-POOL SCHEK .
+
+TYPES: BEGIN OF SCHEK_CORR,
+         NUMBER    TYPE I,
+         KIND      TYPE C,
+         LINNO     TYPE I,
+         COLNO     TYPE I,
+         WORD(255) TYPE C,
+       END OF SCHEK_CORR.

@@ -1,0 +1,41 @@
+REPORT y_abap02_estrutura.
+
+TYPES:
+  BEGIN OF dados_pessoais,
+    nome  TYPE string,
+    email TYPE string,
+    tel TYPE string,
+  END OF dados_pessoais.
+
+DATA:
+  dados TYPE dados_pessoais,
+  pessoas TYPE STANDARD TABLE OF dados_pessoais.
+
+START-OF-SELECTION.
+* Gravando dados da tabela
+  dados-nome = 'Paulo'.
+  dados-email = 'p@gmail.com'.
+  dados-tel = '999'.
+
+  APPEND dados TO pessoas.
+
+  dados-nome = 'Maria'.
+  dados-email = 'm@yahoo.com.br'.
+  dados-tel = '888'.
+
+  APPEND dados TO pessoas.
+
+  dados-nome = 'L'.
+  dados-email = 'l@bol.com'.
+  dados-tel = '777'.
+
+  APPEND dados TO pessoas.
+
+* Recuperado dados
+
+  READ TABLE pessoas INTO dados INDEX 1.
+  WRITE: 'Nome: ', dados-nome, /.
+
+  LOOP AT pessoas INTO dados.
+    WRITE: 'i = ', sy-tabix, ' Nome: ', dados-nome, /.
+  ENDLOOP.

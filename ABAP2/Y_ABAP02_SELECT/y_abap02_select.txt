@@ -1,0 +1,85 @@
+REPORT Y_ABAP02_SELECT.
+
+
+TYPES:
+   t_scarr TYPE STANDARD TABLE OF scarr.
+
+FORM selecao_unica USING  p_carrid TYPE scarr-carrid
+                   CHANGING p_estrutura TYPE scarr.
+  CLEAR:
+    p_estrutura.
+
+  SELECT SINGLE * FROM scarr INTO p_estrutura WHERE carrid = p_carrid.
+
+
+  IF sy-subrc = 0.
+    WRITE: p_estrutura-carrid, ',' , p_estrutura-carrname, /.
+  ELSE.
+    WRITE: 'Registro não encontrado', /.
+  ENDIF.
+
+  ULINE.
+
+ENDFORM.
+
+
+FORM selecao_multi USING  p_carrid TYPE scarr-carrid
+                   CHANGING p_tab TYPE t_scarr.
+  CLEAR:
+    p_tab.
+
+  DATA:
+    estrutura TYPE scarr.
+
+  SELECT * FROM scarr INTO TABLE p_tab.
+
+
+  IF sy-subrc = 0.
+    LOOP AT p_tab INTO estrutura.
+      WRITE: estrutura-carrid, ',' , estrutura-carrname, /.
+    ENDLOOP.
+  ELSE.
+    WRITE: 'Registro não encontrado', /.
+  ENDIF.
+
+  ULINE.
+
+ENDFORM.
+
+
+FORM selecao_estrutura USING  p_carrid TYPE scarr-carrid.
+
+  TYPES:
+    BEGIN OF t_estrutura,
+      carrid   TYPE scarr-carrid,
+      carrname TYPE scarr-carrname,
+    END OF t_estrutura.
+
+  DATA:
+    estrutura TYPE t_estrutura.
+
+  SELECT SINGLE carrid carrname FROM scarr INTO estrutura WHERE carrid = p_carrid.
+
+
+  IF sy-subrc = 0.
+    WRITE: estrutura-carrid, ',' , estrutura-carrname, /.
+  ELSE.
+    WRITE: 'Registro não encontrado', /.
+  ENDIF.
+
+  ULINE.
+
+ENDFORM.
+
+
+PARAMETERS:
+  p_cod TYPE scarr-carrid.
+
+START-OF-SELECTION.
+  DATA:
+    estrutura TYPE scarr,
+    tabela    TYPE t_scarr.
+
+   PERFORM selecao_unica USING p_cod CHANGING estrutura.
+   PERFORM selecao_multi USING p_cod CHANGING tabela.
+   PERFORM selecao_estrutura USING p_cod.

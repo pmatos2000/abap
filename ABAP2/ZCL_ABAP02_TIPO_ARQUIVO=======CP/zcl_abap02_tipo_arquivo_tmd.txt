@@ -1,0 +1,2 @@
+ZCL_ABAP02_TIPO_ARQUIVO       00000                                                             0
+ZCL_ABAP02_TIPO_ARQUIVO       00001ZIF_TIPO_ARQUIVO~EXPORTAR                                    0

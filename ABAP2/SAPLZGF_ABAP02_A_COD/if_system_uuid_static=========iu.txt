@@ -1,0 +1,62 @@
+*"* components of interface IF_SYSTEM_UUID_STATIC
+interface IF_SYSTEM_UUID_STATIC
+  public .
+
+
+  class-methods CREATE_UUID_X16
+    returning
+      value(UUID) type SYSUUID_X16
+    raising
+      CX_UUID_ERROR .
+  class-methods CREATE_UUID_C22
+    returning
+      value(UUID) type SYSUUID_C22
+    raising
+      CX_UUID_ERROR .
+  class-methods CREATE_UUID_C26
+    returning
+      value(UUID) type SYSUUID_C26
+    raising
+      CX_UUID_ERROR .
+  class-methods CREATE_UUID_C32
+    returning
+      value(UUID) type SYSUUID_C32
+    raising
+      CX_UUID_ERROR .
+  class-methods CONVERT_UUID_X16
+    importing
+      !UUID type SYSUUID_X16
+    exporting
+      !UUID_C22 type SYSUUID_C22
+      !UUID_C32 type SYSUUID_C32
+      !UUID_C26 type SYSUUID_C26
+    raising
+      CX_UUID_ERROR .
+  class-methods CONVERT_UUID_C22
+    importing
+      !UUID type SYSUUID_C22
+    exporting
+      !UUID_X16 type SYSUUID_X16
+      !UUID_C32 type SYSUUID_C32
+      !UUID_C26 type SYSUUID_C26
+    raising
+      CX_UUID_ERROR .
+  class-methods CONVERT_UUID_C32
+    importing
+      !UUID type SYSUUID_C32
+    exporting
+      !UUID_X16 type SYSUUID_X16
+      !UUID_C22 type SYSUUID_C22
+      !UUID_C26 type SYSUUID_C26
+    raising
+      CX_UUID_ERROR .
+  class-methods CONVERT_UUID_C26
+    importing
+      !UUID type SYSUUID_C26
+    exporting
+      !UUID_X16 type SYSUUID_X16
+      !UUID_C22 type SYSUUID_C22
+      !UUID_C32 type SYSUUID_C32
+    raising
+      CX_UUID_ERROR .
+endinterface.

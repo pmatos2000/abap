@@ -1,0 +1,4 @@
+private section.
+
+  data ESQ type ref to ZCL_ABAP02_ARVORE_B_NO .
+  data DIR type ref to ZCL_ABAP02_ARVORE_B_NO .

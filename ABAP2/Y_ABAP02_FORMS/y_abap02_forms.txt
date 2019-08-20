@@ -1,0 +1,43 @@
+REPORT y_abap02_forms.
+
+TYPES:
+  BEGIN OF ponto,
+    x TYPE i,
+    y TYPE i,
+  END OF ponto,
+  ty_tab_pontos TYPE STANDARD TABLE OF ponto.
+
+
+FORM cria_tabela USING n TYPE i
+                       m TYPE i
+                 CHANGING pontos TYPE ty_tab_pontos.
+  DATA:
+    p    TYPE ponto,
+    idx1 TYPE i VALUE 0,
+    idx2 TYPE i VALUE 0.
+
+  WHILE  idx1 < n.
+    idx2 = 0.
+    WHILE  idx2 < m.
+      p-x = idx1.
+      p-y = idx2.
+      APPEND p TO pontos.
+      idx2 = idx2 + 1.
+    ENDWHILE.
+    idx1 = idx1 + 1.
+  ENDWHILE.
+ENDFORM.
+
+START-OF-SELECTION.
+
+  DATA:
+    pontos TYPE ty_tab_pontos,
+    p      TYPE ponto.
+
+  PERFORM cria_tabela USING 100
+                            100
+                      CHANGING      pontos.
+
+  LOOP AT pontos INTO p.
+    WRITE: 'id: ', sy-tabix, 'x: ', p-x, 'y: ', p-y, /.
+  ENDLOOP.

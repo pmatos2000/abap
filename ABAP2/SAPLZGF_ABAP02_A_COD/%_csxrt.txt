@@ -1,0 +1,65 @@
+TYPE-POOL sxrt .
+
+TYPES:     sxrt_boolean(1) TYPE c,
+           sxrt_prefix(10),
+           sxrt_symbol_type(1),
+           sxrt_clif_prefix TYPE sxrt_prefix,
+           sxrt_method_prefix TYPE sxrt_prefix.
+
+TYPES: BEGIN OF sxrt_flt_cache_struct,
+         flt_name    LIKE v_ext_imp-flt_val,
+         order_num   TYPE i,
+         method_name LIKE sxc_impswh-metho_name,
+         imp_class   LIKE sxc_class-imp_class,
+         imp_switch  LIKE sxc_impswh-imp_switch,
+         valid       TYPE sxrt_boolean,
+         obj         TYPE REF TO object,
+         eo_object   TYPE REF TO cl_fobu_method_evaluation,
+       END OF sxrt_flt_cache_struct.
+TYPES: sxrt_flt_cache_tab TYPE SORTED TABLE OF
+            sxrt_flt_cache_struct
+            WITH UNIQUE KEY flt_name order_num method_name imp_class.
+TYPES: BEGIN OF sxrt_exit_tab_struct,
+         imp_name    LIKE v_ext_imp-imp_name,
+         inter_name  LIKE v_ext_imp-inter_name,
+         flt_val     LIKE v_ext_imp-flt_val,
+         imp_class   LIKE v_ext_imp-imp_class,
+         method_name LIKE sxc_impswh-metho_name,
+         imp_switch  LIKE sxc_impswh-imp_switch,
+         active      LIKE v_ext_imp-active,
+         obj         TYPE REF TO object,
+         released    TYPE sxrt_boolean,
+         layer       LIKE sxc_attr-layer,
+         order_num   TYPE i,
+       END OF sxrt_exit_tab_struct.
+TYPES: sxrt_exit_tab TYPE sxrt_exit_tab_struct OCCURS 0.
+TYPES: sxrt_ext_imp_struct LIKE v_ext_imp,
+       sxrt_ext_imp_tab TYPE sxrt_ext_imp_struct OCCURS 0.
+
+TYPES: BEGIN OF sxrt_filter_struct,
+         flt_val LIKE rsexscrn-flt_val,
+         fltval_txt TYPE flt_text,
+       END OF sxrt_filter_struct.
+TYPES: sxrt_filter_table TYPE sxrt_filter_struct OCCURS 0.
+
+TYPES: BEGIN OF sxrt_layer,
+         layer LIKE sxc_attr-layer,
+       END OF sxrt_layer.
+TYPES: sxrt_layer_table TYPE STANDARD TABLE OF sxrt_layer
+      WITH KEY layer.
+
+CONSTANTS: sxrt_true  TYPE sxrt_boolean VALUE 'X',
+           sxrt_false TYPE sxrt_boolean VALUE space.
+CONSTANTS: sxrt_symbol_wildcard  TYPE sxrt_symbol_type VALUE '*',
+           sxrt_symbol_separator TYPE sxrt_symbol_type VALUE '|'.
+
+CONSTANTS:
+    sxrt_nor_meth_prefix   TYPE sxrt_method_prefix VALUE 'ME_',
+    sxrt_exm_meth_prefix   TYPE sxrt_method_prefix VALUE 'EM_',
+    sxrt_def_meth_prefix   TYPE sxrt_method_prefix VALUE 'DF_',
+    sxrt_exit_class_prefix TYPE sxrt_clif_prefix VALUE 'CL_EX_',
+    sxrt_exit_intf_prefix  TYPE sxrt_clif_prefix VALUE 'IF_EX_',
+    sxrt_coco_class_prefix TYPE sxrt_clif_prefix VALUE 'CL_EX_CC_',
+    sxrt_imp_class_prefix  TYPE sxrt_clif_prefix VALUE 'CL_IM_',
+    sxrt_def_imp_class_prefix  TYPE sxrt_clif_prefix VALUE 'CL_DEF_IM_',
+    sxrt_exm_imp_class_prefix  TYPE sxrt_clif_prefix VALUE 'CL_EXM_IM_'.

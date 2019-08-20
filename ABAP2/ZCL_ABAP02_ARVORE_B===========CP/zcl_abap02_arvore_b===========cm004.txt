@@ -1,0 +1,5 @@
+  method POS_ORDEM.
+    IF ( NOT me->no IS INITIAL ).
+      me->no->pos_ordem( ).
+    ENDIF.
+  endmethod.

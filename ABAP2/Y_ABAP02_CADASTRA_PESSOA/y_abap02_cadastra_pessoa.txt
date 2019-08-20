@@ -1,0 +1,121 @@
+REPORT y_abap02_cadastra_pessoa.
+
+PARAMETERS:
+  inser TYPE c RADIOBUTTON GROUP g1,
+  modif TYPE c RADIOBUTTON GROUP g1,
+  delet TYPE c RADIOBUTTON GROUP g1,
+  busca TYPE c RADIOBUTTON GROUP g1,
+  p_id TYPE yabap02_pessoa-id,
+  p_nome TYPE yabap02_pessoa-nome,
+  p_email TYPE yabap02_pessoa-email,
+  p_tel TYPE yabap02_pessoa-tel,
+  p_dat TYPE yabap02_pessoa-dat_nasc.
+
+START-OF-SELECTION.
+
+  CASE 'X'.
+    WHEN inser.
+      PERFORM insere_pessoa USING p_id p_nome p_email p_tel p_dat.
+    WHEN modif.
+      PERFORM modifica_pessoa USING p_id p_nome p_email p_tel p_dat.
+    WHEN delet.
+      PERFORM delete_pessoa USING p_id.
+    WHEN busca.
+      PERFORM busca_pessoa USING p_id.
+
+    ENDCASE.
+
+
+FORM insere_pessoa USING p_id TYPE yabap02_pessoa-id
+                         p_nome TYPE yabap02_pessoa-nome
+                         p_email TYPE yabap02_pessoa-email
+                         p_tel TYPE yabap02_pessoa-tel
+                         p_dat TYPE yabap02_pessoa-dat_nasc.
+
+  DATA:
+    pessoa TYPE yabap02_pessoa.
+
+  pessoa-id = p_id.
+  pessoa-nome = p_nome.
+  pessoa-email = p_email.
+  pessoa-tel = p_tel.
+  pessoa-dat_nasc = p_dat.
+
+  INSERT yabap02_pessoa FROM pessoa.
+
+  IF sy-subrc <> 0.
+    WRITE: text-e01.
+  ELSE.
+    WRITE: text-s01.
+  ENDIF.
+
+ENDFORM.
+
+
+FORM modifica_pessoa USING p_id TYPE yabap02_pessoa-id
+                         p_nome TYPE yabap02_pessoa-nome
+                         p_email TYPE yabap02_pessoa-email
+                         p_tel TYPE yabap02_pessoa-tel
+                         p_dat TYPE yabap02_pessoa-dat_nasc.
+
+  DATA:
+    pessoa TYPE yabap02_pessoa.
+
+  pessoa-id = p_id.
+  pessoa-nome = p_nome.
+  pessoa-email = p_email.
+  pessoa-tel = p_tel.
+  pessoa-dat_nasc = p_dat.
+
+  MODIFY yabap02_pessoa FROM pessoa.
+
+  IF sy-subrc <> 0.
+    WRITE: text-e02.
+  ELSE.
+    WRITE: text-s01.
+  ENDIF.
+
+ENDFORM.
+
+
+FORM delete_pessoa USING p_id TYPE yabap02_pessoa-id.
+
+  DATA:
+    pessoa TYPE yabap02_pessoa.
+
+  "Busca a pessoa pelo ID
+  SELECT SINGLE *
+    FROM yabap02_pessoa
+    INTO pessoa
+    WHERE id = p_id.
+
+  IF sy-subrc <> 0.
+    WRITE: text-e02.
+  ELSE.
+    DELETE yabap02_pessoa FROM pessoa.
+    WRITE: text-s01.
+  ENDIF.
+
+ENDFORM.
+
+FORM busca_pessoa USING p_id TYPE yabap02_pessoa-id.
+
+  DATA:
+    pessoa TYPE yabap02_pessoa.
+
+  SELECT SINGLE *
+    FROM yabap02_pessoa
+    INTO pessoa
+    WHERE id = p_id.
+
+  IF sy-subrc <> 0.
+    WRITE: text-e02.
+  ELSE.
+    WRITE:
+      'ID: ', pessoa-id, /,
+      'Nome: ', pessoa-nome, /,
+      'E-mail: ', pessoa-email, /,
+      'Tel: ', pessoa-tel, /,
+      'Data de nascimento: ', pessoa-dat_nasc, /, /.
+  ENDIF.
+ENDFORM.

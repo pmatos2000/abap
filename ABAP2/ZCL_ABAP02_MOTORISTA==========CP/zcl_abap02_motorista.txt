@@ -1,0 +1,25 @@
+class-pool .
+*"* class pool for class ZCL_ABAP02_MOTORISTA
+
+*"* local type definitions
+include ZCL_ABAP02_MOTORISTA==========ccdef.
+
+*"* class ZCL_ABAP02_MOTORISTA definition
+*"* public declarations
+  include ZCL_ABAP02_MOTORISTA==========cu.
+*"* protected declarations
+  include ZCL_ABAP02_MOTORISTA==========co.
+*"* private declarations
+  include ZCL_ABAP02_MOTORISTA==========ci.
+endclass. "ZCL_ABAP02_MOTORISTA definition
+
+*"* macro definitions
+include ZCL_ABAP02_MOTORISTA==========ccmac.
+*"* local class implementation
+include ZCL_ABAP02_MOTORISTA==========ccimp.
+
+class ZCL_ABAP02_MOTORISTA implementation.
+*"* method's implementations
+  include methods.
+endclass. "ZCL_ABAP02_MOTORISTA implementation
+

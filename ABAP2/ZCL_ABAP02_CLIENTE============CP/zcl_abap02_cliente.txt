@@ -1,0 +1,25 @@
+class-pool .
+*"* class pool for class ZCL_ABAP02_CLIENTE
+
+*"* local type definitions
+include ZCL_ABAP02_CLIENTE============ccdef.
+
+*"* class ZCL_ABAP02_CLIENTE definition
+*"* public declarations
+  include ZCL_ABAP02_CLIENTE============cu.
+*"* protected declarations
+  include ZCL_ABAP02_CLIENTE============co.
+*"* private declarations
+  include ZCL_ABAP02_CLIENTE============ci.
+endclass. "ZCL_ABAP02_CLIENTE definition
+
+*"* macro definitions
+include ZCL_ABAP02_CLIENTE============ccmac.
+*"* local class implementation
+include ZCL_ABAP02_CLIENTE============ccimp.
+
+class ZCL_ABAP02_CLIENTE implementation.
+*"* method's implementations
+  include methods.
+endclass. "ZCL_ABAP02_CLIENTE implementation
+

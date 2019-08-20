@@ -1,0 +1,7 @@
+ZCL_ABAP02_PESSOA             CONSTRUCTOR                   12
+ZCL_ABAP02_PESSOA             CPF                           00
+ZCL_ABAP02_PESSOA             DATA_NASCIMENTO               00
+ZCL_ABAP02_PESSOA             ESCREVER_NOME                 10
+ZCL_ABAP02_PESSOA             GET_DATA_NASCIMENTO           10
+ZCL_ABAP02_PESSOA             NOME                          00
+ZCL_ABAP02_PESSOA             SET_CPF                       10

@@ -1,0 +1,13 @@
+ZCL_ABAP02_CALC               ADD                           NUM1                          P
+ZCL_ABAP02_CALC               ADD                           NUM2                          P
+ZCL_ABAP02_CALC               ADD                           RES                           P
+ZCL_ABAP02_CALC               DIV                           CX_SY_ZERODIVIDE              PSystem-Exception für Teilen durch Null.
+ZCL_ABAP02_CALC               DIV                           NUM1                          P
+ZCL_ABAP02_CALC               DIV                           NUM2                          P
+ZCL_ABAP02_CALC               DIV                           RES                           P
+ZCL_ABAP02_CALC               MUL                           NUM1                          P
+ZCL_ABAP02_CALC               MUL                           NUM2                          P
+ZCL_ABAP02_CALC               MUL                           RES                           P
+ZCL_ABAP02_CALC               SUB                           NUM1                          P
+ZCL_ABAP02_CALC               SUB                           NUM2                          P
+ZCL_ABAP02_CALC               SUB                           RES                           P

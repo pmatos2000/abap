@@ -1,0 +1,25 @@
+class-pool .
+*"* class pool for class ZCL_ABAP02_TIPO_ARQUIVO
+
+*"* local type definitions
+include ZCL_ABAP02_TIPO_ARQUIVO=======ccdef.
+
+*"* class ZCL_ABAP02_TIPO_ARQUIVO definition
+*"* public declarations
+  include ZCL_ABAP02_TIPO_ARQUIVO=======cu.
+*"* protected declarations
+  include ZCL_ABAP02_TIPO_ARQUIVO=======co.
+*"* private declarations
+  include ZCL_ABAP02_TIPO_ARQUIVO=======ci.
+endclass. "ZCL_ABAP02_TIPO_ARQUIVO definition
+
+*"* macro definitions
+include ZCL_ABAP02_TIPO_ARQUIVO=======ccmac.
+*"* local class implementation
+include ZCL_ABAP02_TIPO_ARQUIVO=======ccimp.
+
+class ZCL_ABAP02_TIPO_ARQUIVO implementation.
+*"* method's implementations
+  include methods.
+endclass. "ZCL_ABAP02_TIPO_ARQUIVO implementation
+

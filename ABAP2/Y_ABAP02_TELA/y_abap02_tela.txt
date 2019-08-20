@@ -1,0 +1,18 @@
+REPORT Y_ABAP02_TELA.
+
+PARAMETERS:
+  nome TYPE c LENGTH 32,
+  idade TYPE i,
+  curso TYPE c LENGTH 32,
+  cpf TYPE c LENGTH 11,
+  email TYPE c LENGTH 32,
+  tel TYPE c LENGTH 32.
+
+START-OF-SELECTION.
+  WRITE:
+    'Nome:', nome, /,
+    'Idade:', idade, /,
+    'Curso:', curso, /,
+    'CPF:', cpf, /,
+    'E-mail:', email, /,
+    'Tel.:', tel.

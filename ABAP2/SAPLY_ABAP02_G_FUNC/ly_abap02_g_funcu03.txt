@@ -1,0 +1,21 @@
+FUNCTION Y_ABAP02_FUNC_DIV.
+*"----------------------------------------------------------------------
+*"*"Interface local:
+*"  IMPORTING
+*"     REFERENCE(A) TYPE  I
+*"     REFERENCE(B) TYPE  I
+*"  EXPORTING
+*"     REFERENCE(RES) TYPE  I
+*"  EXCEPTIONS
+*"      DIV_ZERO
+*"----------------------------------------------------------------------
+  IF B <> 0.
+    RES = A / B.
+  ELSE.
+    RAISE DIV_ZERO.
+  ENDIF.
+
+
+
+
+ENDFUNCTION.

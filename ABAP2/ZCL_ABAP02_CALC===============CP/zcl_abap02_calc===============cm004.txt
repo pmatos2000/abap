@@ -1,0 +1,3 @@
+  method SUB.
+    RES = NUM1 - NUM2.
+  endmethod.

@@ -1,0 +1,37 @@
+"! Constants for test API
+interface if_Aunit_Constants public.
+
+  constants:
+    "! Severity
+    begin of severity,
+      low               type    aunit_Level value 0,
+      medium            type    aunit_Level value 1,
+      high              type    aunit_Level value 2,
+    end of severity.
+  "! Severity low: TOLERABLE
+  constants tolerable type aunit_Level value 0.
+  "! Severity medium: CRITICAL
+  constants critical type aunit_Level value 1.
+  "! Severity high: FATAL
+  constants fatal type aunit_Level value 2.
+  "! Obsolete: use TOLERABLE
+  constants tolerant type aunit_Level value 0.
+
+  constants:
+    "! Control flow
+    begin of quit,
+      "! Raise failure and continue with test
+      no          type   aunit_Flowctrl       value 0,
+      "! Raise failure and exit the current test
+      test        type   aunit_Flowctrl       value 1,
+    end of quit .
+  "! Control flow: Do not quit just raise a failure
+  constants no type aunit_Flowctrl value 0.
+  "! Control flow: Quit the current test
+  constants method type aunit_Flowctrl value 1.
+  "! Control flow: Discouraged - Quit current test, skip any further test of class
+  constants class type aunit_Flowctrl value 2.
+  "! Control flow: Discouraged - Quit current test / skip any further test of program
+  constants program type aunit_Flowctrl value 3.
+
+endinterface.

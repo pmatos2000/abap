@@ -1,0 +1,4 @@
+  method CONSTRUCTOR.
+    me->nome = p_nome.
+    me->data_nascimento = p_data_nascimento.
+  endmethod.

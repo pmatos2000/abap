@@ -1,0 +1,21 @@
+REPORT z_abap02_class.
+
+START-OF-SELECTION.
+
+  DATA:
+    data_nascimento TYPE Y_ABAP02_DATA_DADOS,
+    pessoa1 TYPE REF TO zcl_abap02_pessoa,
+    pessoa2 TYPE REF TO zcl_abap02_pessoa.
+
+  pessoa1 = NEW zcl_abap02_pessoa( p_nome = 'Paulo' p_data_nascimento = '19930104' ).
+*  pessoa1->nome = 'Lucas'.
+*  pessoa2 = pessoa1.
+*  pessoa2->nome = 'Paulo'.
+*  WRITE: pessoa1->nome, /.
+
+  pessoa1->escrever_nome( ).
+
+  data_nascimento = pessoa1->get_data_nascimento( ).
+
+  WRITE: /, data_nascimento.
+  WRITE: /, pessoa1->get_data_nascimento( ).

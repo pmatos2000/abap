@@ -1,0 +1,17 @@
+CLASS zcl_abap02_tabelas DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+
+    METHODS add_pessoa
+      IMPORTING
+        !o_pessoa TYPE REF TO zcl_abap16_pessoa .
+    METHODS get_pessoa
+      IMPORTING
+        !p_nome         TYPE string
+      RETURNING
+        VALUE(r_pessoa) TYPE REF TO zcl_abap16_pessoa
+      EXCEPTIONS
+        nome_nao_encontrado .

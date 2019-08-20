@@ -1,0 +1,10 @@
+  METHOD adiciona.
+    IF ( me->no IS INITIAL ).
+      me->no = NEW zcl_abap02_arvore_b_no( ).
+      me->no->chave = p_chave.
+    ELSE.
+      me->no->adiciona(
+         p_chave = p_chave
+      ).
+    ENDIF.
+  ENDMETHOD.

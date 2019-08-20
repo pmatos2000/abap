@@ -1,0 +1,28 @@
+class-pool .
+*"* class pool for class ZCL_ABAP02_CALC
+
+*"* local type definitions
+include ZCL_ABAP02_CALC===============ccdef.
+
+*"* class ZCL_ABAP02_CALC definition
+*"* public declarations
+  include ZCL_ABAP02_CALC===============cu.
+*"* protected declarations
+  include ZCL_ABAP02_CALC===============co.
+*"* private declarations
+  include ZCL_ABAP02_CALC===============ci.
+endclass. "ZCL_ABAP02_CALC definition
+
+*"* macro definitions
+include ZCL_ABAP02_CALC===============ccmac.
+*"* local class implementation
+include ZCL_ABAP02_CALC===============ccimp.
+
+*"* test class
+include ZCL_ABAP02_CALC===============ccau.
+
+class ZCL_ABAP02_CALC implementation.
+*"* method's implementations
+  include methods.
+endclass. "ZCL_ABAP02_CALC implementation
+

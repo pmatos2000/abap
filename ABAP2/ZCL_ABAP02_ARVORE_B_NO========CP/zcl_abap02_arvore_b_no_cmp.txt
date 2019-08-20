@@ -1,0 +1,7 @@
+ZCL_ABAP02_ARVORE_B_NO        ADICIONA                      10
+ZCL_ABAP02_ARVORE_B_NO        CHAVE                         00
+ZCL_ABAP02_ARVORE_B_NO        DIR                           00
+ZCL_ABAP02_ARVORE_B_NO        EM_ORDEM                      10
+ZCL_ABAP02_ARVORE_B_NO        ESQ                           00
+ZCL_ABAP02_ARVORE_B_NO        POS_ORDEM                     10
+ZCL_ABAP02_ARVORE_B_NO        PRE_ORDEM                     10

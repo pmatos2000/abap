@@ -1,0 +1,4 @@
+STAT_9000           GRAVAR
+STAT_9000           PESQUISAR
+STAT_9000           PROX_TELA
+STAT_9000           VOLTAR

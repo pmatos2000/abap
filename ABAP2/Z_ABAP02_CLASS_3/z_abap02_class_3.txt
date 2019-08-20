@@ -1,0 +1,12 @@
+REPORT z_abap02_class_3.
+
+START-OF-SELECTION.
+
+  DATA:
+    pessoa TYPE REF TO zcl_abap02_pessoa.
+
+  pessoa = NEW zcl_abap02_pessoa(
+                p_nome = 'Paulo'
+                p_data_nascimento = '19930101' ).
+
+  pessoa->zif_abap02_humano~falar( ).

@@ -1,0 +1,4 @@
+ZCL_ABAP02_CALC               ADD                           10
+ZCL_ABAP02_CALC               DIV                           10
+ZCL_ABAP02_CALC               MUL                           10
+ZCL_ABAP02_CALC               SUB                           10

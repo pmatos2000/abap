@@ -1,0 +1,1 @@
+Y_ABAP02_G_SCUSTOM_BUSCA      SAPLY_ABAP02_G_SCUSTOM                  0100000000              

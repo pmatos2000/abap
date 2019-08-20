@@ -1,0 +1,45 @@
+REPORT y_abap02_select_2.
+
+TABLES: scarr.
+
+SELECT-OPTIONS: carrid FOR scarr-carrid.
+
+
+START-OF-SELECTION.
+
+  TYPES:
+    BEGIN OF estrutura_scarr,
+      carrid   TYPE scarr-carrid,
+      carrname TYPE scarr-carrname,
+    END OF estrutura_scarr.
+
+
+  DATA:
+    estrutura TYPE estrutura_scarr,
+    tabela    TYPE STANDARD TABLE OF estrutura_scarr,
+    index     TYPE sy-tabix.
+
+  SELECT carrid carrname
+    FROM scarr
+    INTO TABLE tabela
+    WHERE carrid IN carrid[].
+
+  IF sy-subrc = 0.
+    WRITE: 'Companhias:', /.
+    LOOP AT tabela INTO estrutura.
+      index = sy-tabix.
+      IF estrutura-carrid(1) = 'A'.
+        estrutura-carrname = 'Paulo'.
+        MODIFY tabela FROM estrutura INDEX index.
+      ELSEIF estrutura-carrid(1) = 'B'.
+        DELETE tabela INDEX index.
+      ENDIF.
+    ENDLOOP.
+
+    LOOP AT tabela INTO estrutura.
+      WRITE: estrutura-carrid , '-' , estrutura-carrname, /.
+    ENDLOOP.
+
+  ELSE.
+    WRITE: 'Nenhum registro encontrado'.
+  ENDIF.

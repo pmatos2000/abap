@@ -1,0 +1,10 @@
+*---------------------------------------------------------------------*
+*    program for:   TABLEPROC_ZGF_ABAP02_A_COD
+*   generation date: 25.07.2019 at 16:26:52
+*   view maintenance generator version: #001407#
+*---------------------------------------------------------------------*
+FUNCTION TABLEPROC_ZGF_ABAP02_A_COD    .
+
+  PERFORM TABLEPROC.
+
+ENDFUNCTION.

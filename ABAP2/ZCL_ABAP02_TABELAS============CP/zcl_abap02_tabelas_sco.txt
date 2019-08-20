@@ -1,0 +1,4 @@
+ZCL_ABAP02_TABELAS            ADD_PESSOA                    O_PESSOA                      100
+ZCL_ABAP02_TABELAS            GET_PESSOA                    NOME_NAO_ENCONTRADO           101
+ZCL_ABAP02_TABELAS            GET_PESSOA                    P_NOME                        100
+ZCL_ABAP02_TABELAS            GET_PESSOA                    R_PESSOA                      100

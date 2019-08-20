@@ -1,0 +1,78 @@
+class CL_EXITHANDLER definition
+  public
+  final
+  create public .
+
+*"* public components of class CL_EXITHANDLER
+*"* do not include other source files here!!!
+public section.
+
+  constants DUMMY_PROGRAM type PROGRAM value 'SAPLSEXM'. "#EC NOTEXT
+  constants DUMMY_DYNPRO type DYNNR value '0200'. "#EC NOTEXT
+
+  class-methods GET_CONTROL_COMPOSITE_NAME
+    importing
+      value(EXIT_NAME) type EXIT_DEF
+      value(COCO_OUTER) type CC_NAME
+      value(NODE_ID) type CC_SUBNAME
+    returning
+      value(COCO_INNER) type CC_NAME
+    exceptions
+      EXIT_OR_COCOCLASS_NOT_EXISTENT .
+  type-pools SEEX .
+  type-pools SXRT .
+  class-methods GET_INSTANCE
+    importing
+      value(EXIT_NAME) type EXIT_DEF optional
+      value(NULL_INSTANCE_ACCEPTED) type SEEX_BOOLEAN
+ default SEEX_FALSE
+    exporting
+      value(ACT_IMP_EXISTING) type SXRT_BOOLEAN
+    changing
+      !INSTANCE type ANY
+    exceptions
+      NO_REFERENCE
+      NO_INTERFACE_REFERENCE
+      NO_EXIT_INTERFACE
+      CLASS_NOT_IMPLEMENT_INTERFACE
+      SINGLE_EXIT_MULTIPLY_ACTIVE
+      CAST_ERROR
+      EXIT_NOT_EXISTING
+      DATA_INCONS_IN_EXIT_MANAGEM .
+  class-methods GET_PROG_AND_DYNP_FOR_SUBSCR
+    importing
+      value(EXIT_NAME) type EXIT_DEF
+      value(CALLING_DYNPRO) type DYNNR
+      value(CALLING_PROGRAM) type PROGRAM
+      value(FLT_VAL) type FILTNAME optional
+      value(SUBSCREEN_AREA) type SUBSCREEN
+    exporting
+      value(CALLED_DYNPRO) type DYNNR
+      value(CALLED_PROGRAM) type PROGRAM .
+  class-methods GET_INSTANCE_FOR_SUBSCREENS
+    changing
+      !INSTANCE type ANY
+    exceptions
+      NO_REFERENCE
+      NO_INTERFACE_REFERENCE
+      NO_EXIT_INTERFACE
+      DATA_INCONS_IN_EXIT_MANAGEM
+      CLASS_NOT_IMPLEMENT_INTERFACE .
+  class-methods SET_INSTANCE_FOR_SUBSCREENS
+    importing
+      !INSTANCE type ANY
+    exceptions
+      NO_REFERENCE
+      NO_INTERFACE_REFERENCE
+      NO_EXIT_INTERFACE
+      DATA_INCONS_IN_EXIT_MANAGEM
+      CLASS_NOT_IMPLEMENT_INTERFACE .
+  class-methods DELETE_INSTANCE
+    changing
+      !INSTANCE type ANY .
+  class-methods REFRESH_INTERNAL_BUFFER .
+  class-methods REFRESH_INTERN_BUFFER_FOR_BADI
+    importing
+      !EXIT_NAME type EXIT_DEF optional .
+  type-pools SEOC .
+  type-pools SEOR .
